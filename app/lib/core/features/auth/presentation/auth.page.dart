@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -49,7 +50,7 @@ class AuthPage extends HookConsumerWidget {
             ),
             body: SingleChildScrollView(
               padding: EdgeInsets.symmetric(
-                  horizontal: responsive.isDesktop
+                  horizontal: kIsWeb
                       ? Spacers.x9l + Spacers.x9l + Spacers.x3l
                       : Spacers.s),
               child: Center(
