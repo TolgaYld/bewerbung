@@ -100,8 +100,7 @@ flutter_gen:
   line_length: 80
 
 flutter_native_splash:
-  color: "#7D5F96"
-  image: assets/images/app_icon.png
+  background_image: assets/images/bg_image.jpg
   ios: true
   android: true
   web: false
