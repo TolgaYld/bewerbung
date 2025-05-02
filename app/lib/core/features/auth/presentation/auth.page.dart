@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -24,6 +23,7 @@ class AuthPage extends HookConsumerWidget {
     final state = ref.watch(authStateProvider);
     final notifier = ref.read(authStateProvider.notifier);
     final responsive = useResponsive();
+    final width = MediaQuery.sizeOf(context).width;
 
     ref.listen(authStateProvider, (prev, next) {
       if (next is AuthStateError) {
@@ -49,10 +49,7 @@ class AuthPage extends HookConsumerWidget {
               ],
             ),
             body: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(
-                  horizontal: kIsWeb
-                      ? Spacers.x9l + Spacers.x9l + Spacers.x3l
-                      : Spacers.s),
+              padding: EdgeInsets.symmetric(horizontal: Spacers.s),
               child: Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,9 +77,14 @@ class AuthPage extends HookConsumerWidget {
                       const VSpace.xl(),
                     ] else
                       const VSpace.x2l(),
-                    LoginSwitchWidget(
-                      state: state,
-                      notifier: notifier,
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxWidth: width > 600 ? 600 : width,
+                      ),
+                      child: LoginSwitchWidget(
+                        state: state,
+                        notifier: notifier,
+                      ),
                     ),
                     const VSpace.xl(),
                     ResponsiveWidget(
