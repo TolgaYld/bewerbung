@@ -191,7 +191,7 @@ class L10nDe extends L10n {
   String get invited => 'Eingeladen';
 
   @override
-  String get inviteExplanationHint => 'Fügen Sie optional eine Nachricht hinzu...';
+  String get inviteExplanationHint => 'Füge optional eine Nachricht hinzu...';
 
   @override
   String get refuseExplanationHint => 'Grund der Ablehnung (optional)...';

@@ -59,7 +59,7 @@
     "pending": "Ausstehend",
     "rejected": "Abgelehnt",
     "invited": "Eingeladen",
-    "inviteExplanationHint": "Fügen Sie optional eine Nachricht hinzu...",
+    "inviteExplanationHint": "Füge optional eine Nachricht hinzu...",
     "refuseExplanationHint": "Grund der Ablehnung (optional)...",
     "reasonForRejection": "Ablehnungsgrund",
     "message": "message",
