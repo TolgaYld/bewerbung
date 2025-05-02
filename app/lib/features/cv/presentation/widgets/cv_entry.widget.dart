@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -158,26 +159,40 @@ class CvEntry extends HookConsumerWidget {
                         firstChild: SizedBox(
                           width: double.infinity,
                           height: 40,
-                          child: ShaderMask(
-                            shaderCallback: (Rect bounds) {
-                              return LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  theme.colorScheme.primary,
-                                  Colors.transparent,
-                                ],
-                              ).createShader(bounds);
-                            },
-                            blendMode: BlendMode.dstIn,
-                            child: AutoSizeText(
-                              desc,
-                              style: theme.textTheme.bodySmall?.copyWith(
-                                color: theme.colorScheme.onSurface,
+                          child: switch (kIsWeb) {
+                            true => AutoSizeText(
+                                (() {
+                                  final paragraphs = desc.split('\n\n');
+                                  return paragraphs.length > 2
+                                      ? paragraphs.take(2).join('\n\n')
+                                      : desc;
+                                })(),
+                                style: theme.textTheme.bodySmall?.copyWith(
+                                  color: theme.colorScheme.onSurface,
+                                ),
+                                softWrap: true,
                               ),
-                              softWrap: true,
-                            ),
-                          ),
+                            false => ShaderMask(
+                                shaderCallback: (Rect bounds) {
+                                  return LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [
+                                      theme.colorScheme.primary,
+                                      Colors.transparent,
+                                    ],
+                                  ).createShader(bounds);
+                                },
+                                blendMode: BlendMode.dstIn,
+                                child: AutoSizeText(
+                                  desc,
+                                  style: theme.textTheme.bodySmall?.copyWith(
+                                    color: theme.colorScheme.onSurface,
+                                  ),
+                                  softWrap: true,
+                                ),
+                              ),
+                          },
                         ),
                         secondChild: AutoSizeText(
                           desc,
