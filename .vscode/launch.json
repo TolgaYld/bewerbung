@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "PleaseHireTolga",
+            "request": "launch",
+            "type": "dart",
+            "cwd": "app",
+            "env": {}
+        }
+    ]
+}

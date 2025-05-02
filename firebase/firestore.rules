@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /companies/{companyId} {
+      allow read: if request.auth != null && request.auth.uid == companyId;
+
+      allow update: if request.auth != null 
+        && request.auth.uid == companyId
+        && allowedFields(['decisionStatus', 'decisionMessage', 'inviteDate', 'inviteDurationInMinutes', 'employeeAcceptedInvite', 'messageFromEmployee'])
+        && ('decisionStatus' in request.resource.data)
+        && (request.resource.data.decisionStatus in ['pending', 'invited', 'rejected'])
+        && (('inviteDurationInMinutes' in request.resource.data) == false || ('inviteDate' in request.resource.data));
+        
+      allow create, delete: if false;
+}
+    match /invites/{companyName} {
+      allow read, write: if false;
+    }
+     match /employee/{employeeId} { 
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+
+function allowedFields(fields) {
+  return request.resource.data.diff(resource.data).affectedKeys().hasOnly(fields);
+}

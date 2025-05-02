@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "969055211829",
+    "project_id": "pleasehiretolga",
+    "storage_bucket": "pleasehiretolga.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969055211829:android:7bab5394a8142dbd15bc7c",
+        "android_client_info": {
+          "package_name": "dev.ty_software.pleasehiretolga"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBS8ZaztF_Bkq0jLSVK7GBfhYA4c-Xq4Vk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
