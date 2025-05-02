@@ -13,8 +13,7 @@ export const onUserCreatedHandler =
                 await auth.deleteUser(user.uid);
                 return null;
             }
-            const companyNameRaw = email.split("@")[0];
-            const companyName = companyNameRaw[0].toUpperCase() + companyNameRaw.slice(1);
+            const companyName = email.split("@")[0];
             const inviteRef = db.doc(`invites/${companyName}`);
             const inviteSnap = await inviteRef.get();
             const inviteData = inviteSnap.data();
