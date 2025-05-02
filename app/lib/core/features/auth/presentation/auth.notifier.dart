@@ -102,6 +102,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     } catch (e) {
       state = AuthStateError(e.toString());
     }
+    ref.invalidate(companyProvider);
   }
 
   Future<void> login(L10n l10n) async {
@@ -121,6 +122,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
           Right(:final value) => AuthStateAuthenticated(company: value),
           Left(:final failure) => AuthStateError(failure.message),
         };
+        ref.invalidate(companyProvider);
       } on Exception {
         state = AuthStateError(l10n.oopsSomethingWentWrongPleaseTryAgain);
       }
