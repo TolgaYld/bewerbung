@@ -81,6 +81,7 @@ class HomePage extends HookConsumerWidget {
             labelColor: theme.colorScheme.surface,
             unselectedLabelColor: theme.colorScheme.surface,
             indicatorColor: theme.colorScheme.surface,
+            indicatorWeight: 7,
           ),
           actions: [
             LanguageSwitcher(),
