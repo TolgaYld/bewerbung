@@ -148,7 +148,9 @@ class CvEntry extends HookConsumerWidget {
                       if (enableCollapseMode <= 2) {
                         return AutoSizeText(
                           desc,
-                          style: theme.textTheme.bodySmall,
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: theme.colorScheme.onSurface,
+                          ),
                           softWrap: true,
                         );
                       }
