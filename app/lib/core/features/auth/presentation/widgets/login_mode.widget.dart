@@ -27,6 +27,8 @@ class LoginSwitchWidget extends HookConsumerWidget {
     final responsive = useResponsive();
     final usernameController = useTextEditingController();
     final passwordController = useTextEditingController();
+    final usernameFocus = useFocusNode();
+    final passwordFocus = useFocusNode();
     final obscurePw = useState(true);
     return switch ((responsive.type, state)) {
       (
@@ -41,10 +43,15 @@ class LoginSwitchWidget extends HookConsumerWidget {
             children: [
               TextFormField(
                 controller: usernameController,
+                focusNode: usernameFocus,
                 onChanged: (value) => notifier.updateFields(
                   username: value,
                   password: passwordController.text,
                 ),
+                onFieldSubmitted: (_) {
+                  usernameFocus.unfocus();
+                  FocusScope.of(context).requestFocus(passwordFocus);
+                },
                 decoration: InputDecoration(
                   labelText: l10n.username,
                   hintText: l10n.username,
@@ -53,6 +60,7 @@ class LoginSwitchWidget extends HookConsumerWidget {
               const VSpace.s(),
               TextFormField(
                 controller: passwordController,
+                focusNode: passwordFocus,
                 onChanged: (value) => notifier.updateFields(
                   username: usernameController.text,
                   password: value,
@@ -68,6 +76,10 @@ class LoginSwitchWidget extends HookConsumerWidget {
                     onPressed: () => obscurePw.value = !obscurePw.value,
                   ),
                 ),
+                onFieldSubmitted: (_) async {
+                  passwordFocus.unfocus();
+                  await notifier.login(l10n);
+                },
                 obscureText: obscurePw.value,
               ),
               const VSpace.x2l(),
