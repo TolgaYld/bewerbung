@@ -25,6 +25,7 @@ export const onUserCreatedHandler =
             await db.doc(`companies/${uid}`).set({
                 id: uid,
                 name: companyName,
+                coverLetter: null,
                 logoUrl: null,
                 primaryColor: null,
                 secondaryColor: null,
