@@ -7,6 +7,7 @@ import 'package:pleasehiretolga/core/features/auth/presentation/state/auth.state
 import 'package:pleasehiretolga/core/features/auth/presentation/widgets/login_mode.widget.dart';
 import 'package:pleasehiretolga/core/design/spacing.dart';
 import 'package:pleasehiretolga/core/hooks/use_l10n.hook.dart';
+import 'package:pleasehiretolga/core/hooks/use_responsive.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
 import 'package:pleasehiretolga/core/presentation/loading_page.dart';
 import 'package:pleasehiretolga/core/presentation/widgets/language_switcher.widget.dart';
@@ -21,6 +22,7 @@ class AuthPage extends HookConsumerWidget {
     final textTheme = useTextTheme();
     final state = ref.watch(authStateProvider);
     final notifier = ref.read(authStateProvider.notifier);
+    final responsive = useResponsive();
 
     ref.listen(authStateProvider, (prev, next) {
       if (next is AuthStateError) {
@@ -39,13 +41,17 @@ class AuthPage extends HookConsumerWidget {
             resizeToAvoidBottomInset: true,
             appBar: AppBar(
               title: AutoSizeText(l10n.welcomeToPleaseHireTolga),
+              centerTitle: responsive.isDesktop ? true : false,
               actions: [
                 LanguageSwitcher(),
                 const HSpace.xs(),
               ],
             ),
             body: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: Spacers.s),
+              padding: EdgeInsets.symmetric(
+                  horizontal: responsive.isDesktop
+                      ? Spacers.x9l + Spacers.x9l + Spacers.x3l
+                      : Spacers.s),
               child: Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,14 +59,16 @@ class AuthPage extends HookConsumerWidget {
                     const VSpace.x4l(),
                     AutoSizeText(
                       switch (state) {
-                        AuthStateEditing(qrMode: true) =>
+                        AuthStateEditing(qrMode: true)
+                            when responsive.isDesktop == false =>
                           l10n.tapOnScanQrCodeToLogin,
                         _ => l10n.enterYourLoginInformation,
                       },
                       style: textTheme.titleMedium,
                       textAlign: TextAlign.center,
                     ),
-                    if (state case AuthStateEditing(qrMode: true)) ...[
+                    if (state case AuthStateEditing(qrMode: true)
+                        when responsive.isDesktop == false) ...[
                       AutoSizeText(
                         l10n.youWillBeAutomaticallyLoggedIn,
                         style: textTheme.bodyMedium?.copyWith(

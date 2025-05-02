@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:pleasehiretolga/core/constants/breakpoints.dart';
@@ -23,8 +22,9 @@ ResponsiveDevice useResponsive() {
   final context = useContext();
   final width = MediaQuery.sizeOf(context).width;
 
-  final isMobile = width <= kMobileBreakpoint;
-  final isTablet = width > kMobileBreakpoint && width < kTabletBreakpoint;
+  final isMobile = width <= kMobileBreakpoint && kIsWeb == false;
+  final isTablet =
+      width > kMobileBreakpoint && width < kTabletBreakpoint && kIsWeb == false;
   final isDesktop = width >= kTabletBreakpoint;
 
   return ResponsiveDevice._(
@@ -32,10 +32,8 @@ ResponsiveDevice useResponsive() {
     isTablet: isTablet,
     isDesktop: isDesktop,
     type: switch (width) {
-      <= kMobileBreakpoint when (Platform.isIOS || Platform.isAndroid) =>
-        DeviceType.mobile,
-      < kTabletBreakpoint when (Platform.isIOS || Platform.isAndroid) =>
-        DeviceType.tablet,
+      <= kMobileBreakpoint when kIsWeb == false => DeviceType.mobile,
+      < kTabletBreakpoint when kIsWeb == false => DeviceType.tablet,
       _ => DeviceType.desktop,
     },
   );

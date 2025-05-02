@@ -21,80 +21,83 @@ class SignOutDialog extends HookConsumerWidget with ShowableDialogMixin<bool?> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Spacers.s),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(Spacers.l),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AutoSizeText(
-              l10n.signOutDialogTitle,
-              style: theme.textTheme.titleLarge,
-            ),
-            const VSpace.m(),
-            AutoSizeText(
-              l10n.signOutDialogContent,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurface,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 500),
+        child: Padding(
+          padding: const EdgeInsets.all(Spacers.l),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AutoSizeText(
+                l10n.signOutDialogTitle,
+                style: theme.textTheme.titleLarge,
               ),
-            ),
-            const VSpace.s(),
-            Align(
-              alignment: Alignment.center,
-              child: InkWell(
-                onTap: () => deleteAccount.value = !deleteAccount.value,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    AutoSizeText(
-                      l10n.deleteAccount,
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.error,
-                      ),
-                    ),
-                    Checkbox(
-                      fillColor: WidgetStateProperty.fromMap(
-                        {
-                          WidgetState.selected: theme.colorScheme.error,
-                        },
-                      ),
-                      side: BorderSide(
-                        color: theme.colorScheme.error,
-                        width: 1,
-                      ),
-                      value: deleteAccount.value,
-                      onChanged: (_) =>
-                          deleteAccount.value = !deleteAccount.value,
-                    ),
-                  ],
+              const VSpace.m(),
+              AutoSizeText(
+                l10n.signOutDialogContent,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurface,
                 ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              spacing: Spacers.xs,
-              children: [
-                TextButton(
-                  onPressed: () => pop(context, deleteAccount.value),
-                  child: AutoSizeText(
-                    l10n.signOut,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.colorScheme.primary,
-                    ),
+              const VSpace.s(),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: InkWell(
+                  onTap: () => deleteAccount.value = !deleteAccount.value,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      AutoSizeText(
+                        l10n.deleteAccount,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.colorScheme.error,
+                        ),
+                      ),
+                      Checkbox(
+                        fillColor: WidgetStateProperty.fromMap(
+                          {
+                            WidgetState.selected: theme.colorScheme.error,
+                          },
+                        ),
+                        side: BorderSide(
+                          color: theme.colorScheme.error,
+                          width: 1,
+                        ),
+                        value: deleteAccount.value,
+                        onChanged: (_) =>
+                            deleteAccount.value = !deleteAccount.value,
+                      ),
+                    ],
                   ),
                 ),
-                TextButton(
-                  onPressed: () => pop(context, null),
-                  child: AutoSizeText(
-                    l10n.cancel,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.colorScheme.onSurface,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                spacing: Spacers.xs,
+                children: [
+                  TextButton(
+                    onPressed: () => pop(context, deleteAccount.value),
+                    child: AutoSizeText(
+                      l10n.signOut,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.primary,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  TextButton(
+                    onPressed: () => pop(context, null),
+                    child: AutoSizeText(
+                      l10n.cancel,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onSurface,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

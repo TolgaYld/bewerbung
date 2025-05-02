@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:confetti/confetti.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -40,6 +41,49 @@ class DecisionPage extends HookConsumerWidget {
     final showBadge =
         company != null && company.decisionStatus != DecisionStatus.pending;
 
+    void showConfetti(BuildContext context) {
+      final entry = OverlayEntry(
+        builder: (context) => IgnorePointer(
+          child: Material(
+            type: MaterialType.transparency,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: ConfettiWidget(
+                confettiController: confettiController,
+                blastDirectionality: BlastDirectionality.explosive,
+                emissionFrequency: 0.05,
+                numberOfParticles: 50,
+                maxBlastForce: 5,
+                minBlastForce: 2,
+                gravity: 0.2,
+                colors: [
+                  Theme.of(context).colorScheme.primary,
+                  Theme.of(context).colorScheme.secondary,
+                  Colors.green,
+                  Colors.blue,
+                  Colors.orange,
+                  Colors.pink,
+                  Colors.purple,
+                  Colors.yellow,
+                  Colors.red,
+                  Colors.teal,
+                  Colors.amber,
+                  Colors.cyan,
+                  Colors.lime,
+                  Colors.indigo,
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+
+      final overlay = Overlay.of(context, rootOverlay: true);
+      overlay.insert(entry);
+
+      confettiController.play();
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -48,31 +92,6 @@ class DecisionPage extends HookConsumerWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ConfettiWidget(
-                  confettiController: confettiController,
-                  blastDirectionality: BlastDirectionality.explosive,
-                  emissionFrequency: 0.05,
-                  numberOfParticles: 50,
-                  maxBlastForce: 5,
-                  minBlastForce: 2,
-                  gravity: 0.2,
-                  colors: [
-                    theme.colorScheme.primary,
-                    theme.colorScheme.secondary,
-                    Colors.green,
-                    Colors.blue,
-                    Colors.orange,
-                    Colors.pink,
-                    Colors.purple,
-                    Colors.yellow,
-                    Colors.red,
-                    Colors.teal,
-                    Colors.amber,
-                    Colors.cyan,
-                    Colors.lime,
-                    Colors.indigo,
-                  ],
-                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: Spacers.m),
                   child: AutoSizeText(
@@ -115,191 +134,196 @@ class DecisionPage extends HookConsumerWidget {
                 ],
                 const VSpace.l(),
                 Flexible(
-                  child: Swiper(
-                    companyId: company?.id,
-                    controller: swiperController,
-                    onRightSwipe: confettiController.play,
-                    child: Card(
-                      shadowColor:
-                          theme.colorScheme.primary.withValues(alpha: 0.5),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(
-                          color:
-                              theme.colorScheme.primary.withValues(alpha: 0.2),
-                          width: 1.5,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: kIsWeb ? Spacers.x9l * 2.3 : 0),
+                    child: Swiper(
+                      companyId: company?.id,
+                      controller: swiperController,
+                      onRightSwipe: () => showConfetti(context),
+                      child: Card(
+                        shadowColor:
+                            theme.colorScheme.primary.withValues(alpha: 0.5),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(
+                            color: theme.colorScheme.primary
+                                .withValues(alpha: 0.2),
+                            width: 1.5,
+                          ),
                         ),
-                      ),
-                      clipBehavior: Clip.antiAlias,
-                      child: SizedBox(
-                        width: screenSize.width * 0.85,
-                        height: screenSize.height * 0.60,
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            switch (employee) {
-                              final empl? when empl.imageUrls.isNotEmpty =>
-                                Hero(
-                                  tag: 'profile_image',
-                                  child: CachedNetworkImage(
-                                    alignment: Alignment.topCenter,
-                                    imageUrl: empl.imageUrls.last,
-                                    fit: BoxFit.cover,
-                                    placeholder: (context, url) => Container(
-                                      color: Colors.grey[300],
-                                      child: Icon(
-                                        Icons.person,
-                                        size: 48,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                    errorWidget: (context, url, error) =>
-                                        Container(
-                                      color: Colors.grey[300],
-                                      child: Icon(
-                                        Icons.error_outline,
-                                        size: 80,
-                                        color: theme.colorScheme.error,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              _ => Container(
-                                  decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                      colors: [
-                                        theme.colorScheme.primary
-                                            .withValues(alpha: 0.3),
-                                        theme.colorScheme.primary
-                                            .withValues(alpha: 0.7),
-                                      ],
-                                    ),
-                                  ),
-                                  child: Icon(
-                                    Icons.person,
-                                    size: 120,
-                                    color: theme.colorScheme.onPrimary
-                                        .withValues(alpha: 0.7),
-                                  ),
-                                ),
-                            },
-                            Container(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  stops: const [0.5, 0.9],
-                                  colors: [
-                                    Colors.transparent,
-                                    Colors.black.withValues(alpha: 0.8),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(Spacers.m),
-                                  child: Column(
-                                    spacing: Spacers.xs,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      AutoSizeText(
-                                        employee?.person.fullName ?? "",
-                                        style: theme.textTheme.displaySmall
-                                            ?.copyWith(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          shadows: [
-                                            Shadow(
-                                              color: Colors.black
-                                                  .withValues(alpha: 0.7),
-                                              offset: const Offset(0, 1),
-                                              blurRadius: 4,
-                                            ),
-                                          ],
+                        clipBehavior: Clip.antiAlias,
+                        child: SizedBox(
+                          width: screenSize.width * 0.85,
+                          height: screenSize.height * 0.60,
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              switch (employee) {
+                                final empl? when empl.imageUrls.isNotEmpty =>
+                                  Hero(
+                                    tag: 'profile_image',
+                                    child: CachedNetworkImage(
+                                      alignment: Alignment.topCenter,
+                                      imageUrl: empl.imageUrls.last,
+                                      fit: BoxFit.cover,
+                                      placeholder: (context, url) => Container(
+                                        color: Colors.grey[300],
+                                        child: Icon(
+                                          Icons.person,
+                                          size: 48,
+                                          color: Colors.grey,
                                         ),
                                       ),
-                                      AutoSizeText(
-                                        employee?.getJobTitleText(locale) ?? "",
-                                        style: theme.textTheme.titleLarge
-                                            ?.copyWith(
-                                          color: Colors.white
-                                              .withValues(alpha: 0.9),
-                                          shadows: [
-                                            Shadow(
-                                              color: Colors.black
-                                                  .withValues(alpha: 0.7),
-                                              offset: const Offset(0, 1),
-                                              blurRadius: 4,
-                                            ),
-                                          ],
+                                      errorWidget: (context, url, error) =>
+                                          Container(
+                                        color: Colors.grey[300],
+                                        child: Icon(
+                                          Icons.error_outline,
+                                          size: 80,
+                                          color: theme.colorScheme.error,
                                         ),
                                       ),
+                                    ),
+                                  ),
+                                _ => Container(
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [
+                                          theme.colorScheme.primary
+                                              .withValues(alpha: 0.3),
+                                          theme.colorScheme.primary
+                                              .withValues(alpha: 0.7),
+                                        ],
+                                      ),
+                                    ),
+                                    child: Icon(
+                                      Icons.person,
+                                      size: 120,
+                                      color: theme.colorScheme.onPrimary
+                                          .withValues(alpha: 0.7),
+                                    ),
+                                  ),
+                              },
+                              Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    stops: const [0.5, 0.9],
+                                    colors: [
+                                      Colors.transparent,
+                                      Colors.black.withValues(alpha: 0.8),
                                     ],
                                   ),
                                 ),
-                                SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        bottom: Spacers.m),
-                                    child: Row(
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(Spacers.m),
+                                    child: Column(
                                       spacing: Spacers.xs,
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        const HSpace.xs(),
-                                        SkillChip(
-                                          icon: Icons.code,
-                                          label: "Flutter",
+                                        AutoSizeText(
+                                          employee?.person.fullName ?? "",
+                                          style: theme.textTheme.displaySmall
+                                              ?.copyWith(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            shadows: [
+                                              Shadow(
+                                                color: Colors.black
+                                                    .withValues(alpha: 0.7),
+                                                offset: const Offset(0, 1),
+                                                blurRadius: 4,
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                        SkillChip(
-                                          icon: Icons.cloud_outlined,
-                                          label: "Node.js",
+                                        AutoSizeText(
+                                          employee?.getJobTitleText(locale) ??
+                                              "",
+                                          style: theme.textTheme.titleLarge
+                                              ?.copyWith(
+                                            color: Colors.white
+                                                .withValues(alpha: 0.9),
+                                            shadows: [
+                                              Shadow(
+                                                color: Colors.black
+                                                    .withValues(alpha: 0.7),
+                                                offset: const Offset(0, 1),
+                                                blurRadius: 4,
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                        SkillChip(
-                                          icon: Icons.storage_outlined,
-                                          label: "Firebase",
-                                        ),
-                                        SkillChip(
-                                          icon: Icons.dns_outlined,
-                                          label: "Docker",
-                                        ),
-                                        SkillChip(
-                                          icon: Icons.cloud_sync_outlined,
-                                          label: "Kubernetes",
-                                        ),
-                                        SkillChip(
-                                          icon: Icons.layers_outlined,
-                                          label: "Solid",
-                                        ),
-                                        SkillChip(
-                                          icon: Icons.api_outlined,
-                                          label: "REST",
-                                        ),
-                                        SkillChip(
-                                          icon: Icons.lock_outline,
-                                          label: "OAuth",
-                                        ),
-                                        SkillChip(
-                                          icon: Icons.storage,
-                                          label: "SQL",
-                                        ),
-                                        SkillChip(
-                                          icon: Icons.graphic_eq_outlined,
-                                          label: "GraphQL",
-                                        ),
-                                        const HSpace.xs(),
                                       ],
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          bottom: Spacers.m),
+                                      child: Row(
+                                        spacing: Spacers.xs,
+                                        children: [
+                                          const HSpace.xs(),
+                                          SkillChip(
+                                            icon: Icons.code,
+                                            label: "Flutter",
+                                          ),
+                                          SkillChip(
+                                            icon: Icons.cloud_outlined,
+                                            label: "Node.js",
+                                          ),
+                                          SkillChip(
+                                            icon: Icons.storage_outlined,
+                                            label: "Firebase",
+                                          ),
+                                          SkillChip(
+                                            icon: Icons.dns_outlined,
+                                            label: "Docker",
+                                          ),
+                                          SkillChip(
+                                            icon: Icons.cloud_sync_outlined,
+                                            label: "Kubernetes",
+                                          ),
+                                          SkillChip(
+                                            icon: Icons.layers_outlined,
+                                            label: "Solid",
+                                          ),
+                                          SkillChip(
+                                            icon: Icons.api_outlined,
+                                            label: "REST",
+                                          ),
+                                          SkillChip(
+                                            icon: Icons.lock_outline,
+                                            label: "OAuth",
+                                          ),
+                                          SkillChip(
+                                            icon: Icons.storage,
+                                            label: "SQL",
+                                          ),
+                                          SkillChip(
+                                            icon: Icons.graphic_eq_outlined,
+                                            label: "GraphQL",
+                                          ),
+                                          const HSpace.xs(),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

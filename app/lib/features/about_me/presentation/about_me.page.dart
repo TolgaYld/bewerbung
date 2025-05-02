@@ -133,6 +133,8 @@ class AboutMePage extends HookConsumerWidget {
                                         child: CachedNetworkImage(
                                           imageUrl: imageUrls.first,
                                           fit: BoxFit.contain,
+                                          errorWidget: (_, __, ___) =>
+                                              const Icon(Icons.error),
                                         ),
                                       ),
                                     ),

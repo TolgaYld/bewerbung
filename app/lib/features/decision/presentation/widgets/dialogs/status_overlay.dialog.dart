@@ -45,296 +45,304 @@ class StatusOverlayDialog extends HookConsumerWidget with ShowableDialogMixin {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Spacers.s),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(Spacers.m),
-            decoration: BoxDecoration(
-              color: company.decisionStatus.color.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Spacers.s),
-                topRight: Radius.circular(Spacers.s),
-              ),
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  company.decisionStatus.icon,
-                  color: company.decisionStatus.color,
-                  size: 24,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 500),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(Spacers.m),
+              decoration: BoxDecoration(
+                color: company.decisionStatus.color.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(Spacers.s),
+                  topRight: Radius.circular(Spacers.s),
                 ),
-                const SizedBox(width: Spacers.s),
-                Expanded(
-                  child: Text(
-                    company.decisionStatus.getLocalizedLabel(l10n),
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      color: company.decisionStatus.color,
-                      fontWeight: FontWeight.bold,
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    company.decisionStatus.icon,
+                    color: company.decisionStatus.color,
+                    size: 24,
+                  ),
+                  const SizedBox(width: Spacers.s),
+                  Expanded(
+                    child: Text(
+                      company.decisionStatus.getLocalizedLabel(l10n),
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        color: company.decisionStatus.color,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Flexible(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(Spacers.m),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (company.decisionMessage case final message?
-                      when message.isNotEmpty == true) ...[
-                    _TitleSection(
-                      icon: Icons.message_outlined,
-                      title: company.decisionStatus == DecisionStatus.rejected
-                          ? l10n.reasonForRejection
-                          : l10n.message,
-                    ),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(Spacers.s),
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.surface,
-                        borderRadius: BorderRadius.circular(Spacers.xs),
-                        border: Border.all(
-                          color: theme.colorScheme.onSurface
-                              .withValues(alpha: 0.1),
-                        ),
-                      ),
-                      child: Text(
-                        message,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onSurface,
-                        ),
-                      ),
-                    ),
-                    const VSpace.m(),
-                  ],
-                  if (company.decisionStatus == DecisionStatus.invited) ...[
-                    if (company.inviteDate case final date?) ...[
+            Flexible(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(Spacers.m),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (company.decisionMessage case final message?
+                        when message.isNotEmpty == true) ...[
                       _TitleSection(
-                        icon: Icons.calendar_today,
-                        title: l10n.appointment,
+                        icon: Icons.message_outlined,
+                        title: company.decisionStatus == DecisionStatus.rejected
+                            ? l10n.reasonForRejection
+                            : l10n.message,
                       ),
                       Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(Spacers.s),
                         decoration: BoxDecoration(
-                          color: company.decisionStatus.color
-                              .withValues(alpha: 0.1),
+                          color: theme.colorScheme.surface,
                           borderRadius: BorderRadius.circular(Spacers.xs),
                           border: Border.all(
+                            color: theme.colorScheme.onSurface
+                                .withValues(alpha: 0.1),
+                          ),
+                        ),
+                        child: Text(
+                          message,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: theme.colorScheme.onSurface,
+                          ),
+                        ),
+                      ),
+                      const VSpace.m(),
+                    ],
+                    if (company.decisionStatus == DecisionStatus.invited) ...[
+                      if (company.inviteDate case final date?) ...[
+                        _TitleSection(
+                          icon: Icons.calendar_today,
+                          title: l10n.appointment,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(Spacers.s),
+                          decoration: BoxDecoration(
                             color: company.decisionStatus.color
-                                .withValues(alpha: 0.3),
+                                .withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(Spacers.xs),
+                            border: Border.all(
+                              color: company.decisionStatus.color
+                                  .withValues(alpha: 0.3),
+                            ),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                spacing: Spacers.xs,
+                                children: [
+                                  Icon(
+                                    Icons.event,
+                                    color: company.decisionStatus.color,
+                                    size: 18,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      DateTimeFormatter.formatDateTimeCombined(
+                                        date,
+                                        locale: locale?.languageCode,
+                                      ),
+                                      style:
+                                          theme.textTheme.bodyLarge?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: company.decisionStatus.color,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              if (company.inviteDuration
+                                  case final duration?) ...[
+                                const HSpace.xs(),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: Spacers.l),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.timer_outlined,
+                                        color: company.decisionStatus.color,
+                                        size: 16,
+                                      ),
+                                      const SizedBox(width: Spacers.xs),
+                                      Expanded(
+                                        child: Text(
+                                          "${l10n.duration}: ${formatDuration(duration, l10n)}",
+                                          style: theme.textTheme.bodyMedium
+                                              ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            color: company.decisionStatus.color,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
+                        const VSpace.s(),
+                      ],
+                      _TitleSection(
+                        icon: Icons.person_outline,
+                        title: l10n.responseOfApplicant,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(Spacers.s),
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.surface,
+                          borderRadius: BorderRadius.circular(Spacers.xs),
+                          border: Border.all(
+                            color: theme.colorScheme.onSurface
+                                .withValues(alpha: 0.1),
                           ),
                         ),
                         child: Column(
+                          spacing: Spacers.s,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
-                              spacing: Spacers.xs,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Icon(
-                                  Icons.event,
-                                  color: company.decisionStatus.color,
+                                  company.employeeAcceptedInvite == true
+                                      ? Icons.check_circle
+                                      : company.employeeAcceptedInvite == false
+                                          ? Icons.cancel
+                                          : Icons.question_mark,
+                                  color: company.employeeAcceptedInvite == true
+                                      ? Colors.green
+                                      : company.employeeAcceptedInvite == false
+                                          ? Colors.red
+                                          : Colors.grey,
                                   size: 18,
                                 ),
                                 Expanded(
                                   child: Text(
-                                    DateTimeFormatter.formatDateTimeCombined(
-                                      date,
-                                      locale: locale?.languageCode,
-                                    ),
-                                    style: theme.textTheme.bodyLarge?.copyWith(
+                                    company.employeeAcceptedInvite == true
+                                        ? l10n.applicantAccepted
+                                        : company.employeeAcceptedInvite ==
+                                                false
+                                            ? l10n.applicantRefused
+                                            : l10n.applicantDidNotRespondYet,
+                                    style: theme.textTheme.bodyMedium?.copyWith(
                                       fontWeight: FontWeight.bold,
-                                      color: company.decisionStatus.color,
+                                      color: company.employeeAcceptedInvite ==
+                                              true
+                                          ? Colors.green
+                                          : company.employeeAcceptedInvite ==
+                                                  false
+                                              ? Colors.red
+                                              : Colors.grey,
                                     ),
                                   ),
                                 ),
                               ],
                             ),
-                            if (company.inviteDuration
-                                case final duration?) ...[
-                              const HSpace.xs(),
-                              Padding(
-                                padding: const EdgeInsets.only(left: Spacers.l),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.timer_outlined,
-                                      color: company.decisionStatus.color,
-                                      size: 16,
-                                    ),
-                                    const SizedBox(width: Spacers.xs),
-                                    Expanded(
-                                      child: Text(
-                                        "${l10n.duration}: ${formatDuration(duration, l10n)}",
-                                        style: theme.textTheme.bodyMedium
-                                            ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          color: company.decisionStatus.color,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ],
-                        ),
-                      ),
-                      const VSpace.s(),
-                    ],
-                    _TitleSection(
-                      icon: Icons.person_outline,
-                      title: l10n.responseOfApplicant,
-                    ),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(Spacers.s),
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.surface,
-                        borderRadius: BorderRadius.circular(Spacers.xs),
-                        border: Border.all(
-                          color: theme.colorScheme.onSurface
-                              .withValues(alpha: 0.1),
-                        ),
-                      ),
-                      child: Column(
-                        spacing: Spacers.s,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Icon(
-                                company.employeeAcceptedInvite == true
-                                    ? Icons.check_circle
-                                    : company.employeeAcceptedInvite == false
-                                        ? Icons.cancel
-                                        : Icons.question_mark,
-                                color: company.employeeAcceptedInvite == true
-                                    ? Colors.green
-                                    : company.employeeAcceptedInvite == false
-                                        ? Colors.red
-                                        : Colors.grey,
-                                size: 18,
-                              ),
-                              Expanded(
-                                child: Text(
-                                  company.employeeAcceptedInvite == true
-                                      ? l10n.applicantAccepted
-                                      : company.employeeAcceptedInvite == false
-                                          ? l10n.applicantRefused
-                                          : l10n.applicantDidNotRespondYet,
-                                  style: theme.textTheme.bodyMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color:
-                                        company.employeeAcceptedInvite == true
-                                            ? Colors.green
-                                            : company.employeeAcceptedInvite ==
-                                                    false
-                                                ? Colors.red
-                                                : Colors.grey,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          if (company.messageFromEmployee case final message?
-                              when message.isNotEmpty) ...[
-                            const Divider(height: 16),
-                            Text(
-                              message,
-                              style: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.onSurface,
-                              ),
-                            ),
-                          ],
-                        ],
-                      ),
-                    ),
-                  ],
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: Spacers.m,
-              vertical: Spacers.s,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                if (company.decisionStatus != DecisionStatus.pending)
-                  TextButton.icon(
-                    onPressed: () async {
-                      final confirmed = await showDialog<bool>(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: Text(l10n.revokeDialogTitle),
-                          content: Text(
-                            l10n.revokeDialogContent,
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: theme.colorScheme.onSurface,
-                            ),
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.of(context).pop(false),
-                              child: Text(
-                                l10n.cancel,
+                            if (company.messageFromEmployee case final message?
+                                when message.isNotEmpty) ...[
+                              const Divider(height: 16),
+                              Text(
+                                message,
                                 style: theme.textTheme.bodyMedium?.copyWith(
                                   color: theme.colorScheme.onSurface,
                                 ),
                               ),
-                            ),
-                            TextButton(
-                              onPressed: () => Navigator.of(context).pop(true),
-                              style: TextButton.styleFrom(
-                                foregroundColor: theme.colorScheme.error,
-                              ),
-                              child: Text(l10n.revoke),
-                            ),
+                            ],
                           ],
                         ),
-                      );
-                      if (confirmed == true) {
-                        await notifier.revertDecision(company.id);
-                        Navigator.of(context).pop();
-                      }
-                    },
-                    icon: const Icon(
-                      Icons.refresh,
-                      size: 18,
-                    ),
-                    label: Text(
-                      l10n.revoke,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.error,
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: Spacers.m,
+                vertical: Spacers.s,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  if (company.decisionStatus != DecisionStatus.pending)
+                    TextButton.icon(
+                      onPressed: () async {
+                        final confirmed = await showDialog<bool>(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text(l10n.revokeDialogTitle),
+                            content: Text(
+                              l10n.revokeDialogContent,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: theme.colorScheme.onSurface,
+                              ),
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.of(context).pop(false),
+                                child: Text(
+                                  l10n.cancel,
+                                  style: theme.textTheme.bodyMedium?.copyWith(
+                                    color: theme.colorScheme.onSurface,
+                                  ),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.of(context).pop(true),
+                                style: TextButton.styleFrom(
+                                  foregroundColor: theme.colorScheme.error,
+                                ),
+                                child: Text(l10n.revoke),
+                              ),
+                            ],
+                          ),
+                        );
+                        if (confirmed == true) {
+                          await notifier.revertDecision(company.id);
+                          Navigator.of(context).pop();
+                        }
+                      },
+                      icon: const Icon(
+                        Icons.refresh,
+                        size: 18,
+                      ),
+                      label: Text(
+                        l10n.revoke,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.error,
+                        ),
+                      ),
+                      style: TextButton.styleFrom(
+                        foregroundColor: theme.colorScheme.error,
                       ),
                     ),
-                    style: TextButton.styleFrom(
-                      foregroundColor: theme.colorScheme.error,
+                  const SizedBox(width: Spacers.s),
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text(
+                      l10n.close,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onSurface,
+                      ),
                     ),
                   ),
-                const SizedBox(width: Spacers.s),
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: Text(
-                    l10n.close,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.colorScheme.onSurface,
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ).animate().fadeIn(
           duration: Durations.medium2,
