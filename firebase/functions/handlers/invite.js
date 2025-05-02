@@ -33,13 +33,12 @@ export const onCompanyDecisionChangeHandler =
         .document("companies/{companyId}")
         .onUpdate(async (change, context) => {
             detectInvocationLoop(context, 'onCompanyDecisionChangeHandler');
+            const companyId = context.params.companyId;
             const afterData = change.after.data();
             const beforeStatus = change.before.data().decisionStatus;
             const afterStatus = afterData.decisionStatus;
 
             if (beforeStatus === afterStatus) return null;
-
-            const companyName = afterData.name.toLowerCase();
 
             const updateData = {
                 updatedAt: firestore.FieldValue.serverTimestamp()
@@ -59,8 +58,18 @@ export const onCompanyDecisionChangeHandler =
                 updateData.employeeAcceptedInvite = afterData.employeeAcceptedInvite;
                 updateData.messageFromEmployee = afterData.messageFromEmployee;
             }
-            const inviteSnap = await db.doc(`invites/${companyName}`).get();
-            const currentData = inviteSnap.data();
+
+            const invitesQuery = await db.collection('invites')
+                .where('companyId', '==', companyId)
+                .limit(1)
+                .get();
+
+            if (invitesQuery.empty) {
+                return null;
+            }
+
+            const inviteDoc = invitesQuery.docs[0];
+            const currentData = inviteDoc.data();
             const noChange = (
                 currentData?.decisionStatus === updateData.decisionStatus &&
                 currentData?.decisionMessage === updateData.decisionMessage &&
@@ -69,8 +78,10 @@ export const onCompanyDecisionChangeHandler =
                 currentData?.employeeAcceptedInvite === updateData.employeeAcceptedInvite &&
                 currentData?.messageFromEmployee === updateData.messageFromEmployee
             );
-            if (noChange) return null;
-            await db.doc(`invites/${companyName}`).update(updateData);
+
+            if (noChange === false) {
+                await inviteDoc.ref.update(updateData);
+            }
             return null;
         });
 
