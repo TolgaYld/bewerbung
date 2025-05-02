@@ -140,7 +140,7 @@ class L10nDe extends L10n {
   String get refuse => 'Ablehnen';
 
   @override
-  String get inviteDialogTitle => 'Danke für die Einladung und die Zeit!';
+  String get inviteDialogTitle => 'Danke für die Einladung und deine Zeit!';
 
   @override
   String get inviteDialogContent => 'Du hast dich für ein Gespräch mit mir entschieden. Das freut mich sehr! Möchtest du direkt ein Datum und eine Uhrzeit auswählen oder willst du mir das seperat per E-Mail zuschicken? Ich werde über deine Entscheidung informiert. Du kannst jederzeit deine Meinung ändern.';
