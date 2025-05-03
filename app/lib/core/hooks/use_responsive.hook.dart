@@ -25,7 +25,7 @@ ResponsiveDevice useResponsive() {
   final isMobile = width <= kMobileBreakpoint && kIsWeb == false;
   final isTablet =
       width > kMobileBreakpoint && width < kTabletBreakpoint && kIsWeb == false;
-  final isDesktop = width >= kTabletBreakpoint;
+  final isDesktop = width >= kTabletBreakpoint || kIsWeb == true;
 
   return ResponsiveDevice._(
     isMobile: isMobile,
