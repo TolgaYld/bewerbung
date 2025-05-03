@@ -86,29 +86,28 @@ class DecisionPage extends HookConsumerWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: Spacers.m),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: Spacers.m),
-                  child: AutoSizeText(
-                    responsive.isDesktop
-                        ? l10n.webButtonHeadline
-                        : l10n.mobileSwipeHeadline,
-                    style: theme.textTheme.titleLarge?.copyWith(
-                      color: theme.colorScheme.primary,
-                      fontWeight: FontWeight.bold,
+        child: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: Spacers.m),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: Spacers.s),
+                    child: AutoSizeText(
+                      responsive.isDesktop
+                          ? l10n.webButtonHeadline
+                          : l10n.mobileSwipeHeadline,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        color: theme.colorScheme.primary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
                   ),
-                ),
-                const VSpace.xs(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: Spacers.m),
-                  child: AutoSizeText(
+                  const VSpace.xs(),
+                  AutoSizeText(
                     responsive.isDesktop
                         ? l10n.webButtonInstruction
                         : l10n.mobileSwipeInstruction,
@@ -117,236 +116,242 @@ class DecisionPage extends HookConsumerWidget {
                       color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
                   ),
-                ),
-                const VSpace.xs(),
-                if (showBadge) ...[
-                  Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: Spacers.m),
-                      child: DecisionStatusBadge(
-                        company: company,
-                        onTap: () async =>
-                            StatusOverlayDialog(company: company).show(context),
+                  const VSpace.xs(),
+                  if (showBadge) ...[
+                    Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: Spacers.m),
+                        child: DecisionStatusBadge(
+                          company: company,
+                          onTap: () async =>
+                              StatusOverlayDialog(company: company)
+                                  .show(context),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-                const VSpace.l(),
-                Flexible(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: kIsWeb ? Spacers.x9l * 2.3 : 0),
-                    child: Swiper(
-                      companyId: company?.id,
-                      controller: swiperController,
-                      onRightSwipe: () => showConfetti(context),
-                      child: Card(
-                        shadowColor:
-                            theme.colorScheme.primary.withValues(alpha: 0.5),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: BorderSide(
-                            color: theme.colorScheme.primary
-                                .withValues(alpha: 0.2),
-                            width: 1.5,
+                  ],
+                  const VSpace.l(),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minWidth: 300,
+                      maxWidth: kIsWeb ? 600 : 400,
+                      maxHeight: kIsWeb
+                          ? screenSize.height * 0.6
+                          : screenSize.height * 0.49,
+                    ),
+                    child: AspectRatio(
+                      aspectRatio: 3 / 4,
+                      child: Swiper(
+                        companyId: company?.id,
+                        controller: swiperController,
+                        onRightSwipe: () => showConfetti(context),
+                        child: Card(
+                          shadowColor:
+                              theme.colorScheme.primary.withValues(alpha: 0.5),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: BorderSide(
+                              color: theme.colorScheme.primary
+                                  .withValues(alpha: 0.2),
+                              width: 1.5,
+                            ),
                           ),
-                        ),
-                        clipBehavior: Clip.antiAlias,
-                        child: SizedBox(
-                          width: screenSize.width * 0.85,
-                          height: screenSize.height * 0.60,
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              switch (employee) {
-                                final empl? when empl.imageUrls.isNotEmpty =>
-                                  Hero(
-                                    tag: 'profile_image',
-                                    child: CachedNetworkImage(
-                                      alignment: Alignment.topCenter,
-                                      imageUrl: empl.imageUrls.last,
-                                      fit: BoxFit.cover,
-                                      placeholder: (context, url) => Container(
-                                        color: Colors.grey[300],
-                                        child: Icon(
-                                          Icons.person,
-                                          size: 48,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                      errorWidget: (context, url, error) =>
-                                          Container(
-                                        color: Colors.grey[300],
-                                        child: Icon(
-                                          Icons.error_outline,
-                                          size: 80,
-                                          color: theme.colorScheme.error,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                _ => Container(
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: [
-                                          theme.colorScheme.primary
-                                              .withValues(alpha: 0.3),
-                                          theme.colorScheme.primary
-                                              .withValues(alpha: 0.7),
-                                        ],
-                                      ),
-                                    ),
-                                    child: Icon(
-                                      Icons.person,
-                                      size: 120,
-                                      color: theme.colorScheme.onPrimary
-                                          .withValues(alpha: 0.7),
-                                    ),
-                                  ),
-                              },
-                              Container(
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    stops: const [0.5, 0.9],
-                                    colors: [
-                                      Colors.transparent,
-                                      Colors.black.withValues(alpha: 0.8),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(Spacers.m),
-                                    child: Column(
-                                      spacing: Spacers.xs,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        AutoSizeText(
-                                          employee?.person.fullName ?? "",
-                                          style: theme.textTheme.displaySmall
-                                              ?.copyWith(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            shadows: [
-                                              Shadow(
-                                                color: Colors.black
-                                                    .withValues(alpha: 0.7),
-                                                offset: const Offset(0, 1),
-                                                blurRadius: 4,
-                                              ),
-                                            ],
+                          clipBehavior: Clip.antiAlias,
+                          child: SizedBox.expand(
+                            child: Stack(
+                              fit: StackFit.expand,
+                              children: [
+                                switch (employee) {
+                                  final empl? when empl.imageUrls.isNotEmpty =>
+                                    Hero(
+                                      tag: 'profile_image',
+                                      child: CachedNetworkImage(
+                                        alignment: Alignment.topCenter,
+                                        imageUrl: empl.imageUrls.last,
+                                        fit: BoxFit.cover,
+                                        placeholder: (context, url) =>
+                                            Container(
+                                          color: Colors.grey[300],
+                                          child: Icon(
+                                            Icons.person,
+                                            size: 48,
+                                            color: Colors.grey,
                                           ),
                                         ),
-                                        AutoSizeText(
-                                          employee?.getJobTitleText(locale) ??
-                                              "",
-                                          style: theme.textTheme.titleLarge
-                                              ?.copyWith(
-                                            color: Colors.white
-                                                .withValues(alpha: 0.9),
-                                            shadows: [
-                                              Shadow(
-                                                color: Colors.black
-                                                    .withValues(alpha: 0.7),
-                                                offset: const Offset(0, 1),
-                                                blurRadius: 4,
-                                              ),
-                                            ],
+                                        errorWidget: (context, url, error) =>
+                                            Container(
+                                          color: Colors.grey[300],
+                                          child: Icon(
+                                            Icons.error_outline,
+                                            size: 80,
+                                            color: theme.colorScheme.error,
                                           ),
                                         ),
+                                      ),
+                                    ),
+                                  _ => Container(
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          colors: [
+                                            theme.colorScheme.primary
+                                                .withValues(alpha: 0.3),
+                                            theme.colorScheme.primary
+                                                .withValues(alpha: 0.7),
+                                          ],
+                                        ),
+                                      ),
+                                      child: Icon(
+                                        Icons.person,
+                                        size: 120,
+                                        color: theme.colorScheme.onPrimary
+                                            .withValues(alpha: 0.7),
+                                      ),
+                                    ),
+                                },
+                                Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      stops: const [0.5, 0.9],
+                                      colors: [
+                                        Colors.transparent,
+                                        Colors.black.withValues(alpha: 0.8),
                                       ],
                                     ),
                                   ),
-                                  SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          bottom: Spacers.m),
-                                      child: Row(
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(Spacers.m),
+                                      child: Column(
                                         spacing: Spacers.xs,
+                                        mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          const HSpace.xs(),
-                                          SkillChip(
-                                            icon: Icons.code,
-                                            label: "Flutter",
+                                          AutoSizeText(
+                                            employee?.person.fullName ?? "",
+                                            style: theme.textTheme.displaySmall
+                                                ?.copyWith(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              shadows: [
+                                                Shadow(
+                                                  color: Colors.black
+                                                      .withValues(alpha: 0.7),
+                                                  offset: const Offset(0, 1),
+                                                  blurRadius: 4,
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                          SkillChip(
-                                            icon: Icons.cloud_outlined,
-                                            label: "Node.js",
+                                          AutoSizeText(
+                                            employee?.getJobTitleText(locale) ??
+                                                "",
+                                            style: theme.textTheme.titleLarge
+                                                ?.copyWith(
+                                              color: Colors.white
+                                                  .withValues(alpha: 0.9),
+                                              shadows: [
+                                                Shadow(
+                                                  color: Colors.black
+                                                      .withValues(alpha: 0.7),
+                                                  offset: const Offset(0, 1),
+                                                  blurRadius: 4,
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                          SkillChip(
-                                            icon: Icons.storage_outlined,
-                                            label: "Firebase",
-                                          ),
-                                          SkillChip(
-                                            icon: Icons.dns_outlined,
-                                            label: "Docker",
-                                          ),
-                                          SkillChip(
-                                            icon: Icons.cloud_sync_outlined,
-                                            label: "Kubernetes",
-                                          ),
-                                          SkillChip(
-                                            icon: Icons.layers_outlined,
-                                            label: "Solid",
-                                          ),
-                                          SkillChip(
-                                            icon: Icons.api_outlined,
-                                            label: "REST",
-                                          ),
-                                          SkillChip(
-                                            icon: Icons.lock_outline,
-                                            label: "OAuth",
-                                          ),
-                                          SkillChip(
-                                            icon: Icons.storage,
-                                            label: "SQL",
-                                          ),
-                                          SkillChip(
-                                            icon: Icons.graphic_eq_outlined,
-                                            label: "GraphQL",
-                                          ),
-                                          const HSpace.xs(),
                                         ],
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            bottom: Spacers.m),
+                                        child: Row(
+                                          spacing: Spacers.xs,
+                                          children: [
+                                            const HSpace.xs(),
+                                            SkillChip(
+                                              icon: Icons.code,
+                                              label: "Flutter",
+                                            ),
+                                            SkillChip(
+                                              icon: Icons.cloud_outlined,
+                                              label: "Node.js",
+                                            ),
+                                            SkillChip(
+                                              icon: Icons.storage_outlined,
+                                              label: "Firebase",
+                                            ),
+                                            SkillChip(
+                                              icon: Icons.dns_outlined,
+                                              label: "Docker",
+                                            ),
+                                            SkillChip(
+                                              icon: Icons.cloud_sync_outlined,
+                                              label: "Kubernetes",
+                                            ),
+                                            SkillChip(
+                                              icon: Icons.layers_outlined,
+                                              label: "Solid",
+                                            ),
+                                            SkillChip(
+                                              icon: Icons.api_outlined,
+                                              label: "REST",
+                                            ),
+                                            SkillChip(
+                                              icon: Icons.lock_outline,
+                                              label: "OAuth",
+                                            ),
+                                            SkillChip(
+                                              icon: Icons.storage,
+                                              label: "SQL",
+                                            ),
+                                            SkillChip(
+                                              icon: Icons.graphic_eq_outlined,
+                                              label: "GraphQL",
+                                            ),
+                                            const HSpace.xs(),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                const VSpace.l(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ActionButton(
-                      onTap: swiperController.swipeLeft,
-                      icon: Icons.close,
-                      color: Colors.red,
-                    ),
-                    const HSpace.xl(),
-                    ActionButton(
-                      onTap: swiperController.swipeRight,
-                      icon: Icons.check,
-                      color: Colors.green,
-                    ),
-                  ],
-                ),
-              ],
+                  const VSpace.l(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ActionButton(
+                        onTap: swiperController.swipeLeft,
+                        icon: Icons.close,
+                        color: Colors.red,
+                      ),
+                      const HSpace.xl(),
+                      ActionButton(
+                        onTap: swiperController.swipeRight,
+                        icon: Icons.check,
+                        color: Colors.green,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

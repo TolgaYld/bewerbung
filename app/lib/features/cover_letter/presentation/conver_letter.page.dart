@@ -41,7 +41,7 @@ class CoverLetterPage extends HookConsumerWidget {
       body: SafeArea(
         child: switch (coverLetter) {
           final converLetter? => SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: Spacers.m),
+              padding: const EdgeInsets.symmetric(horizontal: Spacers.s),
               physics: const BouncingScrollPhysics(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
