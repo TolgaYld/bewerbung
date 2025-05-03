@@ -41,49 +41,6 @@ class DecisionPage extends HookConsumerWidget {
     final showBadge =
         company != null && company.decisionStatus != DecisionStatus.pending;
 
-    void showConfetti(BuildContext context) {
-      final entry = OverlayEntry(
-        builder: (context) => IgnorePointer(
-          child: Material(
-            type: MaterialType.transparency,
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: ConfettiWidget(
-                confettiController: confettiController,
-                blastDirectionality: BlastDirectionality.explosive,
-                emissionFrequency: 0.05,
-                numberOfParticles: 50,
-                maxBlastForce: 5,
-                minBlastForce: 2,
-                gravity: 0.2,
-                colors: [
-                  Theme.of(context).colorScheme.primary,
-                  Theme.of(context).colorScheme.secondary,
-                  Colors.green,
-                  Colors.blue,
-                  Colors.orange,
-                  Colors.pink,
-                  Colors.purple,
-                  Colors.yellow,
-                  Colors.red,
-                  Colors.teal,
-                  Colors.amber,
-                  Colors.cyan,
-                  Colors.lime,
-                  Colors.indigo,
-                ],
-              ),
-            ),
-          ),
-        ),
-      );
-
-      final overlay = Overlay.of(context, rootOverlay: true);
-      overlay.insert(entry);
-
-      confettiController.play();
-    }
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -145,7 +102,50 @@ class DecisionPage extends HookConsumerWidget {
                       child: Swiper(
                         companyId: company?.id,
                         controller: swiperController,
-                        onRightSwipe: () => showConfetti(context),
+                        onRightSwipe: () {
+                          final entry = OverlayEntry(
+                            builder: (context) => IgnorePointer(
+                              child: Material(
+                                type: MaterialType.transparency,
+                                child: Align(
+                                  alignment: Alignment.topCenter,
+                                  child: ConfettiWidget(
+                                    confettiController: confettiController,
+                                    blastDirectionality:
+                                        BlastDirectionality.explosive,
+                                    emissionFrequency: 0.05,
+                                    numberOfParticles: 50,
+                                    maxBlastForce: 5,
+                                    minBlastForce: 2,
+                                    gravity: 0.2,
+                                    colors: [
+                                      Theme.of(context).colorScheme.primary,
+                                      Theme.of(context).colorScheme.secondary,
+                                      Colors.green,
+                                      Colors.blue,
+                                      Colors.orange,
+                                      Colors.pink,
+                                      Colors.purple,
+                                      Colors.yellow,
+                                      Colors.red,
+                                      Colors.teal,
+                                      Colors.amber,
+                                      Colors.cyan,
+                                      Colors.lime,
+                                      Colors.indigo,
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+
+                          final overlay =
+                              Overlay.of(context, rootOverlay: true);
+                          overlay.insert(entry);
+
+                          confettiController.play();
+                        },
                         child: Card(
                           shadowColor:
                               theme.colorScheme.primary.withValues(alpha: 0.5),
