@@ -99,7 +99,7 @@ class DecisionPage extends HookConsumerWidget {
                       maxHeight: switch ((kIsWeb, showBadge)) {
                         (true, _) => screenSize.height * 0.6,
                         (false, true) => screenSize.height * 0.42,
-                        (false, false) => screenSize.height * 0.49,
+                        (false, false) => screenSize.height * 0.47,
                       },
                     ),
                     child: AspectRatio(
