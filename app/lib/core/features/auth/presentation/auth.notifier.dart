@@ -126,7 +126,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
           Right(:final value) => AuthStateAuthenticated(company: value),
           Left(:final failure) => AuthStateError(failure.message),
         };
-        ref.invalidate(companyProvider);
+        Future.delayed(
+          const Duration(seconds: 3),
+          () => ref.invalidate(companyProvider),
+        );
       } on Exception {
         state = AuthStateError(l10n.oopsSomethingWentWrongPleaseTryAgain);
         state = const AuthStateEditing(
