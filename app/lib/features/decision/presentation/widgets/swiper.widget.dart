@@ -101,7 +101,6 @@ class Swiper extends HookConsumerWidget {
 
     Future<void> handleSwipe({required bool isInvite}) async {
       if (isInvite) {
-        onRightSwipe?.call();
         await animateSwipe(screenWidth * 1.5);
       } else {
         await animateSwipe(-screenWidth * 1.5);
@@ -132,6 +131,7 @@ class Swiper extends HookConsumerWidget {
         );
 
         if (isInvite) {
+          onRightSwipe?.call();
           await AppointmentConfirmationDialog(
             formattedDate: formattedDateTime,
             explanation: explanation,

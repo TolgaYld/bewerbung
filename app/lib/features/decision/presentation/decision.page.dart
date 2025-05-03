@@ -119,8 +119,8 @@ class DecisionPage extends HookConsumerWidget {
                                     minBlastForce: 2,
                                     gravity: 0.2,
                                     colors: [
-                                      Theme.of(context).colorScheme.primary,
-                                      Theme.of(context).colorScheme.secondary,
+                                      theme.colorScheme.primary,
+                                      theme.colorScheme.secondary,
                                       Colors.green,
                                       Colors.blue,
                                       Colors.orange,
