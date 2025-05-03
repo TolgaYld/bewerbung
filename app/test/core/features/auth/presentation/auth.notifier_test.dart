@@ -303,13 +303,22 @@ void main() {
 
     test('should set state to AuthStateError when signOut throws an exception',
         () async {
+      final states = <AuthState>[];
+      final sub = container.listen<AuthState>(
+        authStateProvider,
+        (_, next) => states.add(next),
+        fireImmediately: false,
+      );
       when(() => authRepo.signOut(any())).thenThrow(Exception('signout-error'));
 
       await notifier.signOut(false);
+      sub.close();
 
-      final state = container.read(authStateProvider);
-      expect(state, isA<AuthStateError>());
-      expect((state as AuthStateError).message, contains('signout-error'));
+      final errorState = states.whereType<AuthStateError>().firstOrNull;
+      expect(errorState, isNotNull);
+      expect(errorState?.message, contains('signout-error'));
+      final finalState = container.read(authStateProvider);
+      expect(finalState, isA<AuthStateEditing>());
     });
   });
 }
