@@ -24,7 +24,6 @@ class HeaderPart extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = useTheme();
-
     return Stack(
       children: [
         Row(
@@ -63,21 +62,23 @@ class HeaderPart extends HookConsumerWidget {
             ),
             if (imageUrl case final url?) ...[
               const HSpace.s(),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(Spacers.m),
-                child: CachedNetworkImage(
-                  imageUrl: url,
-                  width: 80,
-                  height: 80,
-                  fit: BoxFit.cover,
-                  errorWidget: (context, _, __) => Container(
+              Card(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(Spacers.m),
+                  child: CachedNetworkImage(
+                    imageUrl: url,
                     width: 80,
                     height: 80,
-                    color: theme.colorScheme.primary.withValues(alpha: 0.2),
-                    child: Icon(
-                      Icons.business_rounded,
-                      size: 40,
-                      color: theme.colorScheme.primary,
+                    fit: BoxFit.contain,
+                    errorWidget: (context, _, __) => Container(
+                      width: 80,
+                      height: 80,
+                      color: theme.colorScheme.primary.withValues(alpha: 0.2),
+                      child: Icon(
+                        Icons.business_rounded,
+                        size: 40,
+                        color: theme.colorScheme.primary,
+                      ),
                     ),
                   ),
                 ),
