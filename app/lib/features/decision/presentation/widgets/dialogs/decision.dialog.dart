@@ -159,6 +159,9 @@ class DecisionDialog extends HookConsumerWidget
                     borderSide: BorderSide(color: theme.colorScheme.outline),
                   ),
                   contentPadding: EdgeInsets.all(Spacers.s),
+                  hintStyle: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onSurface,
+                  ),
                 ),
                 maxLines: 15,
                 minLines: 3,
