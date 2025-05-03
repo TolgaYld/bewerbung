@@ -99,35 +99,13 @@ class HomePage extends HookConsumerWidget {
             ),
           ],
         ),
-        body: LayoutBuilder(
-          builder: (context, constraints) {
-            return SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minWidth: 800,
-                    minHeight: 600,
-                    maxWidth:
-                        constraints.maxWidth < 800 ? 800 : constraints.maxWidth,
-                    maxHeight: constraints.maxHeight < 600
-                        ? 600
-                        : constraints.maxHeight,
-                  ),
-                  child: Center(
-                    child: SizedBox(
-                      width: getVisualIndex(navigationShell.currentIndex) == 3
-                          ? double.infinity
-                          : 1200,
-                      height: constraints.maxHeight,
-                      child: navigationShell,
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
+        body: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1200),
+            child: SizedBox.expand(
+              child: navigationShell,
+            ),
+          ),
         ),
       );
     }
