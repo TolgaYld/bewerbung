@@ -8,7 +8,7 @@ class AppTheme {
   static const Color _lightBackgroundColor = Color(0xFFFFFFFF);
   static const Color _lightGreyBackgroundColor = Color(0xFFE2E8F0);
   static const Color _lightPrimaryColor = Color(0xFF7D5F96);
-  static const Color _lightSecondaryColor = Color(0xFF6C757D);
+  static const Color _lightSecondaryColor = Color(0xFFE0DEE5);
   static const Color _lightOnPrimaryColor = Color(0xFFFFFFFF);
   static const Color _lightTextColorPrimary = _lightPrimaryColor;
   static const Color _appBarColorLight = _lightPrimaryColor;
@@ -105,7 +105,7 @@ class AppTheme {
     filled: true,
     fillColor: _lightGreyBackgroundColor,
     prefixIconColor: _surface,
-    hintStyle: const TextStyle(color: _lightSecondaryColor),
+    hintStyle: const TextStyle(color: _lightPrimaryColor),
   );
 
   static final ElevatedButtonThemeData _elevatedButtonTheme =
