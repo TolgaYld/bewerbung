@@ -87,7 +87,10 @@ class CoverLetterPage extends HookConsumerWidget {
                   AutoSizeText(
                     translation?.content ?? "",
                     style: theme.textTheme.bodyMedium?.copyWith(
-                        height: 1.5, letterSpacing: 0.3, color: Colors.black),
+                      height: 1.5,
+                      letterSpacing: 0.3,
+                      color: Colors.black,
+                    ),
                   ).animate().fadeIn(
                         duration: Durations.medium3,
                         curve: Curves.easeIn,
