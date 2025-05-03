@@ -35,6 +35,7 @@ class DecisionDialog extends HookConsumerWidget
     final l10n = useL10n();
     final locale = ref.watch(localeProvider);
     final explanationController = useTextEditingController();
+    final explanationFocusNode = useFocusNode();
     final selectedDate = useState<DateTime?>(null);
     final selectedTime = useState<TimeOfDay?>(null);
     final shouldShowDatePicker = useState<bool>(false);
@@ -67,6 +68,7 @@ class DecisionDialog extends HookConsumerWidget
     );
 
     Future<void> pickDate() async {
+      explanationFocusNode.unfocus();
       final pickedDate = await showDatePicker(
         context: context,
         initialDate: DateTime.now().add(const Duration(days: 1)),
@@ -151,6 +153,7 @@ class DecisionDialog extends HookConsumerWidget
                 const VSpace.m(),
                 TextField(
                   controller: explanationController,
+                  focusNode: explanationFocusNode,
                   decoration: InputDecoration(
                     hintText: invite
                         ? l10n.inviteExplanationHint
