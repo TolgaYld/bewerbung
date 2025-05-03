@@ -62,7 +62,7 @@
     "inviteExplanationHint": "Füge optional eine Nachricht hinzu...",
     "refuseExplanationHint": "Grund der Ablehnung (optional)...",
     "reasonForRejection": "Ablehnungsgrund",
-    "message": "message",
+    "message": "MItteilung",
     "appointment": "Termin",
     "duration": "Dauer",
     "responseOfApplicant": "Antwort des Bewerbers",

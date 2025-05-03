@@ -200,7 +200,7 @@ class L10nDe extends L10n {
   String get reasonForRejection => 'Ablehnungsgrund';
 
   @override
-  String get message => 'message';
+  String get message => 'MItteilung';
 
   @override
   String get appointment => 'Termin';
