@@ -92,10 +92,15 @@ class DecisionPage extends HookConsumerWidget {
                   ConstrainedBox(
                     constraints: BoxConstraints(
                       minWidth: 300,
-                      maxWidth: kIsWeb ? 600 : 400,
-                      maxHeight: kIsWeb
-                          ? screenSize.height * 0.6
-                          : screenSize.height * 0.49,
+                      maxWidth: switch (kIsWeb) {
+                        true => 600,
+                        false => 400,
+                      },
+                      maxHeight: switch ((kIsWeb, showBadge)) {
+                        (true, _) => screenSize.height * 0.6,
+                        (false, true) => screenSize.height * 0.42,
+                        (false, false) => screenSize.height * 0.49,
+                      },
                     ),
                     child: AspectRatio(
                       aspectRatio: 3 / 4,
