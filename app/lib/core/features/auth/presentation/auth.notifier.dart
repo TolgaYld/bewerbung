@@ -101,6 +101,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
       );
     } catch (e) {
       state = AuthStateError(e.toString());
+      state = const AuthStateEditing(
+        username: '',
+        password: '',
+      );
     }
     ref.invalidate(companyProvider);
   }
@@ -125,6 +129,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
         ref.invalidate(companyProvider);
       } on Exception {
         state = AuthStateError(l10n.oopsSomethingWentWrongPleaseTryAgain);
+        state = const AuthStateEditing(
+          username: '',
+          password: '',
+        );
       }
     }
   }
