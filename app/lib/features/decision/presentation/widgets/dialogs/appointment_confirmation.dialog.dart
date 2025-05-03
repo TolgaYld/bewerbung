@@ -99,23 +99,20 @@ class AppointmentConfirmationDialog extends HookConsumerWidget
                     vertical: Spacers.s,
                   ),
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.secondary.withValues(alpha: 0.1),
+                    color: theme.colorScheme.primary.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(Spacers.s),
                     border: Border.all(
-                      color: theme.colorScheme.secondary.withValues(alpha: 0.3),
+                      color: theme.colorScheme.primary.withValues(alpha: 0.3),
                     ),
                   ),
                   child: Row(
                     spacing: Spacers.s,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: Spacers.xs),
-                        child: Icon(
-                          Icons.description,
-                          size: 20,
-                          color: theme.colorScheme.secondary,
-                        ),
+                      Icon(
+                        Icons.description,
+                        size: 20,
+                        color: theme.colorScheme.primary,
                       ),
                       Expanded(
                         child: SingleChildScrollView(
