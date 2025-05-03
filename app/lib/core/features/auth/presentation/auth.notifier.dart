@@ -126,8 +126,8 @@ class AuthNotifier extends StateNotifier<AuthState> {
           Right(:final value) => AuthStateAuthenticated(company: value),
           Left(:final failure) => AuthStateError(failure.message),
         };
-        Future.delayed(
-          const Duration(seconds: 1),
+        await Future.delayed(
+          const Duration(milliseconds: 60),
           () => ref.invalidate(companyProvider),
         );
       } on Exception {
