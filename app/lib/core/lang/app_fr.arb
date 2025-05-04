@@ -21,7 +21,7 @@
     "cancel": "Annuler",
     "deleteAccount": "Supprimer le compte ?",
     "signOutDialogTitle": "Déconnexion",
-    "signOutDialogContent": "Vous pouvez vous déconnecter et supprimer votre compte ou simplement vous déconnecter. \n\nSi vous supprimez votre compte, toutes vos données seront supprimées et vous ne pourrez plus vous connecter. \n\nSi vous vous déconnectez simplement, vos données seront conservées et vous pourrez vous reconnecter plus tard.",
+    "signOutDialogContent": "Tu peux soit te déconnecter, soit supprimer définitivement ton compte.\n\nLa suppression de ton compte effacera toutes tes données et tu ne pourras plus te reconnecter.\n\nSi tu choisis simplement de te déconnecter, tes données seront conservées et tu pourras te reconnecter plus tard.",
     "applicationToCompany": "Candidature à {company}",
     "changeLanguage": "Changer de langue",
     "mySkills": "Mes compétences",

@@ -75,7 +75,7 @@ class L10nTr extends L10n {
   String get signOutDialogTitle => 'Çıkış yap';
 
   @override
-  String get signOutDialogContent => 'Hesabınızı silip çıkış yapabilir veya sadece çıkış yapabilirsiniz. \n\nEğer hesabınızı silerseniz, tüm verileriniz silinecek ve bir daha giriş yapamayacaksınız. \n\nEğer sadece çıkış yaparsanız, verileriniz saklanacak ve daha sonra tekrar giriş yapabileceksiniz.';
+  String get signOutDialogContent => 'Oturumu kapatabilir veya hesabını kalıcı olarak silebilirsin.\n\nHesabını silersen, tüm verilerin silinir ve tekrar giriş yapamazsın.\n\nSadece oturumu kapatırsan, verilerin korunur ve daha sonra tekrar giriş yapabilirsin.';
 
   @override
   String applicationToCompany(Object company) {

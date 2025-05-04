@@ -75,7 +75,7 @@ class L10nEn extends L10n {
   String get signOutDialogTitle => 'Sign out';
 
   @override
-  String get signOutDialogContent => 'You can sign out and delete your account or just sign out.\n\nIf you delete your account, all your data will be deleted and you won\'t be able to log in again. \n\nIf you just sign out, your data will be kept and you can log in again later.';
+  String get signOutDialogContent => 'You can either sign out or permanently delete your account.\n\nDeleting your account will erase all your data and you won’t be able to sign in again.\n\nIf you only sign out, your data will be kept and you can sign in again later.';
 
   @override
   String applicationToCompany(Object company) {

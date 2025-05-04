@@ -75,7 +75,7 @@ class L10nDe extends L10n {
   String get signOutDialogTitle => 'Abmelden';
 
   @override
-  String get signOutDialogContent => 'Du kannst dich abmelden und dein Konto löschen oder dich nur abmelden. \n\nWenn du dein Konto löschst, werden alle deine Daten gelöscht und du kannst dich nicht mehr anmelden. \n\nWenn du nur abmeldest, bleiben deine Daten erhalten und du kannst dich später wieder anmelden.';
+  String get signOutDialogContent => 'Du kannst dich entweder abmelden oder dein Konto dauerhaft löschen.\n\nBeim Löschen deines Kontos werden alle deine Daten entfernt und eine spätere Anmeldung ist nicht mehr möglich.\n\nWenn du dich nur abmeldest, bleiben deine Daten erhalten und du kannst dich jederzeit wieder anmelden.';
 
   @override
   String applicationToCompany(Object company) {

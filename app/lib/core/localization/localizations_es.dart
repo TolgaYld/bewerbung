@@ -75,7 +75,7 @@ class L10nEs extends L10n {
   String get signOutDialogTitle => 'Cerrar sesión';
 
   @override
-  String get signOutDialogContent => 'Puedes cerrar sesión y eliminar tu cuenta o simplemente cerrar sesión. \n\nSi eliminas tu cuenta, todos tus datos serán eliminados y no podrás iniciar sesión nuevamente. \n\nSi solo cierras sesión, tus datos se mantendrán y podrás iniciar sesión nuevamente más tarde.';
+  String get signOutDialogContent => 'Puedes cerrar sesión o eliminar tu cuenta de forma permanente.\n\nSi eliminas tu cuenta, se borrarán todos tus datos y no podrás volver a iniciar sesión.\n\nSi solo cierras sesión, tus datos se conservarán y podrás volver a iniciar sesión más adelante.';
 
   @override
   String applicationToCompany(Object company) {
