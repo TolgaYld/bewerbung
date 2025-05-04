@@ -8,6 +8,7 @@ import 'package:pleasehiretolga/core/features/auth/presentation/auth.notifier.da
 import 'package:pleasehiretolga/core/features/auth/provider/company.provider.dart';
 import 'package:pleasehiretolga/core/hooks/use_l10n.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
+import 'package:pleasehiretolga/core/routing/router.dart';
 import 'package:pleasehiretolga/features/cover_letter/provider/cover_letter.provider.dart';
 import 'package:pleasehiretolga/core/presentation/widgets/language_switcher.widget.dart';
 import 'package:pleasehiretolga/presentation/widgets/custom_bottom_navigation_bar.dart';
@@ -27,21 +28,12 @@ class HomePage extends HookConsumerWidget {
     final company = ref.watch(companyProvider).valueOrNull;
     final coverLetter = ref.watch(coverLetterProvider).valueOrNull;
     final notifier = ref.watch(authStateProvider.notifier);
-    final showCoverLetter =
-        useState<bool>(coverLetter != null || kReleaseMode == false);
-
-    useEffect(
-      () {
-        showCoverLetter.value = coverLetter != null || kReleaseMode == false;
-        return null;
-      },
-      [coverLetter],
-    );
+    final bool showCoverLetter = coverLetter != null || kReleaseMode == false;
 
     final navItems = [
       (icon: Icons.account_circle, label: l10n.aboutMe),
       (icon: Icons.description, label: l10n.cv),
-      if (showCoverLetter.value) (icon: Icons.article, label: l10n.coverLetter),
+      if (showCoverLetter) (icon: Icons.article, label: l10n.coverLetter),
       (icon: Icons.question_mark_rounded, label: l10n.invite),
     ];
 
@@ -54,7 +46,7 @@ class HomePage extends HookConsumerWidget {
 
     void onTabSelected(int index) {
       int branchIndex = index;
-      if (showCoverLetter.value == false && index >= 2) {
+      if (showCoverLetter == false && index >= 2) {
         branchIndex = index + 1;
       }
 
@@ -65,11 +57,23 @@ class HomePage extends HookConsumerWidget {
     }
 
     int getVisualIndex(int branchIndex) {
-      if (showCoverLetter.value == false && branchIndex >= 2) {
+      if (showCoverLetter == false && branchIndex >= 2) {
         return branchIndex - 1;
       }
       return branchIndex;
     }
+
+    useEffect(
+      () {
+        if (showCoverLetter == false) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            context.go(RoutePath.aboutMe.path);
+          });
+        }
+        return null;
+      },
+      [showCoverLetter],
+    );
 
     if (kIsWeb) {
       return Scaffold(
@@ -142,6 +146,7 @@ class HomePage extends HookConsumerWidget {
       extendBody: true,
       body: navigationShell,
       bottomNavigationBar: CustomBottomNavBar(
+        key: ValueKey(navItems.length),
         currentIndex: getVisualIndex(navigationShell.currentIndex),
         onTap: onTabSelected,
         items: navItems,

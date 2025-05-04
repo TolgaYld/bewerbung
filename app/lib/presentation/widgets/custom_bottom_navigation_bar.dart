@@ -21,7 +21,6 @@ class CustomBottomNavBar extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = useTheme();
-
     final animationController = useAnimationController(
       duration: Durations.short3,
       lowerBound: 0,
