@@ -34,7 +34,7 @@ export const onUserCreatedHandler =
                 inviteDate: null,
                 inviteDurationInMinutes: null,
                 messageFromEmployee: null,
-                employeeAcceptedInvite: false,
+                employeeAcceptedInvite: null,
                 decisionMessage: null,
                 decisionStatus: "pending",
                 createdAt: firestore.FieldValue.serverTimestamp(),
