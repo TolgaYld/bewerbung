@@ -53,7 +53,10 @@ class CoverLetterPage extends HookConsumerWidget {
                           final prs? => prs.fullName,
                           _ => "",
                         },
-                        position: employee?.getJobTitleText(locale) ?? "",
+                        position:
+                            converLetter.getTranslation(locale)?.position ??
+                                employee?.getJobTitleText(locale) ??
+                                "",
                         address: prs.contact?.getAddressForClFormat(locale),
                         imageUrl: converLetter.imageUrl,
                         date: formatDate,
