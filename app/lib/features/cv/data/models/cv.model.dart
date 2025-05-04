@@ -51,12 +51,10 @@ class CvModel {
       'drivingLicence': drivingLicence,
     };
 
-    // Erstellen der educations als Map statt Liste
     if (educations.isNotEmpty) {
       final educationsMap = <String, dynamic>{};
       for (int i = 0; i < educations.length; i++) {
-        final key =
-            i == 0 ? 'ausbildung' : 'edu$i'; // Erster Eintrag ist "ausbildung"
+        final key = i == 0 ? 'ausbildung' : 'edu$i';
         educationsMap[key] = educations[i].toMap();
       }
       result['educations'] = educationsMap;
@@ -64,7 +62,6 @@ class CvModel {
       result['educations'] = <String, dynamic>{};
     }
 
-    // Erstellen der sideJobs als Map statt Liste
     if (sideJobs.isNotEmpty) {
       final sideJobsMap = <String, dynamic>{};
       for (int i = 0; i < sideJobs.length; i++) {
@@ -75,11 +72,9 @@ class CvModel {
       result['sideJobs'] = <String, dynamic>{};
     }
 
-    // Erstellen der jobs als Map statt Liste
     if (jobs.isNotEmpty) {
       final jobsMap = <String, dynamic>{};
       for (int i = 0; i < jobs.length; i++) {
-        // Erste zwei Einträge sind "fos" und ein weiterer Eintrag
         final key = i == 0 ? 'fos' : (i == 1 ? 'job0' : 'job${i - 1}');
         jobsMap[key] = jobs[i].toMap();
       }

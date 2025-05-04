@@ -10,9 +10,9 @@ class CvStepModel {
     required this.skills,
     this.descriptions,
     this.responsibilities,
+    this.references,
     this.imageUrl,
     this.link,
-    this.documents,
     this.passed,
     this.grade,
     this.endDate,
@@ -23,12 +23,14 @@ class CvStepModel {
         startDate: DateTime.now(),
         passed: true,
         skills: [],
+        references: {},
       );
 
   factory CvStepModel.fromMap(Map<String, dynamic> map) {
     final titles = <String, String>{};
     final descriptions = <String, String>{};
     final responsibilities = <String, List<String>>{};
+    final references = <String, List<DocumentModel>>{};
 
     map.forEach((langCode, value) {
       if (value is Map<String, dynamic>) {
@@ -44,6 +46,12 @@ class CvStepModel {
           responsibilities[langCode] =
               List<String>.from(value['responsibilities'] as List);
         }
+
+        if (value['references'] != null) {
+          references[langCode] = (value['references'] as List<dynamic>)
+              .map((e) => DocumentModel.fromMap(e as Map<String, dynamic>))
+              .toList();
+        }
       }
     });
 
@@ -51,6 +59,7 @@ class CvStepModel {
       titles: titles,
       descriptions: descriptions,
       responsibilities: responsibilities,
+      references: references,
       startDate: (map['startDate'] as Timestamp? ?? Timestamp.now()).toDate(),
       endDate: (map['endDate'] as Timestamp?)?.toDate(),
       passed: map['passed'] as bool?,
@@ -58,11 +67,6 @@ class CvStepModel {
       skills: map['skills'] != null
           ? (map['skills'] as List<dynamic>)
               .map((e) => SkillModel.fromMap(e as Map<String, dynamic>))
-              .toList()
-          : [],
-      documents: map['documents'] != null
-          ? (map['documents'] as List<dynamic>)
-              .map((e) => DocumentModel.fromMap(e as Map<String, dynamic>))
               .toList()
           : [],
       imageUrl: map['imageUrl'] as String?,
@@ -73,11 +77,11 @@ class CvStepModel {
   final Map<String, String> titles;
   final Map<String, String>? descriptions;
   final Map<String, List<String>>? responsibilities;
+  final Map<String, List<DocumentModel>>? references;
   final String? imageUrl;
   final String? link;
   final DateTime startDate;
   final DateTime? endDate;
-  final List<DocumentModel>? documents;
   final double? grade;
   final bool? passed;
   final List<SkillModel>? skills;
@@ -86,10 +90,15 @@ class CvStepModel {
         titles: titles,
         descriptions: descriptions,
         responsibilities: responsibilities,
+        references: references?.map(
+          (langCode, docModels) => MapEntry(
+            langCode,
+            docModels.map((model) => model.toEntity()).toList(),
+          ),
+        ),
         imageUrl: imageUrl,
         link: link,
         passed: passed,
-        documents: documents?.map((e) => e.toEntity()).toList(),
         grade: grade,
         startDate: startDate,
         endDate: endDate,
@@ -105,66 +114,61 @@ class CvStepModel {
       'link': link,
     };
 
-    // Enddate hinzufügen, falls vorhanden
-    if (endDate != null) {
-      result['endDate'] = Timestamp.fromDate(endDate!);
+    if (endDate case final endDate?) {
+      result['endDate'] = Timestamp.fromDate(endDate);
     }
 
-    // Direkt Sprachschlüssel auf oberster Ebene hinzufügen
     if (titles.isNotEmpty) {
       for (final entry in titles.entries) {
         final langCode = entry.key;
 
-        // Erstelle ein Map für den Sprachcode, falls es noch nicht existiert
-        if (!result.containsKey(langCode)) {
+        if (result.containsKey(langCode) == false) {
           result[langCode] = <String, dynamic>{};
         }
 
-        // Füge den Titel hinzu
         (result[langCode] as Map<String, dynamic>)['title'] = entry.value;
       }
     }
 
-    // Beschreibungen hinzufügen
-    if (descriptions != null && descriptions!.isNotEmpty) {
-      for (final entry in descriptions!.entries) {
+    if (descriptions case final descriptions? when descriptions.isNotEmpty) {
+      for (final entry in descriptions.entries) {
         final langCode = entry.key;
-
-        // Erstelle ein Map für den Sprachcode, falls es noch nicht existiert
-        if (!result.containsKey(langCode)) {
+        if (result.containsKey(langCode) == false) {
           result[langCode] = <String, dynamic>{};
         }
-
-        // Füge die Beschreibung hinzu
         (result[langCode] as Map<String, dynamic>)['desc'] = entry.value;
       }
     }
 
-    // Verantwortlichkeiten hinzufügen
-    if (responsibilities != null && responsibilities!.isNotEmpty) {
-      for (final entry in responsibilities!.entries) {
+    if (responsibilities case final responsibilities?
+        when responsibilities.isNotEmpty) {
+      for (final entry in responsibilities.entries) {
         final langCode = entry.key;
 
-        // Erstelle ein Map für den Sprachcode, falls es noch nicht existiert
-        if (!result.containsKey(langCode)) {
+        if (result.containsKey(langCode) == false) {
           result[langCode] = <String, dynamic>{};
         }
-
-        // Füge die Verantwortlichkeiten hinzu
         (result[langCode] as Map<String, dynamic>)['responsibilities'] =
             entry.value;
       }
     }
 
-    // Skills und Dokumente als Listen hinzufügen
-    if (skills != null && skills!.isNotEmpty) {
-      result['skills'] = skills!.map((e) => e.toMap()).toList();
-    } else {
-      result['skills'] = [];
+    if (references case final references? when references.isNotEmpty) {
+      for (final entry in references.entries) {
+        final langCode = entry.key;
+
+        if (result.containsKey(langCode) == false) {
+          result[langCode] = <String, dynamic>{};
+        }
+        (result[langCode] as Map<String, dynamic>)['references'] =
+            entry.value.map((doc) => doc.toMap()).toList();
+      }
     }
 
-    if (documents != null && documents!.isNotEmpty) {
-      result['documents'] = documents!.map((e) => e.toMap()).toList();
+    if (skills case final skills? when skills.isNotEmpty) {
+      result['skills'] = skills.map((e) => e.toMap()).toList();
+    } else {
+      result['skills'] = [];
     }
 
     return result;

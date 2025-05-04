@@ -38,6 +38,9 @@ class CvStepMapper extends ClassMapperBase<CvStep> {
   static const Field<CvStep, Map<String, List<String>>> _f$_responsibilities =
       Field('_responsibilities', _$_responsibilities,
           key: r'responsibilities', opt: true);
+  static Map<String, List<Document>>? _$_references(CvStep v) => v._references;
+  static const Field<CvStep, Map<String, List<Document>>> _f$_references =
+      Field('_references', _$_references, key: r'references', opt: true);
   static bool? _$passed(CvStep v) => v.passed;
   static const Field<CvStep, bool> _f$passed =
       Field('passed', _$passed, opt: true);
@@ -49,9 +52,6 @@ class CvStepMapper extends ClassMapperBase<CvStep> {
       Field('imageUrl', _$imageUrl, opt: true);
   static String? _$link(CvStep v) => v.link;
   static const Field<CvStep, String> _f$link = Field('link', _$link, opt: true);
-  static List<Document>? _$documents(CvStep v) => v.documents;
-  static const Field<CvStep, List<Document>> _f$documents =
-      Field('documents', _$documents, opt: true);
   static DateTime? _$endDate(CvStep v) => v.endDate;
   static const Field<CvStep, DateTime> _f$endDate =
       Field('endDate', _$endDate, opt: true);
@@ -63,11 +63,11 @@ class CvStepMapper extends ClassMapperBase<CvStep> {
     #skills: _f$skills,
     #_descriptions: _f$_descriptions,
     #_responsibilities: _f$_responsibilities,
+    #_references: _f$_references,
     #passed: _f$passed,
     #grade: _f$grade,
     #imageUrl: _f$imageUrl,
     #link: _f$link,
-    #documents: _f$documents,
     #endDate: _f$endDate,
   };
 
@@ -78,11 +78,11 @@ class CvStepMapper extends ClassMapperBase<CvStep> {
         skills: data.dec(_f$skills),
         descriptions: data.dec(_f$_descriptions),
         responsibilities: data.dec(_f$_responsibilities),
+        references: data.dec(_f$_references),
         passed: data.dec(_f$passed),
         grade: data.dec(_f$grade),
         imageUrl: data.dec(_f$imageUrl),
         link: data.dec(_f$link),
-        documents: data.dec(_f$documents),
         endDate: data.dec(_f$endDate));
   }
 
@@ -139,19 +139,19 @@ abstract class CvStepCopyWith<$R, $In extends CvStep, $Out>
       get _descriptions;
   MapCopyWith<$R, String, List<String>,
       ObjectCopyWith<$R, List<String>, List<String>>>? get _responsibilities;
-  ListCopyWith<$R, Document, DocumentCopyWith<$R, Document, Document>>?
-      get documents;
+  MapCopyWith<$R, String, List<Document>,
+      ObjectCopyWith<$R, List<Document>, List<Document>>>? get _references;
   $R call(
       {Map<String, String>? titles,
       DateTime? startDate,
       List<Skill>? skills,
       Map<String, String>? descriptions,
       Map<String, List<String>>? responsibilities,
+      Map<String, List<Document>>? references,
       bool? passed,
       double? grade,
       String? imageUrl,
       String? link,
-      List<Document>? documents,
       DateTime? endDate});
   CvStepCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -190,10 +190,13 @@ class _CvStepCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, CvStep, $Out>
               (v) => call(responsibilities: v))
           : null;
   @override
-  ListCopyWith<$R, Document, DocumentCopyWith<$R, Document, Document>>?
-      get documents => $value.documents != null
-          ? ListCopyWith($value.documents!, (v, t) => v.copyWith.$chain(t),
-              (v) => call(documents: v))
+  MapCopyWith<$R, String, List<Document>,
+          ObjectCopyWith<$R, List<Document>, List<Document>>>?
+      get _references => $value._references != null
+          ? MapCopyWith(
+              $value._references!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(references: v))
           : null;
   @override
   $R call(
@@ -202,11 +205,11 @@ class _CvStepCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, CvStep, $Out>
           Object? skills = $none,
           Object? descriptions = $none,
           Object? responsibilities = $none,
+          Object? references = $none,
           Object? passed = $none,
           Object? grade = $none,
           Object? imageUrl = $none,
           Object? link = $none,
-          Object? documents = $none,
           Object? endDate = $none}) =>
       $apply(FieldCopyWithData({
         if (titles != null) #titles: titles,
@@ -214,11 +217,11 @@ class _CvStepCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, CvStep, $Out>
         if (skills != $none) #skills: skills,
         if (descriptions != $none) #descriptions: descriptions,
         if (responsibilities != $none) #responsibilities: responsibilities,
+        if (references != $none) #references: references,
         if (passed != $none) #passed: passed,
         if (grade != $none) #grade: grade,
         if (imageUrl != $none) #imageUrl: imageUrl,
         if (link != $none) #link: link,
-        if (documents != $none) #documents: documents,
         if (endDate != $none) #endDate: endDate
       }));
   @override
@@ -229,11 +232,11 @@ class _CvStepCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, CvStep, $Out>
       descriptions: data.get(#descriptions, or: $value._descriptions),
       responsibilities:
           data.get(#responsibilities, or: $value._responsibilities),
+      references: data.get(#references, or: $value._references),
       passed: data.get(#passed, or: $value.passed),
       grade: data.get(#grade, or: $value.grade),
       imageUrl: data.get(#imageUrl, or: $value.imageUrl),
       link: data.get(#link, or: $value.link),
-      documents: data.get(#documents, or: $value.documents),
       endDate: data.get(#endDate, or: $value.endDate));
 
   @override

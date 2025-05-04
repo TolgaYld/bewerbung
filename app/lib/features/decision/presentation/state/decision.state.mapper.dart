@@ -22,7 +22,7 @@ class DecisionStateMapper extends ClassMapperBase<DecisionState> {
 
   static bool _$isLoading(DecisionState v) => v.isLoading;
   static const Field<DecisionState, bool> _f$isLoading =
-      Field('isLoading', _$isLoading, opt: true, def: false);
+      Field('isLoading', _$isLoading);
   static String? _$errorMessage(DecisionState v) => v.errorMessage;
   static const Field<DecisionState, String> _f$errorMessage =
       Field('errorMessage', _$errorMessage, opt: true);

@@ -65,6 +65,7 @@ class CvPage extends HookConsumerWidget {
                           .map((e) => "• $e")
                           .join('\n\n'),
                       completed: education.passed,
+                      references: education.getReferences(locale),
                     ),
                   ],
                   const VSpace.l(),
@@ -87,6 +88,7 @@ class CvPage extends HookConsumerWidget {
                       completed: experience.passed,
                       pictureUri: experience.imageUrl,
                       link: experience.link,
+                      references: experience.getReferences(locale),
                     ),
                   ],
                   const VSpace.l(),
@@ -107,6 +109,9 @@ class CvPage extends HookConsumerWidget {
                           .map((e) => "• $e")
                           .join('\n\n'),
                       completed: sideJob.passed,
+                      pictureUri: sideJob.imageUrl,
+                      link: sideJob.link,
+                      references: sideJob.getReferences(locale),
                     ),
                   ],
                   const VSpace.l(),

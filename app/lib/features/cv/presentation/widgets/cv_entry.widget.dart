@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pleasehiretolga/core/design/spacing.dart';
+import 'package:pleasehiretolga/core/features/employee/domain/entities/document.dart';
 import 'package:pleasehiretolga/core/hooks/use_l10n.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -15,6 +16,7 @@ class CvEntry extends HookConsumerWidget {
     required this.title,
     required this.subtitle,
     required this.monthYear,
+    this.references,
     this.description,
     this.completed,
     this.pictureUri,
@@ -24,6 +26,7 @@ class CvEntry extends HookConsumerWidget {
   final String title;
   final String subtitle;
   final String monthYear;
+  final List<Document>? references;
   final bool? completed;
   final String? description;
   final String? pictureUri;
