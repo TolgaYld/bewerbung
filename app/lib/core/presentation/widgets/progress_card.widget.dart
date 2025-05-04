@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pleasehiretolga/core/design/spacing.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProgressCard extends HookConsumerWidget {
   const ProgressCard({
@@ -13,13 +14,17 @@ class ProgressCard extends HookConsumerWidget {
     required this.index,
     this.emoji,
     this.description,
+    this.urlTitle,
+    this.url,
   });
 
   final String title;
+  final int index;
   final String? description;
   final double percentage;
   final String? emoji;
-  final int index;
+  final String? urlTitle;
+  final String? url;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,16 +46,33 @@ class ProgressCard extends HookConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: AutoSizeText(
-                    emoji != null ? "$emoji $title" : title,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  child: Row(
+                    spacing: Spacers.xs,
+                    children: [
+                      AutoSizeText(
+                        emoji != null ? "$emoji $title" : title,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      if ((url, urlTitle) case (final url?, final urlTitle?))
+                        TextButton.icon(
+                          label: Text(urlTitle),
+                          icon: Icon(Icons.link_outlined),
+                          onPressed: () async {
+                            if (await canLaunchUrl(Uri.parse(url))) {
+                              await launchUrl(
+                                Uri.parse(url),
+                                mode: LaunchMode.externalApplication,
+                              );
+                            }
+                          },
+                        ),
+                    ],
                   ),
                 ),
-                const SizedBox(width: 4),
                 AutoSizeText(
                   "${(percentage * 100).toInt()}%",
                   style: theme.textTheme.bodySmall,
