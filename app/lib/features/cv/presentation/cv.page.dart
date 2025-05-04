@@ -1,14 +1,15 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pleasehiretolga/core/constants/datetime_formatter.dart';
 import 'package:pleasehiretolga/core/design/spacing.dart';
 import 'package:pleasehiretolga/core/features/employee/domain/entities/employee.dart';
+import 'package:pleasehiretolga/core/features/employee/domain/entities/skill.dart';
 import 'package:pleasehiretolga/core/features/employee/provider/employee.provider.dart';
 import 'package:pleasehiretolga/core/hooks/use_l10n.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
 import 'package:pleasehiretolga/core/presentation/molecules/section_header.dart';
+import 'package:pleasehiretolga/core/presentation/widgets/progress_card.widget.dart';
 import 'package:pleasehiretolga/core/provider/locale.provider.dart';
 import 'package:pleasehiretolga/features/cv/presentation/widgets/cv_entry.widget.dart';
 
@@ -18,7 +19,6 @@ class CvPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = useL10n();
-    final theme = useTheme();
     final empl = ref.watch(employeeProvider).valueOrNull;
     final locale = ref.watch(localeProvider);
     String formatDate(DateTime date) =>
@@ -27,15 +27,9 @@ class CvPage extends HookConsumerWidget {
     final languages = switch (empl) {
       Employee(:final programmingLanguages)
           when programmingLanguages.isNotEmpty =>
-        [
-          for (final language in programmingLanguages)
-            (
-              name: language.getTitle(locale),
-              rating: language.rating,
-              emoji: language.emoji
-            ),
-        ]..sort((a, b) => (b.rating ?? 0).compareTo(a.rating ?? 0)),
-      _ => [],
+        [...programmingLanguages]
+          ..sort((a, b) => (b.rating ?? 0).compareTo(a.rating ?? 0)),
+      _ => <Skill>[],
     };
 
     return Scaffold(
@@ -48,7 +42,10 @@ class CvPage extends HookConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const VSpace.l(),
-                  SectionHeader(title: l10n.education),
+                  SectionHeader(
+                    title: l10n.education,
+                    icon: Icons.school_rounded,
+                  ),
                   const VSpace.m(),
                   for (final education in employee.cv.sortedEducations(
                       descending: locale?.languageCode != "en")) ...[
@@ -69,7 +66,10 @@ class CvPage extends HookConsumerWidget {
                     ),
                   ],
                   const VSpace.l(),
-                  SectionHeader(title: l10n.jobExperience),
+                  SectionHeader(
+                    title: l10n.jobExperience,
+                    icon: Icons.work_rounded,
+                  ),
                   const VSpace.m(),
                   for (final experience in employee.cv.sortedJobs(
                       descending: locale?.languageCode != "en")) ...[
@@ -92,7 +92,10 @@ class CvPage extends HookConsumerWidget {
                     ),
                   ],
                   const VSpace.l(),
-                  SectionHeader(title: l10n.sideJobs),
+                  SectionHeader(
+                    title: l10n.sideJobs,
+                    icon: Icons.laptop_mac_rounded,
+                  ),
                   const VSpace.m(),
                   for (final sideJob in employee.cv.sortedSideJobs(
                       descending: locale?.languageCode != "en")) ...[
@@ -115,52 +118,52 @@ class CvPage extends HookConsumerWidget {
                     ),
                   ],
                   const VSpace.l(),
-                  SectionHeader(title: l10n.programmingLanguages),
-                  const VSpace.m(),
-                  ...languages.map(
-                    (skill) => Padding(
-                      padding: EdgeInsets.only(bottom: Spacers.m),
-                      child: Column(
-                        spacing: Spacers.xs,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              AutoSizeText(
-                                "${skill.emoji} ${skill.name}",
-                                style: theme.textTheme.bodyMedium?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              AutoSizeText(
-                                "${(skill.rating * 100).toInt()}%",
-                                style: theme.textTheme.bodySmall,
-                              ),
-                            ],
-                          ),
-                          LinearProgressIndicator(
-                            value: skill.rating,
-                            backgroundColor: theme.colorScheme.primary
-                                .withValues(alpha: 0.1),
-                            color: theme.colorScheme.primary,
-                            borderRadius: BorderRadius.circular(Spacers.xs),
-                            minHeight: 6,
-                          ),
-                        ],
-                      ),
-                    ),
+                  SectionHeader(
+                    title: l10n.programmingLanguages,
+                    icon: Icons.code_rounded,
                   ),
+                  const VSpace.m(),
+                  if (languages.isNotEmpty) ...[
+                    ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: languages.length,
+                      separatorBuilder: (_, __) => const VSpace.m(),
+                      itemBuilder: (context, index) {
+                        final language = languages[index];
+                        return ProgressCard(
+                          title: language.getTitle(locale),
+                          index: index,
+                          percentage: language.rating ?? 0,
+                          description: language.getDescription(locale),
+                          emoji: language.emoji,
+                        );
+                      },
+                    ),
+                  ],
                   const VSpace.l(),
                   if (employee.cv.drivingLicence
                       case final drivingLicences?) ...[
-                    SectionHeader(title: l10n.drivingLicenseClasses),
+                    SectionHeader(
+                      title: l10n.drivingLicenseClasses,
+                      icon: Icons.badge_rounded,
+                    ),
                     const VSpace.m(),
-                    AutoSizeText(
-                      drivingLicences.map((e) => e).join(", "),
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                    Wrap(
+                      spacing: Spacers.s,
+                      runSpacing: Spacers.s,
+                      children: [
+                        for (final licence in drivingLicences)
+                          _DrivingLicenceChip(
+                            icon: switch (licence) {
+                              "L" => Icons.agriculture_rounded,
+                              "AM" => Icons.motorcycle_rounded,
+                              "B" => Icons.directions_car_rounded,
+                              _ => Icons.badge_rounded,
+                            },
+                            label: licence,
+                          ),
+                      ],
                     ),
                     const VSpace.l(),
                   ],
@@ -172,6 +175,40 @@ class CvPage extends HookConsumerWidget {
             _ => SizedBox(),
           },
         ),
+      ),
+    );
+  }
+}
+
+class _DrivingLicenceChip extends HookConsumerWidget {
+  const _DrivingLicenceChip({
+    required this.icon,
+    required this.label,
+  });
+
+  final IconData icon;
+  final String label;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = useTheme();
+    return Chip(
+      backgroundColor: theme.colorScheme.primary.withValues(alpha: 0.1),
+      avatar: Icon(icon, size: 20),
+      label: Text(
+        label,
+        style: theme.textTheme.bodySmall,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(Spacers.s),
+        side: BorderSide(
+          color: theme.colorScheme.primary,
+          width: 2,
+        ),
+      ),
+      padding: const EdgeInsets.symmetric(
+        horizontal: Spacers.s,
+        vertical: Spacers.xxs,
       ),
     );
   }
