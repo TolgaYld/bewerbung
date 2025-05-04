@@ -28,11 +28,12 @@ class HomePage extends HookConsumerWidget {
     final coverLetter = ref.watch(coverLetterProvider).valueOrNull;
     final notifier = ref.watch(authStateProvider.notifier);
 
+    final bool showCoverLetter = coverLetter != null || kReleaseMode == false;
+
     final navItems = [
       (icon: Icons.account_circle, label: l10n.aboutMe),
       (icon: Icons.description, label: l10n.cv),
-      if (coverLetter != null || kReleaseMode == false)
-        (icon: Icons.article, label: l10n.coverLetter),
+      if (showCoverLetter) (icon: Icons.article, label: l10n.coverLetter),
       (icon: Icons.question_mark_rounded, label: l10n.invite),
     ];
 
@@ -45,7 +46,7 @@ class HomePage extends HookConsumerWidget {
 
     void onTabSelected(int index) {
       int branchIndex = index;
-      if ((coverLetter == null && kReleaseMode) && index >= 2) {
+      if (showCoverLetter == false && index >= 2) {
         branchIndex = index + 1;
       }
 
@@ -56,7 +57,7 @@ class HomePage extends HookConsumerWidget {
     }
 
     int getVisualIndex(int branchIndex) {
-      if ((coverLetter == null && kReleaseMode) && branchIndex > 2) {
+      if (showCoverLetter == false && branchIndex >= 2) {
         return branchIndex - 1;
       }
       return branchIndex;
