@@ -16,6 +16,6 @@
 |--------------------|----------------------------------------------------|
 | Backend     | Firebase Authentication, Firestore                        |
 | State Management   | Riverpod                                           |
-| Testing            | `flutter_test`, `mockito`, etc.                    |
+| Testing            | `flutter_test`, `mocktail`, etc.                   |
 | Architecture       | Clean Architecture                                 |
 | Development Method | Test-Driven Development (TDD)                      |
