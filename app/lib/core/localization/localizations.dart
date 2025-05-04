@@ -550,6 +550,18 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'{minutes} min'**
   String durationFormattedMinutesOnly(Object minutes);
+
+  /// No description provided for @noMessageWrittenToApplicant.
+  ///
+  /// In en, this message translates to:
+  /// **'No message written to applicant'**
+  String get noMessageWrittenToApplicant;
+
+  /// No description provided for @responseStatusFromApplicant.
+  ///
+  /// In en, this message translates to:
+  /// **'Response to the invitation'**
+  String get responseStatusFromApplicant;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

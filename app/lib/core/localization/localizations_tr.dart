@@ -238,4 +238,10 @@ class L10nTr extends L10n {
   String durationFormattedMinutesOnly(Object minutes) {
     return '$minutes dk';
   }
+
+  @override
+  String get noMessageWrittenToApplicant => 'Başvuran için yazılmış mesaj yok';
+
+  @override
+  String get responseStatusFromApplicant => 'Başvuranın yanıt durumu';
 }

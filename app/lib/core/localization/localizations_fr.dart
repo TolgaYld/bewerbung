@@ -238,4 +238,10 @@ class L10nFr extends L10n {
   String durationFormattedMinutesOnly(Object minutes) {
     return '$minutes min';
   }
+
+  @override
+  String get noMessageWrittenToApplicant => 'Aucun message écrit au candidat';
+
+  @override
+  String get responseStatusFromApplicant => 'Réponse à l\'invitation';
 }

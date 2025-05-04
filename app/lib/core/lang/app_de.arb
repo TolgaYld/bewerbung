@@ -84,5 +84,7 @@
         }
     },
     "durationFormatted": "{hours} Std. {minutes} Min.",
-    "durationFormattedMinutesOnly": "{minutes} Min."
+    "durationFormattedMinutesOnly": "{minutes} Min.",
+    "noMessageWrittenToApplicant": "Keine Nachricht an den Bewerber geschrieben",
+    "responseStatusFromApplicant": "Antwort zur Einladung"
 }

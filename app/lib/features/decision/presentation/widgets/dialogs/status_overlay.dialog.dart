@@ -86,35 +86,43 @@ class StatusOverlayDialog extends HookConsumerWidget with ShowableDialogMixin {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (company.decisionMessage case final message?
-                        when message.isNotEmpty == true) ...[
-                      _TitleSection(
-                        icon: Icons.message_outlined,
-                        title: company.decisionStatus == DecisionStatus.rejected
-                            ? l10n.reasonForRejection
-                            : l10n.message,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(Spacers.s),
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.surface,
-                          borderRadius: BorderRadius.circular(Spacers.xs),
-                          border: Border.all(
-                            color: theme.colorScheme.onSurface
-                                .withValues(alpha: 0.1),
-                          ),
-                        ),
-                        child: Text(
-                          message,
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: theme.colorScheme.onSurface,
-                          ),
+                    _TitleSection(
+                      icon: Icons.message_outlined,
+                      title: company.decisionStatus == DecisionStatus.rejected
+                          ? l10n.reasonForRejection
+                          : l10n.message,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(Spacers.s),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.surface,
+                        borderRadius: BorderRadius.circular(Spacers.xs),
+                        border: Border.all(
+                          color: theme.colorScheme.onSurface
+                              .withValues(alpha: 0.1),
                         ),
                       ),
-                      const VSpace.m(),
-                    ],
+                      child: Text(
+                        switch (company.decisionMessage) {
+                          final message? when message.isNotEmpty => message,
+                          _ => l10n.noMessageWrittenToApplicant,
+                        },
+                        style: switch (company.decisionMessage) {
+                          final message? when message.isNotEmpty =>
+                            theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.onSurface,
+                            ),
+                          _ => theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.onSurface
+                                  .withValues(alpha: 0.5),
+                              fontStyle: FontStyle.italic,
+                            ),
+                        },
+                      ),
+                    ),
                     if (company.decisionStatus == DecisionStatus.invited) ...[
+                      const VSpace.m(),
                       if (company.inviteDate case final date?) ...[
                         _TitleSection(
                           icon: Icons.calendar_today,
@@ -161,29 +169,25 @@ class StatusOverlayDialog extends HookConsumerWidget with ShowableDialogMixin {
                               if (company.inviteDuration
                                   case final duration?) ...[
                                 const HSpace.xs(),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: Spacers.l),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.timer_outlined,
-                                        color: company.decisionStatus.color,
-                                        size: 16,
-                                      ),
-                                      const SizedBox(width: Spacers.xs),
-                                      Expanded(
-                                        child: Text(
-                                          "${l10n.duration}: ${formatDuration(duration, l10n)}",
-                                          style: theme.textTheme.bodyMedium
-                                              ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            color: company.decisionStatus.color,
-                                          ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.timer_outlined,
+                                      color: company.decisionStatus.color,
+                                      size: 16,
+                                    ),
+                                    const SizedBox(width: Spacers.xs),
+                                    Expanded(
+                                      child: Text(
+                                        "${l10n.duration}: ${formatDuration(duration, l10n)}",
+                                        style: theme.textTheme.bodyMedium
+                                            ?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          color: company.decisionStatus.color,
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ],
@@ -213,12 +217,21 @@ class StatusOverlayDialog extends HookConsumerWidget with ShowableDialogMixin {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                Expanded(
+                                  child: Text(
+                                    "${l10n.responseOfApplicant}:",
+                                    style: theme.textTheme.bodyMedium?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
                                 Icon(
                                   company.employeeAcceptedInvite == true
                                       ? Icons.check_circle
                                       : company.employeeAcceptedInvite == false
                                           ? Icons.cancel
-                                          : Icons.question_mark,
+                                          : Icons.hourglass_top_rounded,
                                   color: company.employeeAcceptedInvite == true
                                       ? Colors.green
                                       : company.employeeAcceptedInvite == false
@@ -226,31 +239,18 @@ class StatusOverlayDialog extends HookConsumerWidget with ShowableDialogMixin {
                                           : Colors.grey,
                                   size: 18,
                                 ),
-                                Expanded(
-                                  child: Text(
-                                    company.employeeAcceptedInvite == true
-                                        ? l10n.applicantAccepted
-                                        : company.employeeAcceptedInvite ==
-                                                false
-                                            ? l10n.applicantRefused
-                                            : l10n.applicantDidNotRespondYet,
-                                    style: theme.textTheme.bodyMedium?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: company.employeeAcceptedInvite ==
-                                              true
-                                          ? Colors.green
-                                          : company.employeeAcceptedInvite ==
-                                                  false
-                                              ? Colors.red
-                                              : Colors.grey,
-                                    ),
-                                  ),
-                                ),
                               ],
                             ),
                             if (company.messageFromEmployee case final message?
                                 when message.isNotEmpty) ...[
                               const Divider(height: 16),
+                              Text(
+                                "${l10n.message}:",
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey,
+                                ),
+                              ),
                               Text(
                                 message,
                                 style: theme.textTheme.bodyMedium?.copyWith(
@@ -328,7 +328,6 @@ class StatusOverlayDialog extends HookConsumerWidget with ShowableDialogMixin {
                         foregroundColor: theme.colorScheme.error,
                       ),
                     ),
-                  const SizedBox(width: Spacers.s),
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(),
                     child: Text(

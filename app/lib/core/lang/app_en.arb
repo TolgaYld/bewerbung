@@ -83,5 +83,7 @@
         }
     },
     "durationFormatted": "{hours} h {minutes} min",
-    "durationFormattedMinutesOnly": "{minutes} min"
+    "durationFormattedMinutesOnly": "{minutes} min",
+    "noMessageWrittenToApplicant": "No message written to applicant",
+    "responseStatusFromApplicant": "Response to the invitation"
 }
