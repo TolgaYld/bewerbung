@@ -81,6 +81,7 @@ class HomePage extends HookConsumerWidget {
           title: Text(l10n.applicationToCompany(company?.name ?? '')),
           centerTitle: kIsWeb,
           bottom: TabBar(
+            key: ValueKey(navItems.length),
             controller: tabController,
             tabs: [
               for (final item in navItems)
