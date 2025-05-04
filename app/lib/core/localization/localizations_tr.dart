@@ -244,4 +244,7 @@ class L10nTr extends L10n {
 
   @override
   String get responseStatusFromApplicant => 'Başvuranın yanıt durumu';
+
+  @override
+  String get proof => 'Belge';
 }

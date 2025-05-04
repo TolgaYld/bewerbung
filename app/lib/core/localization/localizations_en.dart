@@ -244,4 +244,7 @@ class L10nEn extends L10n {
 
   @override
   String get responseStatusFromApplicant => 'Response to the invitation';
+
+  @override
+  String get proof => 'Proof';
 }

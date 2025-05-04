@@ -562,6 +562,12 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'Response to the invitation'**
   String get responseStatusFromApplicant;
+
+  /// No description provided for @proof.
+  ///
+  /// In en, this message translates to:
+  /// **'Proof'**
+  String get proof;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

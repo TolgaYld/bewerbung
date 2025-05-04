@@ -264,6 +264,8 @@ class AboutMePage extends HookConsumerWidget {
                     title: disability.type,
                     percentage: disability.percentage,
                     index: 0,
+                    url: disability.url,
+                    urlTitle: l10n.proof,
                   ),
                 ),
                 const VSpace.l(),

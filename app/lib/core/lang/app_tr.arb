@@ -85,5 +85,6 @@
     "durationFormatted": "{hours} sa {minutes} dk",
     "durationFormattedMinutesOnly": "{minutes} dk",
     "noMessageWrittenToApplicant": "Başvuran için yazılmış mesaj yok",
-    "responseStatusFromApplicant": "Başvuranın yanıt durumu"
+    "responseStatusFromApplicant": "Başvuranın yanıt durumu",
+    "proof": "Belge"
 }

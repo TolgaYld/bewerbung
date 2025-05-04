@@ -244,4 +244,7 @@ class L10nDe extends L10n {
 
   @override
   String get responseStatusFromApplicant => 'Antwort zur Einladung';
+
+  @override
+  String get proof => 'Nachweis';
 }

@@ -47,7 +47,7 @@ class ProgressCard extends HookConsumerWidget {
               children: [
                 Expanded(
                   child: Row(
-                    spacing: Spacers.xs,
+                    spacing: Spacers.s,
                     children: [
                       AutoSizeText(
                         emoji != null ? "$emoji $title" : title,
