@@ -247,4 +247,18 @@ class L10nTr extends L10n {
 
   @override
   String get proof => 'Belge';
+
+  @override
+  String copyright(Object fullName) {
+    return '© 2025 $fullName – Tüm hakları saklıdır.';
+  }
+
+  @override
+  String get imprint => 'İmpressum';
+
+  @override
+  String get externalLinkDialogTitle => 'Harici Bağlantı';
+
+  @override
+  String get externalLinkDialogContent => 'Harici bir bağlantı açmak üzeresiniz. Bu harici sitenin içeriğinden sorumlu değilim. İçeriği üzerinde hiçbir kontrolüm yoktur ve bu içeriği sahiplenmediğimi açıkça belirtirim.';
 }

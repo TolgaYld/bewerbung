@@ -247,4 +247,18 @@ class L10nEn extends L10n {
 
   @override
   String get proof => 'Proof';
+
+  @override
+  String copyright(Object fullName) {
+    return '© 2025 $fullName – All rights reserved.';
+  }
+
+  @override
+  String get imprint => 'Imprint';
+
+  @override
+  String get externalLinkDialogTitle => 'External Link';
+
+  @override
+  String get externalLinkDialogContent => 'You are about to open an external link. I am not responsible for the content of this external site. I have no control over it and expressly do not adopt its content as my own.';
 }

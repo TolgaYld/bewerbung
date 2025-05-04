@@ -86,5 +86,9 @@
     "durationFormattedMinutesOnly": "{minutes} dk",
     "noMessageWrittenToApplicant": "Başvuran için yazılmış mesaj yok",
     "responseStatusFromApplicant": "Başvuranın yanıt durumu",
-    "proof": "Belge"
+    "proof": "Belge",
+    "copyright": "© 2025 {fullName} – Tüm hakları saklıdır.",
+    "imprint": "İmpressum",
+    "externalLinkDialogTitle": "Harici Bağlantı",
+    "externalLinkDialogContent": "Harici bir bağlantı açmak üzeresiniz. Bu harici sitenin içeriğinden sorumlu değilim. İçeriği üzerinde hiçbir kontrolüm yoktur ve bu içeriği sahiplenmediğimi açıkça belirtirim."
 }

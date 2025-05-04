@@ -87,5 +87,9 @@
     "durationFormattedMinutesOnly": "{minutes} Min.",
     "noMessageWrittenToApplicant": "Keine Nachricht an den Bewerber geschrieben",
     "responseStatusFromApplicant": "Antwort zur Einladung",
-    "proof": "Nachweis"
+    "proof": "Nachweis",
+    "copyright": "© 2025 {fullName} – Alle Rechte vorbehalten.",
+    "imprint": "Impressum",
+    "externalLinkDialogTitle": "Externer Link",
+    "externalLinkDialogContent": "Du öffnest nun einen externen Link. Für die Inhalte dieser externen Seite bin ich nicht verantwortlich. Ich habe keinen Einfluss auf deren Inhalte und mache mir diese ausdrücklich nicht zu eigen."
 }

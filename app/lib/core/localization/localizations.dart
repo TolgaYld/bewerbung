@@ -568,6 +568,30 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'Proof'**
   String get proof;
+
+  /// No description provided for @copyright.
+  ///
+  /// In en, this message translates to:
+  /// **'© 2025 {fullName} – All rights reserved.'**
+  String copyright(Object fullName);
+
+  /// No description provided for @imprint.
+  ///
+  /// In en, this message translates to:
+  /// **'Imprint'**
+  String get imprint;
+
+  /// No description provided for @externalLinkDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'External Link'**
+  String get externalLinkDialogTitle;
+
+  /// No description provided for @externalLinkDialogContent.
+  ///
+  /// In en, this message translates to:
+  /// **'You are about to open an external link. I am not responsible for the content of this external site. I have no control over it and expressly do not adopt its content as my own.'**
+  String get externalLinkDialogContent;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pleasehiretolga/core/design/spacing.dart';
 import 'package:pleasehiretolga/core/features/auth/presentation/auth.notifier.dart';
 import 'package:pleasehiretolga/core/features/auth/provider/company.provider.dart';
+import 'package:pleasehiretolga/core/features/employee/provider/employee.provider.dart';
 import 'package:pleasehiretolga/core/hooks/use_l10n.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
 import 'package:pleasehiretolga/core/routing/router.dart';
@@ -26,6 +27,7 @@ class HomePage extends HookConsumerWidget {
     final theme = useTheme();
     final l10n = useL10n();
     final company = ref.watch(companyProvider).valueOrNull;
+    final employee = ref.watch(employeeProvider).valueOrNull;
     final coverLetter = ref.watch(coverLetterProvider).valueOrNull;
     final notifier = ref.watch(authStateProvider.notifier);
     final bool showCoverLetter = coverLetter != null || kReleaseMode == false;
@@ -113,13 +115,49 @@ class HomePage extends HookConsumerWidget {
             ),
           ],
         ),
-        body: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 1200),
-            child: SizedBox.expand(
-              child: navigationShell,
+        body: Column(
+          children: [
+            Expanded(
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 1200),
+                  child: SizedBox.expand(
+                    child: navigationShell,
+                  ),
+                ),
+              ),
             ),
-          ),
+            const Divider(height: 1),
+            Container(
+              width: double.infinity,
+              color: theme.colorScheme.primary,
+              child: Padding(
+                padding: const EdgeInsets.all(Spacers.xs),
+                child: GestureDetector(
+                  onTap: () => context.go('/impressum'),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        l10n.imprint,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          decoration: TextDecoration.underline,
+                          decorationColor: theme.colorScheme.surface,
+                          color: theme.colorScheme.surface,
+                        ),
+                      ),
+                      Text(
+                        l10n.copyright(employee?.person.fullName ?? ''),
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.colorScheme.surface,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       );
     }
