@@ -168,20 +168,20 @@ class StatusOverlayDialog extends HookConsumerWidget with ShowableDialogMixin {
                               ),
                               if (company.inviteDuration
                                   case final duration?) ...[
-                                const HSpace.xs(),
+                                const VSpace.xs(),
                                 Row(
                                   children: [
                                     Icon(
                                       Icons.timer_outlined,
                                       color: company.decisionStatus.color,
-                                      size: 16,
+                                      size: 18,
                                     ),
                                     const SizedBox(width: Spacers.xs),
                                     Expanded(
                                       child: Text(
                                         "${l10n.duration}: ${formatDuration(duration, l10n)}",
-                                        style: theme.textTheme.bodyMedium
-                                            ?.copyWith(
+                                        style:
+                                            theme.textTheme.bodyLarge?.copyWith(
                                           fontWeight: FontWeight.bold,
                                           color: company.decisionStatus.color,
                                         ),
@@ -227,16 +227,17 @@ class StatusOverlayDialog extends HookConsumerWidget with ShowableDialogMixin {
                                   ),
                                 ),
                                 Icon(
-                                  company.employeeAcceptedInvite == true
-                                      ? Icons.check_circle
-                                      : company.employeeAcceptedInvite == false
-                                          ? Icons.cancel
-                                          : Icons.hourglass_top_rounded,
-                                  color: company.employeeAcceptedInvite == true
-                                      ? Colors.green
-                                      : company.employeeAcceptedInvite == false
-                                          ? Colors.red
-                                          : Colors.grey,
+                                  switch (company.employeeAcceptedInvite) {
+                                    true => Icons.check_circle_rounded,
+                                    false => Icons.cancel_rounded,
+                                    null => Icons.hourglass_top_rounded,
+                                  },
+                                  color: switch (
+                                      company.employeeAcceptedInvite) {
+                                    true => Colors.green,
+                                    false => Colors.red,
+                                    null => Colors.grey,
+                                  },
                                   size: 18,
                                 ),
                               ],
