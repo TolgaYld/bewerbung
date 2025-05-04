@@ -219,7 +219,7 @@ class StatusOverlayDialog extends HookConsumerWidget with ShowableDialogMixin {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    "${l10n.responseOfApplicant}:",
+                                    "${l10n.responseStatusFromApplicant}:",
                                     style: theme.textTheme.bodyMedium?.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.grey,
