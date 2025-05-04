@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -22,7 +23,8 @@ class MyApp extends HookConsumerWidget {
     final router = ref.watch(navigationManagerProvider);
     final locale = ref.watch(localeProvider);
     final customTheme = ref.watch(dynamicThemeProvider);
-    return MaterialApp.router(
+
+    final app = MaterialApp.router(
       title: 'Please Hire Tolga',
       debugShowCheckedModeBanner: false,
       localizationsDelegates: L10n.localizationsDelegates,
@@ -33,5 +35,15 @@ class MyApp extends HookConsumerWidget {
       themeMode: ThemeMode.light,
       routerConfig: router,
     );
+
+    return kIsWeb
+        ? InteractiveViewer(
+            minScale: 0.5,
+            maxScale: 7.0,
+            child: SizedBox.expand(
+              child: app,
+            ),
+          )
+        : app;
   }
 }
