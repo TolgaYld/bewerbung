@@ -10,8 +10,10 @@ service cloud.firestore {
         && ('decisionStatus' in request.resource.data)
         && (request.resource.data.decisionStatus in ['pending', 'invited', 'rejected'])
         && (('inviteDurationInMinutes' in request.resource.data) == false || ('inviteDate' in request.resource.data));
+
+      allow delete: if request.auth != null && request.auth.uid == companyId;
         
-      allow create, delete: if false;
+      allow create: if false;
 }
     match /invites/{companyName} {
       allow read, write: if false;
