@@ -23,13 +23,13 @@ class SkillMapper extends ClassMapperBase<Skill> {
   static String _$_title(Skill v) => v._title;
   static const Field<Skill, String> _f$_title =
       Field('_title', _$_title, key: r'title');
+  static String? _$_description(Skill v) => v._description;
+  static const Field<Skill, String> _f$_description =
+      Field('_description', _$_description, key: r'description', opt: true);
   static Map<String, Map<String, String>>? _$translations(Skill v) =>
       v.translations;
   static const Field<Skill, Map<String, Map<String, String>>> _f$translations =
-      Field('translations', _$translations);
-  static String? _$_description(Skill v) => v._description;
-  static const Field<Skill, String> _f$_description =
-      Field('_description', _$_description, key: r'description');
+      Field('translations', _$translations, opt: true);
   static String? _$emoji(Skill v) => v.emoji;
   static const Field<Skill, String> _f$emoji =
       Field('emoji', _$emoji, opt: true);
@@ -43,8 +43,8 @@ class SkillMapper extends ClassMapperBase<Skill> {
   @override
   final MappableFields<Skill> fields = const {
     #_title: _f$_title,
-    #translations: _f$translations,
     #_description: _f$_description,
+    #translations: _f$translations,
     #emoji: _f$emoji,
     #imageUrl: _f$imageUrl,
     #rating: _f$rating,
@@ -53,8 +53,8 @@ class SkillMapper extends ClassMapperBase<Skill> {
   static Skill _instantiate(DecodingData data) {
     return Skill(
         title: data.dec(_f$_title),
-        translations: data.dec(_f$translations),
         description: data.dec(_f$_description),
+        translations: data.dec(_f$translations),
         emoji: data.dec(_f$emoji),
         imageUrl: data.dec(_f$imageUrl),
         rating: data.dec(_f$rating));
@@ -111,8 +111,8 @@ abstract class SkillCopyWith<$R, $In extends Skill, $Out>
       get translations;
   $R call(
       {String? title,
-      Map<String, Map<String, String>>? translations,
       String? description,
+      Map<String, Map<String, String>>? translations,
       String? emoji,
       String? imageUrl,
       double? rating});
@@ -137,15 +137,15 @@ class _SkillCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Skill, $Out>
   @override
   $R call(
           {String? title,
-          Object? translations = $none,
           Object? description = $none,
+          Object? translations = $none,
           Object? emoji = $none,
           Object? imageUrl = $none,
           Object? rating = $none}) =>
       $apply(FieldCopyWithData({
         if (title != null) #title: title,
-        if (translations != $none) #translations: translations,
         if (description != $none) #description: description,
+        if (translations != $none) #translations: translations,
         if (emoji != $none) #emoji: emoji,
         if (imageUrl != $none) #imageUrl: imageUrl,
         if (rating != $none) #rating: rating
@@ -153,8 +153,8 @@ class _SkillCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Skill, $Out>
   @override
   Skill $make(CopyWithData data) => Skill(
       title: data.get(#title, or: $value._title),
-      translations: data.get(#translations, or: $value.translations),
       description: data.get(#description, or: $value._description),
+      translations: data.get(#translations, or: $value.translations),
       emoji: data.get(#emoji, or: $value.emoji),
       imageUrl: data.get(#imageUrl, or: $value.imageUrl),
       rating: data.get(#rating, or: $value.rating));

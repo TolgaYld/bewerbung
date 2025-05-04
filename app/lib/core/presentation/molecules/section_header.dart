@@ -5,27 +5,49 @@ import 'package:pleasehiretolga/core/design/spacing.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
 
 class SectionHeader extends HookConsumerWidget {
-  const SectionHeader({super.key, required this.title});
+  const SectionHeader({
+    super.key,
+    required this.title,
+    this.icon,
+  });
   final String title;
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = useTheme();
 
     return Row(
+      spacing: Spacers.s,
+      mainAxisSize: MainAxisSize.min,
       children: [
+        if (icon != null)
+          Icon(
+            icon,
+            color: theme.colorScheme.primary,
+          ),
         AutoSizeText(
           title,
           style: theme.textTheme.titleLarge?.copyWith(
-            color: theme.colorScheme.primary,
             fontWeight: FontWeight.bold,
+            color: theme.colorScheme.primary,
           ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
-        const HSpace.s(),
         Expanded(
-          child: Divider(
-            color: theme.colorScheme.primary.withValues(alpha: 0.3),
-            thickness: 1.5,
+          child: Container(
+            alignment: Alignment.center,
+            height: 1.5,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  theme.colorScheme.primary.withValues(alpha: 0.8),
+                  theme.colorScheme.primary.withValues(alpha: 0.01),
+                ],
+              ),
+              borderRadius: BorderRadius.circular(Spacers.xxs),
+            ),
           ),
         ),
       ],

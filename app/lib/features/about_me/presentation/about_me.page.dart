@@ -8,10 +8,12 @@ import 'package:pleasehiretolga/core/design/spacing.dart';
 import 'package:pleasehiretolga/core/features/employee/domain/entities/contact.dart';
 import 'package:pleasehiretolga/core/features/employee/domain/entities/employee.dart';
 import 'package:pleasehiretolga/core/features/employee/domain/entities/person.dart';
+import 'package:pleasehiretolga/core/features/employee/domain/entities/skill.dart';
 import 'package:pleasehiretolga/core/features/employee/provider/employee.provider.dart';
 import 'package:pleasehiretolga/core/hooks/use_l10n.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
 import 'package:pleasehiretolga/core/presentation/molecules/section_header.dart';
+import 'package:pleasehiretolga/core/presentation/widgets/progress_card.widget.dart';
 import 'package:pleasehiretolga/core/provider/locale.provider.dart';
 import 'package:pleasehiretolga/features/about_me/presentation/widgets/connect_tile.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -31,26 +33,9 @@ class AboutMePage extends HookConsumerWidget {
 
     final skills = switch (employee) {
       Employee(:final generalSkills?) when generalSkills.isNotEmpty => [
-          for (final skill in generalSkills)
-            (
-              name: skill.getTitle(locale),
-              rating: skill.rating,
-              emoji: skill.emoji
-            ),
+          ...generalSkills,
         ]..sort((a, b) => (b.rating ?? 0).compareTo(a.rating ?? 0)),
-      _ => [],
-    };
-
-    final languages = switch (employee) {
-      Employee(:final languages) when languages.isNotEmpty => [
-          for (final language in languages)
-            (
-              name: language.getTitle(locale),
-              rating: language.rating,
-              emoji: language.emoji
-            ),
-        ]..sort((a, b) => (b.rating ?? 0).compareTo(a.rating ?? 0)),
-      _ => [],
+      _ => <Skill>[],
     };
 
     final contactOptions = switch (employee) {
@@ -204,7 +189,10 @@ class AboutMePage extends HookConsumerWidget {
                 ],
               ),
               const VSpace.l(),
-              SectionHeader(title: l10n.aboutMe),
+              SectionHeader(
+                title: l10n.aboutMe,
+                icon: Icons.person_rounded,
+              ),
               const VSpace.m(),
               AutoSizeText(
                 employee?.getAboutMeText(locale) ?? "",
@@ -215,136 +203,75 @@ class AboutMePage extends HookConsumerWidget {
                 ),
               ),
               const VSpace.l(),
-              SectionHeader(title: l10n.mySkills),
-              const VSpace.m(),
-              ...skills.map(
-                (skill) => Padding(
-                  padding: EdgeInsets.only(bottom: Spacers.m),
-                  child: Column(
-                    spacing: Spacers.xs,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          AutoSizeText(
-                            "${skill.emoji} ${skill.name}",
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: theme.colorScheme.onSurface,
-                            ),
-                          ),
-                          AutoSizeText(
-                            "${(skill.rating * 100).toInt()}%",
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: theme.colorScheme.onSurface,
-                            ),
-                          ),
-                        ],
-                      ),
-                      LinearProgressIndicator(
-                        value: skill.rating,
-                        backgroundColor:
-                            theme.colorScheme.primary.withValues(alpha: 0.1),
-                        color: theme.colorScheme.primary,
-                        borderRadius: BorderRadius.circular(Spacers.s),
-                        minHeight: 6,
-                      ),
-                    ],
-                  ),
-                ),
+              SectionHeader(
+                title: l10n.mySkills,
+                icon: Icons.fitness_center_rounded,
               ),
-              const VSpace.l(),
-              SectionHeader(title: l10n.languates),
-              const VSpace.m(),
-              ...languages.map(
-                (skill) => Padding(
-                  padding: EdgeInsets.only(bottom: Spacers.m),
-                  child: Column(
-                    spacing: Spacers.xs,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          AutoSizeText(
-                            "${skill.name}",
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          AutoSizeText(
-                            "${(skill.rating * 100).toInt()}%",
-                            style: theme.textTheme.bodySmall,
-                          ),
-                        ],
-                      ),
-                      LinearProgressIndicator(
-                        value: skill.rating,
-                        backgroundColor:
-                            theme.colorScheme.primary.withValues(alpha: 0.1),
-                        color: theme.colorScheme.primary,
-                        borderRadius: BorderRadius.circular(Spacers.s),
-                        minHeight: 6,
-                      ),
-                    ],
-                  ),
+              if (skills.isNotEmpty) ...[
+                const VSpace.m(),
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: skills.length,
+                  separatorBuilder: (_, __) => const VSpace.m(),
+                  itemBuilder: (context, index) {
+                    final skill = skills[index];
+                    return ProgressCard(
+                      title: skill.getTitle(locale),
+                      percentage: skill.rating ?? 0,
+                      description: skill.getDescription(locale),
+                      emoji: skill.emoji,
+                      index: index,
+                    );
+                  },
                 ),
-              ),
+              ],
               const VSpace.l(),
-              SectionHeader(title: l10n.disability),
-              const VSpace.m(),
-              if (disability != null)
+              SectionHeader(
+                title: l10n.languates,
+                icon: Icons.language,
+              ),
+              if (employee?.languages case final lngs?
+                  when lngs.isNotEmpty) ...[
+                const VSpace.m(),
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: lngs.length,
+                  separatorBuilder: (_, __) => const VSpace.m(),
+                  itemBuilder: (context, index) {
+                    final language = lngs[index];
+                    return ProgressCard(
+                      title: language.getTitle(locale),
+                      percentage: language.rating ?? 0,
+                      description: language.getDescription(locale),
+                      emoji: language.emoji,
+                      index: index,
+                    );
+                  },
+                ),
+              ],
+              const VSpace.l(),
+              if (disability != null) ...[
+                SectionHeader(
+                  title: l10n.disability,
+                  icon: Icons.directions_walk_rounded,
+                ),
+                const VSpace.m(),
                 Padding(
                   padding: EdgeInsets.only(bottom: Spacers.m),
-                  child: Column(
-                    spacing: Spacers.xs,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              AutoSizeText(
-                                disability.type,
-                                style: theme.textTheme.bodyMedium?.copyWith(
-                                  color: theme.colorScheme.onSurface,
-                                ),
-                              ),
-                              if (disability.url case final url?)
-                                IconButton(
-                                  onPressed: () async => await launchUrl(
-                                    Uri.parse(url),
-                                    mode: LaunchMode.externalApplication,
-                                  ),
-                                  icon: Icon(
-                                    Icons.open_in_new,
-                                    color: theme.colorScheme.primary,
-                                    size: 18,
-                                  ),
-                                  tooltip: l10n.showCopyOfDisabilityCard,
-                                ),
-                            ],
-                          ),
-                          AutoSizeText(
-                            "${(disability.percentage * 100).toInt()}%",
-                            style: theme.textTheme.bodySmall,
-                          ),
-                        ],
-                      ),
-                      LinearProgressIndicator(
-                        value: disability.percentage,
-                        backgroundColor:
-                            theme.colorScheme.primary.withValues(alpha: 0.1),
-                        color: theme.colorScheme.primary,
-                        borderRadius: BorderRadius.circular(Spacers.xs),
-                        minHeight: 6,
-                      ),
-                    ],
+                  child: ProgressCard(
+                    title: disability.type,
+                    percentage: disability.percentage,
+                    index: 0,
                   ),
                 ),
-              const VSpace.l(),
-              SectionHeader(title: l10n.contact),
+                const VSpace.l(),
+              ],
+              SectionHeader(
+                title: l10n.contact,
+                icon: Icons.contact_phone_rounded,
+              ),
               const VSpace.m(),
               ...contactOptions.map(
                 (option) => ConnectTile(
@@ -354,7 +281,10 @@ class AboutMePage extends HookConsumerWidget {
                 ),
               ),
               const VSpace.xs(),
-              SectionHeader(title: l10n.letsConnect),
+              SectionHeader(
+                title: l10n.letsConnect,
+                icon: Icons.link_rounded,
+              ),
               const VSpace.m(),
               ConnectTile(
                 onTap: () async => await launchUrl(

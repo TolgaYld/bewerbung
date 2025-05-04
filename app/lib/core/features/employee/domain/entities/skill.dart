@@ -8,8 +8,8 @@ part 'skill.mapper.dart';
 class Skill with SkillMappable {
   const Skill({
     required String title,
-    required this.translations,
-    required String? description,
+    String? description,
+    this.translations,
     this.emoji,
     this.imageUrl,
     this.rating,
