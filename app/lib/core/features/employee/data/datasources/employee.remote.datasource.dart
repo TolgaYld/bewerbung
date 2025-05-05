@@ -17,13 +17,13 @@ final employeeRemoteDatasourceProvider = Provider<EmployeeRemoteDataSource>(
 );
 
 class EmployeeRemoteDataSourceImpl implements EmployeeRemoteDataSource {
-  EmployeeRemoteDataSourceImpl(this.firestore);
+  EmployeeRemoteDataSourceImpl(this._firestore);
 
-  final FirebaseFirestore firestore;
+  final FirebaseFirestore _firestore;
   @override
   Stream<EmployeeModel?> watchEmployee() {
     try {
-      return firestore
+      return _firestore
           .collection(FirestoreKeys.employee)
           .limit(1)
           .snapshots()
