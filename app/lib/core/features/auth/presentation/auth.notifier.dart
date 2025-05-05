@@ -28,7 +28,6 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   Future<void> init() async {
     try {
-      state = const AuthStateLoading(initLogin: true);
       final company = await ref.read(companyProvider.future);
       if (company != null) {
         state = AuthStateAuthenticated(company: company);
