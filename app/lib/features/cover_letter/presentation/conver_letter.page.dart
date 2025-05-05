@@ -20,7 +20,6 @@ class CoverLetterPage extends HookConsumerWidget {
     final theme = useTheme();
     final l10n = useL10n();
     final locale = ref.watch(localeProvider);
-
     final coverLetter = ref.watch(coverLetterProvider).valueOrNull;
     final employee = ref.watch(employeeProvider).valueOrNull;
 

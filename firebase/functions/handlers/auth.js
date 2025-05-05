@@ -30,6 +30,7 @@ export const onUserCreatedHandler =
                 primaryColor: null,
                 secondaryColor: null,
                 accentColor: null,
+                imageBackgroundColor: null,
                 contact: null,
                 inviteDate: null,
                 inviteDurationInMinutes: null,

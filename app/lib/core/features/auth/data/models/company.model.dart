@@ -14,6 +14,7 @@ class CompanyModel implements IdHolder {
     this.primaryColor,
     this.secondaryColor,
     this.accentColor,
+    this.imageBackgroundColor,
     this.coverLetter,
     this.contact,
     this.inviteDate,
@@ -30,6 +31,7 @@ class CompanyModel implements IdHolder {
         primaryColor: map['primaryColor'] as String?,
         secondaryColor: map['secondaryColor'] as String?,
         accentColor: map['accentColor'] as String?,
+        imageBackgroundColor: map['imageBackgroundColor'] as String?,
         coverLetter: map['coverLetter'] != null
             ? CoverLetterModel.fromMap(
                 map['coverLetter'] as Map<String, dynamic>)
@@ -56,6 +58,7 @@ class CompanyModel implements IdHolder {
         primaryColor: null,
         secondaryColor: null,
         accentColor: null,
+        imageBackgroundColor: null,
         coverLetter: null,
         contact: null,
         decisionStatus: null,
@@ -71,6 +74,7 @@ class CompanyModel implements IdHolder {
   final String? primaryColor;
   final String? secondaryColor;
   final String? accentColor;
+  final String? imageBackgroundColor;
   final CoverLetterModel? coverLetter;
   final ContactModel? contact;
   final String? decisionStatus;
@@ -88,6 +92,7 @@ class CompanyModel implements IdHolder {
         primaryColor: primaryColor?.toColor(),
         secondaryColor: secondaryColor?.toColor(),
         accentColor: accentColor?.toColor(),
+        imageBackgroundColor: imageBackgroundColor?.toColor(),
         coverLetter: coverLetter?.toEntity(),
         inviteDate: inviteDate,
         inviteDuration: switch (inviteDurationInMinutes) {
@@ -110,6 +115,7 @@ class CompanyModel implements IdHolder {
         'primaryColor': primaryColor,
         'secondaryColor': secondaryColor,
         'accentColor': accentColor,
+        'imageBackgroundColor': imageBackgroundColor,
         'contact': contact?.toMap(),
         'coverLetter': coverLetter?.toMap(),
         'inviteDate': inviteDate,

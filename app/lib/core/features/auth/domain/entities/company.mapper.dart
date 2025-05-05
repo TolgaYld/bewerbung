@@ -39,6 +39,9 @@ class CompanyMapper extends ClassMapperBase<Company> {
   static Color? _$accentColor(Company v) => v.accentColor;
   static const Field<Company, Color> _f$accentColor =
       Field('accentColor', _$accentColor, opt: true);
+  static Color? _$imageBackgroundColor(Company v) => v.imageBackgroundColor;
+  static const Field<Company, Color> _f$imageBackgroundColor =
+      Field('imageBackgroundColor', _$imageBackgroundColor, opt: true);
   static Contact? _$contact(Company v) => v.contact;
   static const Field<Company, Contact> _f$contact =
       Field('contact', _$contact, opt: true);
@@ -72,6 +75,7 @@ class CompanyMapper extends ClassMapperBase<Company> {
     #primaryColor: _f$primaryColor,
     #secondaryColor: _f$secondaryColor,
     #accentColor: _f$accentColor,
+    #imageBackgroundColor: _f$imageBackgroundColor,
     #contact: _f$contact,
     #coverLetter: _f$coverLetter,
     #inviteDate: _f$inviteDate,
@@ -90,6 +94,7 @@ class CompanyMapper extends ClassMapperBase<Company> {
         primaryColor: data.dec(_f$primaryColor),
         secondaryColor: data.dec(_f$secondaryColor),
         accentColor: data.dec(_f$accentColor),
+        imageBackgroundColor: data.dec(_f$imageBackgroundColor),
         contact: data.dec(_f$contact),
         coverLetter: data.dec(_f$coverLetter),
         inviteDate: data.dec(_f$inviteDate),
@@ -159,6 +164,7 @@ abstract class CompanyCopyWith<$R, $In extends Company, $Out>
       Color? primaryColor,
       Color? secondaryColor,
       Color? accentColor,
+      Color? imageBackgroundColor,
       Contact? contact,
       CoverLetter? coverLetter,
       DateTime? inviteDate,
@@ -192,6 +198,7 @@ class _CompanyCopyWithImpl<$R, $Out>
           Object? primaryColor = $none,
           Object? secondaryColor = $none,
           Object? accentColor = $none,
+          Object? imageBackgroundColor = $none,
           Object? contact = $none,
           Object? coverLetter = $none,
           Object? inviteDate = $none,
@@ -207,6 +214,8 @@ class _CompanyCopyWithImpl<$R, $Out>
         if (primaryColor != $none) #primaryColor: primaryColor,
         if (secondaryColor != $none) #secondaryColor: secondaryColor,
         if (accentColor != $none) #accentColor: accentColor,
+        if (imageBackgroundColor != $none)
+          #imageBackgroundColor: imageBackgroundColor,
         if (contact != $none) #contact: contact,
         if (coverLetter != $none) #coverLetter: coverLetter,
         if (inviteDate != $none) #inviteDate: inviteDate,
@@ -226,6 +235,8 @@ class _CompanyCopyWithImpl<$R, $Out>
       primaryColor: data.get(#primaryColor, or: $value.primaryColor),
       secondaryColor: data.get(#secondaryColor, or: $value.secondaryColor),
       accentColor: data.get(#accentColor, or: $value.accentColor),
+      imageBackgroundColor:
+          data.get(#imageBackgroundColor, or: $value.imageBackgroundColor),
       contact: data.get(#contact, or: $value.contact),
       coverLetter: data.get(#coverLetter, or: $value.coverLetter),
       inviteDate: data.get(#inviteDate, or: $value.inviteDate),

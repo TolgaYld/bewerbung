@@ -16,6 +16,7 @@ class Company with CompanyMappable {
     this.primaryColor,
     this.secondaryColor,
     this.accentColor,
+    this.imageBackgroundColor,
     this.contact,
     this.coverLetter,
     this.inviteDate,
@@ -32,6 +33,7 @@ class Company with CompanyMappable {
   final Color? primaryColor;
   final Color? secondaryColor;
   final Color? accentColor;
+  final Color? imageBackgroundColor;
   final Contact? contact;
   final CoverLetter? coverLetter;
   final DecisionStatus decisionStatus;

@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pleasehiretolga/core/design/spacing.dart';
+import 'package:pleasehiretolga/core/features/auth/provider/company.provider.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
 
 class HeaderPart extends HookConsumerWidget {
@@ -24,6 +25,7 @@ class HeaderPart extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = useTheme();
+    final company = ref.watch(companyProvider).valueOrNull;
     return Stack(
       children: [
         Row(
@@ -63,6 +65,7 @@ class HeaderPart extends HookConsumerWidget {
             if (imageUrl case final url?) ...[
               const HSpace.s(),
               Card(
+                color: company?.imageBackgroundColor?.withValues(alpha: 0.2),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(Spacers.m),
                   child: CachedNetworkImage(
