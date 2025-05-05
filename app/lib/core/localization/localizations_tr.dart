@@ -15,7 +15,7 @@ class L10nTr extends L10n {
   String get countryFlag => '🇹🇷';
 
   @override
-  String get welcomeToPleaseHireTolga => 'Please Hire Tolga\'ya Hoş Geldin 🙌';
+  String get welcomeToPleaseHireTolga => 'Please Hire Tolga 🙌';
 
   @override
   String get tapOnScanQrCodeToLogin => 'QR koduna basarak kodu tarat ve giriş yap.';

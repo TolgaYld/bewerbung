@@ -116,7 +116,7 @@ abstract class L10n {
   /// No description provided for @welcomeToPleaseHireTolga.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Please Hire Tolga 🙌'**
+  /// **'Please Hire Tolga 🙌'**
   String get welcomeToPleaseHireTolga;
 
   /// No description provided for @tapOnScanQrCodeToLogin.

@@ -138,7 +138,6 @@ class HomePage extends HookConsumerWidget {
         centerTitle: false,
         actions: [
           LanguageSwitcher(),
-          const HSpace.xs(),
           IconButton(
             onPressed: () => context.push(RoutePath.settings.path),
             icon: const Icon(Icons.settings),

@@ -9,7 +9,6 @@ import 'package:pleasehiretolga/core/features/auth/presentation/widgets/login_sw
 import 'package:pleasehiretolga/core/design/spacing.dart';
 import 'package:pleasehiretolga/core/features/imprint/provider/imprint.provider.dart';
 import 'package:pleasehiretolga/core/hooks/use_l10n.hook.dart';
-import 'package:pleasehiretolga/core/hooks/use_responsive.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
 import 'package:pleasehiretolga/core/presentation/widgets/footer.widget.dart';
 import 'package:pleasehiretolga/core/presentation/widgets/language_switcher.widget.dart';
@@ -24,7 +23,6 @@ class AuthPage extends HookConsumerWidget {
     final textTheme = useTextTheme();
     final state = ref.watch(authStateProvider);
     final notifier = ref.read(authStateProvider.notifier);
-    final responsive = useResponsive();
     final width = MediaQuery.sizeOf(context).width;
     final imprint = ref.watch(imprintProvider).valueOrNull;
     final contact = imprint?.getContact(Locale("de"));
@@ -50,7 +48,7 @@ class AuthPage extends HookConsumerWidget {
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: AutoSizeText(l10n.welcomeToPleaseHireTolga),
-          centerTitle: responsive.isDesktop ? true : false,
+          centerTitle: true,
           actions: [
             LanguageSwitcher(),
             const HSpace.xs(),
@@ -98,12 +96,10 @@ class AuthPage extends HookConsumerWidget {
                         tablet: null,
                         desktop: const SizedBox(),
                       ),
-                      const VSpace.x2l(),
-                      Spacer(),
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ConstrainedBox(
+                      const VSpace.l(),
+                      Expanded(
+                        child: Center(
+                          child: ConstrainedBox(
                             constraints: BoxConstraints(
                               maxWidth: width > 600 ? 600 : width,
                             ),
@@ -112,43 +108,37 @@ class AuthPage extends HookConsumerWidget {
                               notifier: notifier,
                             ),
                           ),
-                          const VSpace.x4l(),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: Spacers.x6l),
+                        child: AutoSizeText.rich(
+                          TextSpan(
+                            text: '${l10n.youNeedHelp} ',
+                            style: textTheme.bodyMedium,
                             children: [
-                              Padding(
-                                padding: EdgeInsets.only(bottom: Spacers.x6l),
-                                child: AutoSizeText.rich(
-                                  TextSpan(
-                                    text: '${l10n.youNeedHelp} ',
-                                    style: textTheme.bodyMedium,
-                                    children: [
-                                      TextSpan(
-                                        text: l10n.clickHere,
-                                        style: textTheme.bodyMedium?.copyWith(
-                                          color: theme.colorScheme.primary,
-                                          fontWeight: FontWeight.bold,
-                                          decoration: TextDecoration.underline,
-                                        ),
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = () async =>
-                                              notifier.sendMailTo(email),
-                                      ),
-                                      TextSpan(
-                                        text: switch (state) {
-                                          AuthStateEditing(showEmail: true) =>
-                                            '\n$email',
-                                          _ => "",
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                  textAlign: TextAlign.center,
+                              TextSpan(
+                                text: l10n.clickHere,
+                                style: textTheme.bodyMedium?.copyWith(
+                                  color: theme.colorScheme.primary,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline,
                                 ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap =
+                                      () async => notifier.sendMailTo(email),
+                              ),
+                              TextSpan(
+                                text: switch (state) {
+                                  AuthStateEditing(showEmail: true) =>
+                                    '\n$email',
+                                  _ => "",
+                                },
                               ),
                             ],
                           ),
-                        ],
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
                   ),
