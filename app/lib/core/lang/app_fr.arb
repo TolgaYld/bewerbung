@@ -14,6 +14,7 @@
     "oopsSomethingWentWrongPleaseTryAgain": "Oups 😅, quelque chose s'est mal passé. Veuillez réessayer",
     "dontWantLoginViaQrCode": "Vous ne voulez pas vous connecter via le code QR ?",
     "wantToLoginViaQrCode": "Vous voulez vous connecter via le code QR ?",
+    "howDoYouWantToLogin": "Comment voulez-vous vous connecter avec un code QR ou des identifiants ?",
     "enterYourLoginInformation": "Veuillez entrer vos informations de connexion que je vous ai envoyées.",
     "aboutMe": "À propos de moi",
     "cv": "CV",

@@ -54,6 +54,9 @@ class L10nFr extends L10n {
   String get wantToLoginViaQrCode => 'Vous voulez vous connecter via le code QR ?';
 
   @override
+  String get howDoYouWantToLogin => 'Comment voulez-vous vous connecter avec un code QR ou des identifiants ?';
+
+  @override
   String get enterYourLoginInformation => 'Veuillez entrer vos informations de connexion que je vous ai envoyées.';
 
   @override

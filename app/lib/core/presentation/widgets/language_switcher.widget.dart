@@ -48,6 +48,7 @@ class LanguageSwitcher extends HookConsumerWidget {
         } else {
           localeNotifier.changeLocale(Locale(value));
         }
+        FocusManager.instance.primaryFocus?.unfocus();
         isMenuOpen.value = false;
       },
       onCanceled: () {

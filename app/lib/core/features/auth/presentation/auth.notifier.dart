@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pleasehiretolga/core/features/auth/data/repo/auth.repo.impl.dart';
 import 'package:pleasehiretolga/core/features/auth/presentation/state/auth.state.dart';
@@ -116,7 +117,8 @@ class AuthNotifier extends StateNotifier<AuthState> {
           :final password?,
           :final qrMode,
         )) {
-      state = AuthStateLoading(showLoadingPage: qrMode ? true : false);
+      state = AuthStateLoading(
+          showLoadingPage: qrMode && kIsWeb == false ? true : false);
       try {
         final authRepo = ref.read(authRepoProvider);
         final result = await authRepo.signInWithEmailAndPassword(

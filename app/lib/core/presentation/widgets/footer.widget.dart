@@ -20,32 +20,38 @@ class Footer extends HookConsumerWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            TextButton(
+            Flexible(
+              child: TextButton(
+                child: Text(
+                  l10n.imprint,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    decoration: TextDecoration.underline,
+                    decorationColor: theme.colorScheme.surface,
+                    color: theme.colorScheme.surface,
+                  ),
+                ),
+                onPressed: () => context.go(RoutePath.imprint.path),
+              ),
+            ),
+            Flexible(
+              child: TextButton(
+                child: Text(
+                  l10n.privacyPolicy,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    decoration: TextDecoration.underline,
+                    decorationColor: theme.colorScheme.surface,
+                    color: theme.colorScheme.surface,
+                  ),
+                ),
+                onPressed: () => context.go(RoutePath.privacyPolicy.path),
+              ),
+            ),
+            Flexible(
               child: Text(
-                l10n.imprint,
+                l10n.copyright(DateTime.now().year),
                 style: theme.textTheme.bodySmall?.copyWith(
-                  decoration: TextDecoration.underline,
-                  decorationColor: theme.colorScheme.surface,
                   color: theme.colorScheme.surface,
                 ),
-              ),
-              onPressed: () => context.go(RoutePath.imprint.path),
-            ),
-            TextButton(
-              child: Text(
-                l10n.privacyPolicy,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  decoration: TextDecoration.underline,
-                  decorationColor: theme.colorScheme.surface,
-                  color: theme.colorScheme.surface,
-                ),
-              ),
-              onPressed: () => context.go(RoutePath.privacyPolicy.path),
-            ),
-            Text(
-              l10n.copyright(DateTime.now().year),
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.surface,
               ),
             ),
           ],

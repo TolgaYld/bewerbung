@@ -46,7 +46,7 @@ class QrButton extends HookConsumerWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: colorScheme.primaryContainer.withValues(alpha: 0.5),
+                color: colorScheme.primaryContainer.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(Spacers.s),
               ),
               child: Icon(
@@ -55,7 +55,7 @@ class QrButton extends HookConsumerWidget {
                 color: colorScheme.primary,
               ),
             ),
-            SizedBox(height: Spacers.m),
+            const VSpace.m(),
             Text(
               l10n.tapOnScanQrCodeToLogin,
               style: TextStyle(
@@ -65,12 +65,12 @@ class QrButton extends HookConsumerWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: Spacers.xs),
+            const VSpace.xs(),
             Text(
               l10n.youWillBeAutomaticallyLoggedIn,
               style: TextStyle(
                 fontSize: 14,
-                color: colorScheme.onSurfaceVariant,
+                color: Colors.grey[700],
               ),
               textAlign: TextAlign.center,
             ),

@@ -54,7 +54,10 @@ class L10nDe extends L10n {
   String get wantToLoginViaQrCode => 'Du möchtest dich über den QR-Code anmelden?';
 
   @override
-  String get enterYourLoginInformation => 'Bitte gib deine Anmeldedaten ein, die ich dir mitgeschickt habe.';
+  String get howDoYouWantToLogin => 'Anmelden mit QR-Code oder Zugangsdaten?';
+
+  @override
+  String get enterYourLoginInformation => 'Bitte gib deine Zugangsdaten ein, die ich dir mitgeschickt habe.';
 
   @override
   String get aboutMe => 'Über mich';

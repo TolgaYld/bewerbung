@@ -9,10 +9,10 @@ import 'package:pleasehiretolga/core/features/auth/presentation/widgets/login_sw
 import 'package:pleasehiretolga/core/design/spacing.dart';
 import 'package:pleasehiretolga/core/features/imprint/provider/imprint.provider.dart';
 import 'package:pleasehiretolga/core/hooks/use_l10n.hook.dart';
+import 'package:pleasehiretolga/core/hooks/use_responsive.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
 import 'package:pleasehiretolga/core/presentation/widgets/footer.widget.dart';
 import 'package:pleasehiretolga/core/presentation/widgets/language_switcher.widget.dart';
-import 'package:pleasehiretolga/core/utils/presentation/responsive.dart';
 
 class AuthPage extends HookConsumerWidget {
   const AuthPage({super.key});
@@ -25,6 +25,7 @@ class AuthPage extends HookConsumerWidget {
     final notifier = ref.read(authStateProvider.notifier);
     final width = MediaQuery.sizeOf(context).width;
     final imprint = ref.watch(imprintProvider).valueOrNull;
+    final responsive = useResponsive();
     final contact = imprint?.getContact(Locale("de"));
     final email = (RegExp(r'E-Mail: ([\w\.-]+@[\w\.-]+\.\w+)')
                 .firstMatch(contact ?? '')
@@ -42,6 +43,15 @@ class AuthPage extends HookConsumerWidget {
         );
       }
     });
+
+    final isQrMode = switch (state) {
+      final AuthStateEditing s
+          when s.qrMode &&
+              (responsive.type == DeviceType.mobile ||
+                  responsive.type == DeviceType.tablet) =>
+        true,
+      _ => false
+    };
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -57,48 +67,52 @@ class AuthPage extends HookConsumerWidget {
         body: Stack(
           children: [
             Positioned.fill(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: Spacers.s),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const VSpace.x2l(),
-                      ResponsiveWidget(
-                        mobile: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            AutoSizeText.rich(
-                              TextSpan(
-                                text: switch (state) {
-                                  AuthStateEditing(qrMode: true) =>
-                                    '${l10n.dontWantLoginViaQrCode} ',
-                                  _ => '${l10n.wantToLoginViaQrCode} ',
-                                },
-                                style: textTheme.bodyLarge,
-                                children: [
-                                  TextSpan(
-                                    text: l10n.clickHere,
-                                    style: textTheme.bodyLarge?.copyWith(
-                                      color: theme.colorScheme.primary,
-                                      fontWeight: FontWeight.bold,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = notifier.toggleQrMode,
-                                  ),
-                                ],
-                              ),
-                              textAlign: TextAlign.center,
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: Spacers.s),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const VSpace.x3l(),
+                        if (kIsWeb) Text(l10n.enterYourLoginInformation),
+                        if (kIsWeb == false) ...[
+                          Text(
+                            l10n.howDoYouWantToLogin,
+                            style: textTheme.bodyLarge?.copyWith(
+                              color: theme.colorScheme.primary
+                                  .withValues(alpha: 0.7),
                             ),
-                          ],
-                        ),
-                        tablet: null,
-                        desktop: const SizedBox(),
-                      ),
-                      const VSpace.l(),
-                      Expanded(
-                        child: Center(
+                            textAlign: TextAlign.center,
+                          ),
+                          const VSpace.s(),
+                          ToggleButtons(
+                            onPressed: (int index) {
+                              if ((index == 0 && isQrMode == false) ||
+                                  (index == 1 && isQrMode)) {
+                                notifier.toggleQrMode();
+                              }
+                            },
+                            borderRadius: BorderRadius.circular(Spacers.s),
+                            selectedBorderColor: theme.colorScheme.primary,
+                            selectedColor: theme.colorScheme.primary,
+                            fillColor: theme.colorScheme.primary
+                                .withValues(alpha: 0.1),
+                            color: theme.colorScheme.onSurface
+                                .withValues(alpha: 0.7),
+                            constraints: const BoxConstraints(
+                              minHeight: 36.0,
+                              minWidth: 60.0,
+                            ),
+                            isSelected: [isQrMode, isQrMode == false],
+                            children: const [
+                              Icon(Icons.qr_code_scanner_rounded),
+                              Icon(Icons.key_rounded),
+                            ],
+                          ),
+                        ],
+                        const VSpace.xl(),
+                        Center(
                           child: ConstrainedBox(
                             constraints: BoxConstraints(
                               maxWidth: width > 600 ? 600 : width,
@@ -109,38 +123,61 @@ class AuthPage extends HookConsumerWidget {
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: Spacers.x6l),
-                        child: AutoSizeText.rich(
-                          TextSpan(
-                            text: '${l10n.youNeedHelp} ',
-                            style: textTheme.bodyMedium,
-                            children: [
-                              TextSpan(
-                                text: l10n.clickHere,
-                                style: textTheme.bodyMedium?.copyWith(
-                                  color: theme.colorScheme.primary,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.underline,
+                        const VSpace.x4l(),
+                        Padding(
+                            padding: EdgeInsets.only(bottom: Spacers.x6l),
+                            child: Card(
+                              color: Colors.transparent,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                  color: Colors.grey.withValues(alpha: 0.5),
+                                  width: 1.0,
                                 ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap =
-                                      () async => notifier.sendMailTo(email),
+                                borderRadius: BorderRadius.circular(Spacers.s),
                               ),
-                              TextSpan(
-                                text: switch (state) {
-                                  AuthStateEditing(showEmail: true) =>
-                                    '\n$email',
-                                  _ => "",
-                                },
+                              child: Padding(
+                                padding: const EdgeInsets.all(Spacers.xs),
+                                child: AutoSizeText.rich(
+                                  TextSpan(
+                                    text: '${l10n.youNeedHelp} ',
+                                    style: textTheme.bodyMedium?.copyWith(
+                                      color: theme.colorScheme.onSurface
+                                          .withValues(
+                                        alpha: 0.7,
+                                      ),
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: l10n.clickHere,
+                                        style: textTheme.bodyMedium?.copyWith(
+                                          color: theme.colorScheme.onSurface
+                                              .withValues(alpha: 0.7),
+                                          fontWeight: FontWeight.bold,
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () async =>
+                                              notifier.sendMailTo(email),
+                                      ),
+                                      TextSpan(
+                                        text: switch (state) {
+                                          AuthStateEditing(showEmail: true) =>
+                                            '\n$email',
+                                          _ => "",
+                                        },
+                                        style: textTheme.bodyMedium?.copyWith(
+                                          color: theme.colorScheme.primary,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
-                            ],
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ],
+                            )),
+                      ],
+                    ),
                   ),
                 ),
               ),

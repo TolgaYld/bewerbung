@@ -54,6 +54,9 @@ class L10nEs extends L10n {
   String get wantToLoginViaQrCode => '¿Quieres iniciar sesión a través del código QR?';
 
   @override
+  String get howDoYouWantToLogin => '¿Quieres iniciar sesión con tu código QR o con tus credenciales?';
+
+  @override
   String get enterYourLoginInformation => 'Por favor, ingresa tu información de inicio de sesión que te envié.';
 
   @override

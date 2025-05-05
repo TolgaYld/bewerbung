@@ -54,6 +54,9 @@ class L10nTr extends L10n {
   String get wantToLoginViaQrCode => 'QR kodu ile giriş yapmak ister misin?';
 
   @override
+  String get howDoYouWantToLogin => 'QR kodu ile mi yoksa giriş bilgileri ile mi giriş yapmak istiyorsunuz?';
+
+  @override
   String get enterYourLoginInformation => 'Lütfen sana gönderdiğim giriş bilgilerini gir.';
 
   @override

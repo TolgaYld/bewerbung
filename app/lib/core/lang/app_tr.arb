@@ -14,6 +14,7 @@
     "oopsSomethingWentWrongPleaseTryAgain": "Nayır nolamaz 😅, bir şeyler ters gitti. Lütfen tekrar deneyin",
     "dontWantLoginViaQrCode": "QR kodu ile giriş yapmak istemiyor musun?",
     "wantToLoginViaQrCode": "QR kodu ile giriş yapmak ister misin?",
+    "howDoYouWantToLogin": "QR kodu ile mi yoksa giriş bilgileri ile mi giriş yapmak istiyorsunuz?",
     "enterYourLoginInformation": "Lütfen sana gönderdiğim giriş bilgilerini gir.",
     "aboutMe": "Hakkımda",
     "cv": "CV",

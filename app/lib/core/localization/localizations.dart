@@ -191,6 +191,12 @@ abstract class L10n {
   /// **'Want to login via QR code?'**
   String get wantToLoginViaQrCode;
 
+  /// No description provided for @howDoYouWantToLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Login with QR code or credentials?'**
+  String get howDoYouWantToLogin;
+
   /// No description provided for @enterYourLoginInformation.
   ///
   /// In en, this message translates to:
