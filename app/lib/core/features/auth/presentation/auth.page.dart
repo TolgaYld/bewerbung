@@ -125,57 +125,58 @@ class AuthPage extends HookConsumerWidget {
                         ),
                         const VSpace.x4l(),
                         Padding(
-                            padding: EdgeInsets.only(bottom: Spacers.x6l),
-                            child: Card(
-                              color: Colors.transparent,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  color: Colors.grey.withValues(alpha: 0.5),
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(Spacers.s),
+                          padding: EdgeInsets.only(bottom: Spacers.x6l),
+                          child: Card(
+                            color: Colors.transparent,
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                color: Colors.grey.withValues(alpha: 0.5),
+                                width: 1.0,
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(Spacers.xs),
-                                child: AutoSizeText.rich(
-                                  TextSpan(
-                                    text: '${l10n.youNeedHelp} ',
-                                    style: textTheme.bodyMedium?.copyWith(
-                                      color: theme.colorScheme.onSurface
-                                          .withValues(
-                                        alpha: 0.7,
+                              borderRadius: BorderRadius.circular(Spacers.s),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(Spacers.xs),
+                              child: AutoSizeText.rich(
+                                TextSpan(
+                                  text: '${l10n.youNeedHelp} ',
+                                  style: textTheme.bodyMedium?.copyWith(
+                                    color:
+                                        theme.colorScheme.onSurface.withValues(
+                                      alpha: 0.7,
+                                    ),
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: l10n.clickHere,
+                                      style: textTheme.bodyMedium?.copyWith(
+                                        color: theme.colorScheme.onSurface
+                                            .withValues(alpha: 0.7),
+                                        fontWeight: FontWeight.bold,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () async =>
+                                            notifier.sendMailTo(email),
+                                    ),
+                                    TextSpan(
+                                      text: switch (state) {
+                                        AuthStateEditing(showEmail: true) =>
+                                          '\n$email',
+                                        _ => "",
+                                      },
+                                      style: textTheme.bodyMedium?.copyWith(
+                                        color: theme.colorScheme.primary,
                                       ),
                                     ),
-                                    children: [
-                                      TextSpan(
-                                        text: l10n.clickHere,
-                                        style: textTheme.bodyMedium?.copyWith(
-                                          color: theme.colorScheme.onSurface
-                                              .withValues(alpha: 0.7),
-                                          fontWeight: FontWeight.bold,
-                                          decoration: TextDecoration.underline,
-                                        ),
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = () async =>
-                                              notifier.sendMailTo(email),
-                                      ),
-                                      TextSpan(
-                                        text: switch (state) {
-                                          AuthStateEditing(showEmail: true) =>
-                                            '\n$email',
-                                          _ => "",
-                                        },
-                                        style: textTheme.bodyMedium?.copyWith(
-                                          color: theme.colorScheme.primary,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  textAlign: TextAlign.center,
+                                  ],
                                 ),
+                                textAlign: TextAlign.center,
                               ),
-                            )),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
