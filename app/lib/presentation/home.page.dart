@@ -140,15 +140,8 @@ class HomePage extends HookConsumerWidget {
           LanguageSwitcher(),
           const HSpace.xs(),
           IconButton(
-            onPressed: () async {
-              final result = await SignOutDialog().show(context);
-              if (result == true) {
-                await notifier.signOut(true);
-              } else if (result == false) {
-                await notifier.signOut(false);
-              }
-            },
-            icon: const Icon(Icons.logout),
+            onPressed: () => context.push(RoutePath.settings.path),
+            icon: const Icon(Icons.settings),
           ),
         ],
       ),

@@ -20,6 +20,7 @@
     "coverLetter": "Lettre de motivation",
     "inviteQuestion": "Invitation ?",
     "signOut": "Déconnexion",
+    "signOutSubtitle": "Optionnel : supprimer définitivement le compte.",
     "cancel": "Annuler",
     "deleteAccount": "Supprimer le compte ?",
     "signOutDialogTitle": "Déconnexion",
@@ -93,5 +94,6 @@
     "imprint": "Mentions légales",
     "externalLinkDialogTitle": "Lien externe",
     "externalLinkDialogContent": "Vous êtes sur le point d’ouvrir un lien externe. Je ne suis pas responsable du contenu de ce site externe. Je n’ai aucun contrôle sur celui-ci et je ne m’approprie pas son contenu.",
-    "privacyPolicy": "Politique de confidentialité"
+    "privacyPolicy": "Politique de confidentialité",
+    "settings": "Paramètres"
 }

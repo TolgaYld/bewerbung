@@ -72,6 +72,9 @@ class L10nFr extends L10n {
   String get signOut => 'Déconnexion';
 
   @override
+  String get signOutSubtitle => 'Optionnel : supprimer définitivement le compte.';
+
+  @override
   String get cancel => 'Annuler';
 
   @override
@@ -270,4 +273,7 @@ class L10nFr extends L10n {
 
   @override
   String get privacyPolicy => 'Politique de confidentialité';
+
+  @override
+  String get settings => 'Paramètres';
 }

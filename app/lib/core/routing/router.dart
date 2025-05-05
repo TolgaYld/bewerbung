@@ -10,6 +10,7 @@ import 'package:pleasehiretolga/core/features/auth/presentation/state/auth.state
 import 'package:pleasehiretolga/core/features/imprint/presentation/imprint.page.dart';
 import 'package:pleasehiretolga/core/features/privacy_policy/presentation/privacy_policy.page.dart';
 import 'package:pleasehiretolga/core/features/qr/presentation/qr_scanner.page.dart';
+import 'package:pleasehiretolga/core/features/settings/presentation/settings.page.dart';
 import 'package:pleasehiretolga/features/cover_letter/presentation/conver_letter.page.dart';
 import 'package:pleasehiretolga/features/cv/presentation/cv.page.dart';
 import 'package:pleasehiretolga/features/decision/presentation/decision.page.dart';
@@ -24,6 +25,7 @@ enum RoutePath {
   cv(path: '/cv'),
   coverLetter(path: '/coverLetter'),
   decission(path: '/decission'),
+  settings(path: '/settings'),
   imprint(path: '/imprint'),
   privacyPolicy(path: '/privacy-policy');
 
@@ -105,6 +107,11 @@ class RouterNotifier extends ChangeNotifier {
           path: RoutePath.privacyPolicy.path,
           name: RoutePath.privacyPolicy.name,
           builder: (context, state) => PrivacyPolicyPage(),
+        ),
+        GoRoute(
+          path: RoutePath.settings.path,
+          name: RoutePath.settings.name,
+          builder: (context, state) => SettingsPage(),
         ),
         StatefulShellRoute.indexedStack(
           pageBuilder: (context, state, shell) => CustomTransitionPage(

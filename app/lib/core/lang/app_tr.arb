@@ -20,6 +20,7 @@
     "coverLetter": "Ön yazı",
     "inviteQuestion": "Davet?",
     "signOut": "Çıkış yap",
+    "signOutSubtitle": "İsteğe bağlı: Hesabı kalıcı olarak sil.",
     "cancel": "İptal",
     "deleteAccount": "Hesabını silmek ister misin?",
     "signOutDialogTitle": "Çıkış yap",
@@ -93,5 +94,6 @@
     "imprint": "İmpressum",
     "externalLinkDialogTitle": "Harici Bağlantı",
     "externalLinkDialogContent": "Harici bir bağlantı açmak üzeresiniz. Bu harici sitenin içeriğinden sorumlu değilim. İçeriği üzerinde hiçbir kontrolüm yoktur ve bu içeriği sahiplenmediğimi açıkça belirtirim.",
-    "privacyPolicy": "Gizlilik Politikası"
+    "privacyPolicy": "Gizlilik Politikası",
+    "settings": "Ayarlar"
 }

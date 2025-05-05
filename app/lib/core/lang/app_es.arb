@@ -20,6 +20,7 @@
     "coverLetter": "Carta de presentación",
     "inviteQuestion": "¿Invitación?",
     "signOut": "Cerrar sesión",
+    "signOutSubtitle": "Opcional: eliminar la cuenta permanentemente.",
     "cancel": "Cancelar",
     "deleteAccount": "¿Eliminar cuenta?",
     "signOutDialogTitle": "Cerrar sesión",
@@ -93,5 +94,6 @@
     "imprint": "Aviso legal",
     "externalLinkDialogTitle": "Enlace externo",
     "externalLinkDialogContent": "Vas a abrir un enlace externo. No soy responsable del contenido de este sitio externo. No tengo control sobre él y expresamente no me apropio de su contenido.",
-    "privacyPolicy": "Política de privacidad"
+    "privacyPolicy": "Política de privacidad",
+    "settings": "Configuraciones"
 }

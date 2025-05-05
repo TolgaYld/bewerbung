@@ -72,6 +72,9 @@ class L10nDe extends L10n {
   String get signOut => 'Abmelden';
 
   @override
+  String get signOutSubtitle => 'Optional: Konto dauerhaft löschen.';
+
+  @override
   String get cancel => 'Abbrechen';
 
   @override
@@ -270,4 +273,7 @@ class L10nDe extends L10n {
 
   @override
   String get privacyPolicy => 'Datenschutzerklärung';
+
+  @override
+  String get settings => 'Einstellungen';
 }

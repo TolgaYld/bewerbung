@@ -72,6 +72,9 @@ class L10nEn extends L10n {
   String get signOut => 'Sign out';
 
   @override
+  String get signOutSubtitle => 'Optional: Permanently delete account.';
+
+  @override
   String get cancel => 'Cancel';
 
   @override
@@ -270,4 +273,7 @@ class L10nEn extends L10n {
 
   @override
   String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get settings => 'Settings';
 }

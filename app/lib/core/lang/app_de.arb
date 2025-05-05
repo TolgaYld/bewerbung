@@ -20,6 +20,7 @@
     "coverLetter": "Anschreiben",
     "inviteQuestion": "Einladung?",
     "signOut": "Abmelden",
+    "signOutSubtitle": "Optional: Konto dauerhaft löschen.",
     "cancel": "Abbrechen",
     "deleteAccount": "Konto löschen?",
     "signOutDialogTitle": "Abmelden",
@@ -94,5 +95,6 @@
     "imprint": "Impressum",
     "externalLinkDialogTitle": "Externer Link",
     "externalLinkDialogContent": "Du öffnest nun einen externen Link. Für die Inhalte dieser externen Seite bin ich nicht verantwortlich. Ich habe keinen Einfluss auf deren Inhalte und mache mir diese ausdrücklich nicht zu eigen.",
-    "privacyPolicy": "Datenschutzerklärung"
+    "privacyPolicy": "Datenschutzerklärung",
+    "settings": "Einstellungen"
 }

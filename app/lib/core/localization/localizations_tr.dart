@@ -72,6 +72,9 @@ class L10nTr extends L10n {
   String get signOut => 'Çıkış yap';
 
   @override
+  String get signOutSubtitle => 'İsteğe bağlı: Hesabı kalıcı olarak sil.';
+
+  @override
   String get cancel => 'İptal';
 
   @override
@@ -270,4 +273,7 @@ class L10nTr extends L10n {
 
   @override
   String get privacyPolicy => 'Gizlilik Politikası';
+
+  @override
+  String get settings => 'Ayarlar';
 }

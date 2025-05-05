@@ -227,6 +227,12 @@ abstract class L10n {
   /// **'Sign out'**
   String get signOut;
 
+  /// No description provided for @signOutSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional: Permanently delete account.'**
+  String get signOutSubtitle;
+
   /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
@@ -610,6 +616,12 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'Privacy Policy'**
   String get privacyPolicy;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

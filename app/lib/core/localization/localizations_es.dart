@@ -72,6 +72,9 @@ class L10nEs extends L10n {
   String get signOut => 'Cerrar sesión';
 
   @override
+  String get signOutSubtitle => 'Opcional: eliminar la cuenta permanentemente.';
+
+  @override
   String get cancel => 'Cancelar';
 
   @override
@@ -270,4 +273,7 @@ class L10nEs extends L10n {
 
   @override
   String get privacyPolicy => 'Política de privacidad';
+
+  @override
+  String get settings => 'Configuraciones';
 }
