@@ -114,8 +114,9 @@ class AuthNotifier extends StateNotifier<AuthState> {
         case AuthStateEditing(
           :final username?,
           :final password?,
+          :final qrMode,
         )) {
-      state = const AuthStateLoading(initLogin: false);
+      state = AuthStateLoading(showLoadingPage: qrMode ? true : false);
       try {
         final authRepo = ref.read(authRepoProvider);
         final result = await authRepo.signInWithEmailAndPassword(

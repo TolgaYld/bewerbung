@@ -1,7 +1,7 @@
 name: pleasehiretolga
 description: "A new Flutter project."
 publish_to: "none"
-version: 1.1.0
+version: 1.2.0
 
 environment:
   sdk: ">=3.4.3 <4.0.0"
@@ -102,6 +102,8 @@ flutter_gen:
 
 flutter_native_splash:
   background_image: assets/images/bg_image.jpg
+  image: assets/images/app_icon.png
+
   ios: true
   android: true
   web: false

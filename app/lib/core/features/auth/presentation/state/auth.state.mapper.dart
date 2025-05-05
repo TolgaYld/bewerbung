@@ -71,17 +71,17 @@ class AuthStateLoadingMapper extends ClassMapperBase<AuthStateLoading> {
   @override
   final String id = 'AuthStateLoading';
 
-  static bool _$initLogin(AuthStateLoading v) => v.initLogin;
-  static const Field<AuthStateLoading, bool> _f$initLogin =
-      Field('initLogin', _$initLogin, opt: true, def: true);
+  static bool _$showLoadingPage(AuthStateLoading v) => v.showLoadingPage;
+  static const Field<AuthStateLoading, bool> _f$showLoadingPage =
+      Field('showLoadingPage', _$showLoadingPage, opt: true, def: true);
 
   @override
   final MappableFields<AuthStateLoading> fields = const {
-    #initLogin: _f$initLogin,
+    #showLoadingPage: _f$showLoadingPage,
   };
 
   static AuthStateLoading _instantiate(DecodingData data) {
-    return AuthStateLoading(initLogin: data.dec(_f$initLogin));
+    return AuthStateLoading(showLoadingPage: data.dec(_f$showLoadingPage));
   }
 
   @override
@@ -140,7 +140,7 @@ extension AuthStateLoadingValueCopy<$R, $Out>
 abstract class AuthStateLoadingCopyWith<$R, $In extends AuthStateLoading, $Out>
     implements AuthStateCopyWith<$R, $In, $Out> {
   @override
-  $R call({bool? initLogin});
+  $R call({bool? showLoadingPage});
   AuthStateLoadingCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -154,11 +154,11 @@ class _AuthStateLoadingCopyWithImpl<$R, $Out>
   late final ClassMapperBase<AuthStateLoading> $mapper =
       AuthStateLoadingMapper.ensureInitialized();
   @override
-  $R call({bool? initLogin}) =>
-      $apply(FieldCopyWithData({if (initLogin != null) #initLogin: initLogin}));
+  $R call({bool? showLoadingPage}) => $apply(FieldCopyWithData(
+      {if (showLoadingPage != null) #showLoadingPage: showLoadingPage}));
   @override
-  AuthStateLoading $make(CopyWithData data) =>
-      AuthStateLoading(initLogin: data.get(#initLogin, or: $value.initLogin));
+  AuthStateLoading $make(CopyWithData data) => AuthStateLoading(
+      showLoadingPage: data.get(#showLoadingPage, or: $value.showLoadingPage));
 
   @override
   AuthStateLoadingCopyWith<$R2, AuthStateLoading, $Out2> $chain<$R2, $Out2>(

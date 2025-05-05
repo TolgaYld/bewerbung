@@ -68,7 +68,7 @@ class RouterNotifier extends ChangeNotifier {
     final isPublicPath =
         publicPaths.any((path) => state.matchedLocation.startsWith(path));
 
-    if (authState is AuthStateLoading && authState.initLogin == true) {
+    if (authState is AuthStateLoading && authState.showLoadingPage == true) {
       if (isOnLoadingPage == false) {
         return RoutePath.loading.path;
       }
