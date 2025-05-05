@@ -11,6 +11,7 @@ import 'package:pleasehiretolga/core/features/imprint/presentation/imprint.page.
 import 'package:pleasehiretolga/core/features/privacy_policy/presentation/privacy_policy.page.dart';
 import 'package:pleasehiretolga/core/features/qr/presentation/qr_scanner.page.dart';
 import 'package:pleasehiretolga/core/features/settings/presentation/settings.page.dart';
+import 'package:pleasehiretolga/core/presentation/loading_page.dart';
 import 'package:pleasehiretolga/features/cover_letter/presentation/conver_letter.page.dart';
 import 'package:pleasehiretolga/features/cv/presentation/cv.page.dart';
 import 'package:pleasehiretolga/features/decision/presentation/decision.page.dart';
@@ -27,7 +28,8 @@ enum RoutePath {
   decission(path: '/decission'),
   settings(path: '/settings'),
   imprint(path: '/imprint'),
-  privacyPolicy(path: '/privacy-policy');
+  privacyPolicy(path: '/privacy-policy'),
+  loading(path: '/loading');
 
   const RoutePath({required this.path});
   final String path;
@@ -57,6 +59,7 @@ class RouterNotifier extends ChangeNotifier {
     final authState = _ref.read(authStateProvider);
     final isAuthenticated = authState is AuthStateAuthenticated;
     final isInAuthFlow = state.matchedLocation.startsWith(RoutePath.auth.path);
+    final isOnLoadingPage = state.matchedLocation == RoutePath.loading.path;
 
     final publicPaths = [
       RoutePath.imprint.path,
@@ -64,14 +67,29 @@ class RouterNotifier extends ChangeNotifier {
     ];
     final isPublicPath =
         publicPaths.any((path) => state.matchedLocation.startsWith(path));
+
+    if (authState is AuthStateLoading && authState.initLogin == true) {
+      if (isOnLoadingPage == false) {
+        return RoutePath.loading.path;
+      }
+      return null;
+    }
+
+    if (isAuthenticated && isOnLoadingPage) {
+      return RoutePath.aboutMe.path;
+    }
+
     if (isAuthenticated == false &&
         isInAuthFlow == false &&
-        isPublicPath == false) {
+        isPublicPath == false &&
+        isOnLoadingPage == false) {
       return RoutePath.auth.path;
     }
+
     if (isAuthenticated && isInAuthFlow) {
       return RoutePath.aboutMe.path;
     }
+
     return null;
   }
 
@@ -97,6 +115,11 @@ class RouterNotifier extends ChangeNotifier {
               ),
             ),
           ],
+        ),
+        GoRoute(
+          path: RoutePath.loading.path,
+          name: RoutePath.loading.name,
+          builder: (context, state) => LoadingPage(),
         ),
         GoRoute(
           path: RoutePath.imprint.path,

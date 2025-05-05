@@ -10,7 +10,9 @@ sealed class AuthState with AuthStateMappable {
 
 @MappableClass()
 class AuthStateLoading extends AuthState with AuthStateLoadingMappable {
-  const AuthStateLoading();
+  const AuthStateLoading({this.initLogin = true});
+
+  final bool initLogin;
 }
 
 @MappableClass()

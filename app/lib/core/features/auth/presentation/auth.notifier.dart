@@ -28,6 +28,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   Future<void> init() async {
     try {
+      state = const AuthStateLoading(initLogin: true);
       final company = await ref.read(companyProvider.future);
       if (company != null) {
         state = AuthStateAuthenticated(company: company);
@@ -115,7 +116,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
           :final username?,
           :final password?,
         )) {
-      state = const AuthStateLoading();
+      state = const AuthStateLoading(initLogin: false);
       try {
         final authRepo = ref.read(authRepoProvider);
         final result = await authRepo.signInWithEmailAndPassword(
