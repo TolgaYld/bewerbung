@@ -1,20 +1,19 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pleasehiretolga/core/design/spacing.dart';
 import 'package:pleasehiretolga/core/hooks/use_l10n.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
 import 'package:pleasehiretolga/core/presentation/mixins/dialog.mixin.dart';
 
-class SignOutDialog extends HookConsumerWidget with ShowableDialogMixin<bool?> {
-  const SignOutDialog({super.key});
+class ExternalLinkDialog extends HookConsumerWidget
+    with ShowableDialogMixin<bool> {
+  const ExternalLinkDialog({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = useTheme();
     final l10n = useL10n();
-    final deleteAccount = useState<bool>(false);
 
     return Dialog(
       backgroundColor: theme.colorScheme.surface,
@@ -30,63 +29,33 @@ class SignOutDialog extends HookConsumerWidget with ShowableDialogMixin<bool?> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AutoSizeText(
-                l10n.signOutDialogTitle,
+                l10n.externalLinkDialogTitle,
                 style: theme.textTheme.titleLarge,
               ),
               const VSpace.m(),
               AutoSizeText(
-                l10n.signOutDialogContent,
+                l10n.externalLinkDialogContent,
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurface,
                 ),
               ),
               const VSpace.s(),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: InkWell(
-                  onTap: () => deleteAccount.value = !deleteAccount.value,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      AutoSizeText(
-                        l10n.deleteAccount,
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.error,
-                        ),
-                      ),
-                      Checkbox(
-                        fillColor: WidgetStateProperty.fromMap(
-                          {
-                            WidgetState.selected: theme.colorScheme.error,
-                          },
-                        ),
-                        side: BorderSide(
-                          color: theme.colorScheme.error,
-                          width: 1,
-                        ),
-                        value: deleteAccount.value,
-                        onChanged: (_) =>
-                            deleteAccount.value = !deleteAccount.value,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 spacing: Spacers.xs,
                 children: [
                   TextButton(
-                    onPressed: () => pop(context, deleteAccount.value),
+                    onPressed: () => pop(context, true),
                     child: AutoSizeText(
-                      l10n.signOut,
+                      l10n.externalLinkDialogButton,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: theme.colorScheme.primary,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   TextButton(
-                    onPressed: () => pop(context, null),
+                    onPressed: () => pop(context, false),
                     child: AutoSizeText(
                       l10n.cancel,
                       style: theme.textTheme.bodyMedium?.copyWith(

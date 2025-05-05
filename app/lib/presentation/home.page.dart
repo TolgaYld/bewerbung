@@ -13,7 +13,7 @@ import 'package:pleasehiretolga/core/routing/router.dart';
 import 'package:pleasehiretolga/features/cover_letter/provider/cover_letter.provider.dart';
 import 'package:pleasehiretolga/core/presentation/widgets/language_switcher.widget.dart';
 import 'package:pleasehiretolga/presentation/widgets/custom_bottom_navigation_bar.dart';
-import 'package:pleasehiretolga/presentation/widgets/sign_out.dialog.dart';
+import 'package:pleasehiretolga/presentation/widgets/dialogs/sign_out.dialog.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({

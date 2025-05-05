@@ -272,6 +272,9 @@ class L10nFr extends L10n {
   String get externalLinkDialogContent => 'Vous êtes sur le point d’ouvrir un lien externe. Je ne suis pas responsable du contenu de ce site externe. Je n’ai aucun contrôle sur celui-ci et je ne m’approprie pas son contenu.';
 
   @override
+  String get externalLinkDialogButton => 'Ouvrir le lien externe';
+
+  @override
   String get privacyPolicy => 'Politique de confidentialité';
 
   @override

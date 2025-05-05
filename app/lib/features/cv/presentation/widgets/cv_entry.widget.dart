@@ -8,6 +8,7 @@ import 'package:pleasehiretolga/core/design/spacing.dart';
 import 'package:pleasehiretolga/core/features/employee/domain/entities/document.dart';
 import 'package:pleasehiretolga/core/hooks/use_l10n.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
+import 'package:pleasehiretolga/presentation/widgets/dialogs/external_link.dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CvEntry extends HookConsumerWidget {
@@ -224,10 +225,14 @@ class CvEntry extends HookConsumerWidget {
                                   .withValues(alpha: 0.5),
                             ),
                             iconSize: 20,
-                            icon: const Icon(Icons.language_rounded),
+                            icon: const Icon(Icons.link_rounded),
                             onPressed: () async {
-                              if (await canLaunchUrl(Uri.parse(link))) {
-                                await launchUrl(Uri.parse(link));
+                              final result =
+                                  await ExternalLinkDialog().show(context);
+                              if (result == true) {
+                                if (await canLaunchUrl(Uri.parse(link))) {
+                                  await launchUrl(Uri.parse(link));
+                                }
                               }
                             },
                           ),
@@ -251,12 +256,8 @@ class CvEntry extends HookConsumerWidget {
                               icon: const Icon(Icons.download_rounded),
                               onPressed: () async {
                                 if (reference.url case final url?) {
-                                  if (await canLaunchUrl(
-                                    Uri.parse(url),
-                                  )) {
-                                    await launchUrl(
-                                      Uri.parse(url),
-                                    );
+                                  if (await canLaunchUrl(Uri.parse(url))) {
+                                    await launchUrl(Uri.parse(url));
                                   }
                                 }
                               },

@@ -611,6 +611,12 @@ abstract class L10n {
   /// **'You are about to open an external link. I am not responsible for the content of this external site. I have no control over it and expressly do not adopt its content as my own.'**
   String get externalLinkDialogContent;
 
+  /// No description provided for @externalLinkDialogButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Open external link'**
+  String get externalLinkDialogButton;
+
   /// No description provided for @privacyPolicy.
   ///
   /// In en, this message translates to:

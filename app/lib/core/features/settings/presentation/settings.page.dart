@@ -7,7 +7,7 @@ import 'package:pleasehiretolga/core/hooks/use_l10n.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
 import 'package:pleasehiretolga/core/presentation/widgets/language_switcher.widget.dart';
 import 'package:pleasehiretolga/core/routing/router.dart';
-import 'package:pleasehiretolga/presentation/widgets/sign_out.dialog.dart';
+import 'package:pleasehiretolga/presentation/widgets/dialogs/sign_out.dialog.dart';
 
 class SettingsPage extends HookConsumerWidget {
   const SettingsPage({super.key});
@@ -55,7 +55,7 @@ class SettingsPage extends HookConsumerWidget {
               title: Text(
                 l10n.signOut,
                 style: theme.textTheme.bodyLarge?.copyWith(
-                  color: theme.colorScheme.error,
+                  color: Colors.deepOrange,
                 ),
               ),
               subtitle: Text(
@@ -67,7 +67,7 @@ class SettingsPage extends HookConsumerWidget {
               ),
               trailing: Icon(
                 Icons.logout_rounded,
-                color: theme.colorScheme.error,
+                color: Colors.deepOrange,
               ),
               onTap: () async {
                 final result = await SignOutDialog().show(context);

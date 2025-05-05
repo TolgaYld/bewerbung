@@ -272,6 +272,9 @@ class L10nTr extends L10n {
   String get externalLinkDialogContent => 'Harici bir bağlantı açmak üzeresiniz. Bu harici sitenin içeriğinden sorumlu değilim. İçeriği üzerinde hiçbir kontrolüm yoktur ve bu içeriği sahiplenmediğimi açıkça belirtirim.';
 
   @override
+  String get externalLinkDialogButton => 'Harici bağlantıyı aç';
+
+  @override
   String get privacyPolicy => 'Gizlilik Politikası';
 
   @override

@@ -94,6 +94,7 @@
     "imprint": "İmpressum",
     "externalLinkDialogTitle": "Harici Bağlantı",
     "externalLinkDialogContent": "Harici bir bağlantı açmak üzeresiniz. Bu harici sitenin içeriğinden sorumlu değilim. İçeriği üzerinde hiçbir kontrolüm yoktur ve bu içeriği sahiplenmediğimi açıkça belirtirim.",
+    "externalLinkDialogButton": "Harici bağlantıyı aç",
     "privacyPolicy": "Gizlilik Politikası",
     "settings": "Ayarlar"
 }

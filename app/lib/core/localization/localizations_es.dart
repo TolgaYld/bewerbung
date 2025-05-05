@@ -272,6 +272,9 @@ class L10nEs extends L10n {
   String get externalLinkDialogContent => 'Vas a abrir un enlace externo. No soy responsable del contenido de este sitio externo. No tengo control sobre él y expresamente no me apropio de su contenido.';
 
   @override
+  String get externalLinkDialogButton => 'Abrir enlace externo';
+
+  @override
   String get privacyPolicy => 'Política de privacidad';
 
   @override

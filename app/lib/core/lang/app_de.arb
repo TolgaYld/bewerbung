@@ -94,7 +94,8 @@
     "copyright": "© {year} Tolga Yıldırım – Alle Rechte vorbehalten.",
     "imprint": "Impressum",
     "externalLinkDialogTitle": "Externer Link",
-    "externalLinkDialogContent": "Du öffnest nun einen externen Link. Für die Inhalte dieser externen Seite bin ich nicht verantwortlich. Ich habe keinen Einfluss auf deren Inhalte und mache mir diese ausdrücklich nicht zu eigen.",
+    "externalLinkDialogContent": "Du öffnest einen externen Link. Für die Inhalte dieser externen Seite bin ich nicht verantwortlich. Ich habe keinen Einfluss auf deren Inhalte und mache mir diese ausdrücklich nicht zu eigen.",
+    "externalLinkDialogButton": "Trotzdem öffnen",
     "privacyPolicy": "Datenschutzerklärung",
     "settings": "Einstellungen"
 }

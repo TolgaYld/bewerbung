@@ -269,7 +269,10 @@ class L10nDe extends L10n {
   String get externalLinkDialogTitle => 'Externer Link';
 
   @override
-  String get externalLinkDialogContent => 'Du öffnest nun einen externen Link. Für die Inhalte dieser externen Seite bin ich nicht verantwortlich. Ich habe keinen Einfluss auf deren Inhalte und mache mir diese ausdrücklich nicht zu eigen.';
+  String get externalLinkDialogContent => 'Du öffnest einen externen Link. Für die Inhalte dieser externen Seite bin ich nicht verantwortlich. Ich habe keinen Einfluss auf deren Inhalte und mache mir diese ausdrücklich nicht zu eigen.';
+
+  @override
+  String get externalLinkDialogButton => 'Trotzdem öffnen';
 
   @override
   String get privacyPolicy => 'Datenschutzerklärung';

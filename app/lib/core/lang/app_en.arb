@@ -94,6 +94,7 @@
     "imprint": "Imprint",
     "externalLinkDialogTitle": "External Link",
     "externalLinkDialogContent": "You are about to open an external link. I am not responsible for the content of this external site. I have no control over it and expressly do not adopt its content as my own.",
+    "externalLinkDialogButton": "Open external link",
     "privacyPolicy": "Privacy Policy",
     "settings": "Settings"
 }
