@@ -55,11 +55,11 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
-  Future<void> sendMailTo() async {
+  Future<void> sendMailTo(String email) async {
     if (state case AuthStateEditing(:final copyWith)) {
       final Uri emailLaunchUri = Uri(
         scheme: 'mailto',
-        path: "tolga@ty-software.dev",
+        path: email,
         query: encodeQueryParameters(<String, String>{
           'subject': 'Need Help',
         }),

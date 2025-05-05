@@ -7,6 +7,7 @@ import 'package:pleasehiretolga/core/features/auth/presentation/auth.notifier.da
 import 'package:pleasehiretolga/core/features/auth/presentation/state/auth.state.dart';
 import 'package:pleasehiretolga/core/features/auth/presentation/widgets/login_mode.widget.dart';
 import 'package:pleasehiretolga/core/design/spacing.dart';
+import 'package:pleasehiretolga/core/features/imprint/provider/imprint.provider.dart';
 import 'package:pleasehiretolga/core/hooks/use_l10n.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_responsive.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
@@ -26,6 +27,13 @@ class AuthPage extends HookConsumerWidget {
     final notifier = ref.read(authStateProvider.notifier);
     final responsive = useResponsive();
     final width = MediaQuery.sizeOf(context).width;
+    final imprint = ref.watch(imprintProvider).valueOrNull;
+    final contact = imprint?.getContact(Locale("de"));
+    final email = (RegExp(r'E-Mail: ([\w\.-]+@[\w\.-]+\.\w+)')
+                .firstMatch(contact ?? '')
+                ?.group(1) ??
+            '')
+        .trim();
 
     ref.listen(authStateProvider, (prev, next) {
       if (next is AuthStateError) {
@@ -141,7 +149,8 @@ class AuthPage extends HookConsumerWidget {
                                     decoration: TextDecoration.underline,
                                   ),
                                   recognizer: TapGestureRecognizer()
-                                    ..onTap = () async => notifier.sendMailTo(),
+                                    ..onTap =
+                                        () async => notifier.sendMailTo(email),
                                 ),
                               ],
                             ),
@@ -149,7 +158,7 @@ class AuthPage extends HookConsumerWidget {
                           ),
                           switch (state) {
                             AuthStateEditing(showEmail: true) => AutoSizeText(
-                                'tolga@ty-software.dev',
+                                email,
                                 style: textTheme.titleMedium?.copyWith(
                                   color: theme.colorScheme.surface,
                                 ),
