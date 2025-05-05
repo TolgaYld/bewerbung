@@ -33,6 +33,12 @@ class L10nTr extends L10n {
   String get login => 'Giriş yap';
 
   @override
+  String get email => 'E-posta';
+
+  @override
+  String get phoneNumber => 'Telefon numarası';
+
+  @override
   String get username => 'Kullanıcı adın';
 
   @override
@@ -249,8 +255,8 @@ class L10nTr extends L10n {
   String get proof => 'Belge';
 
   @override
-  String copyright(Object fullName) {
-    return '© 2025 $fullName – Tüm hakları saklıdır.';
+  String copyright(Object year) {
+    return '© $year Tolga Yıldırım – Tüm hakları saklıdır.';
   }
 
   @override
@@ -261,4 +267,7 @@ class L10nTr extends L10n {
 
   @override
   String get externalLinkDialogContent => 'Harici bir bağlantı açmak üzeresiniz. Bu harici sitenin içeriğinden sorumlu değilim. İçeriği üzerinde hiçbir kontrolüm yoktur ve bu içeriği sahiplenmediğimi açıkça belirtirim.';
+
+  @override
+  String get privacyPolicy => 'Gizlilik Politikası';
 }

@@ -33,6 +33,12 @@ class L10nFr extends L10n {
   String get login => 'Connexion';
 
   @override
+  String get email => 'E-mail';
+
+  @override
+  String get phoneNumber => 'Numéro de téléphone';
+
+  @override
   String get username => 'Nom d\'utilisateur';
 
   @override
@@ -249,8 +255,8 @@ class L10nFr extends L10n {
   String get proof => 'Preuve';
 
   @override
-  String copyright(Object fullName) {
-    return '© 2025 $fullName – Tous droits réservés.';
+  String copyright(Object year) {
+    return '© $year Tolga Yıldırım – Tous droits réservés.';
   }
 
   @override
@@ -261,4 +267,7 @@ class L10nFr extends L10n {
 
   @override
   String get externalLinkDialogContent => 'Vous êtes sur le point d’ouvrir un lien externe. Je ne suis pas responsable du contenu de ce site externe. Je n’ai aucun contrôle sur celui-ci et je ne m’approprie pas son contenu.';
+
+  @override
+  String get privacyPolicy => 'Politique de confidentialité';
 }

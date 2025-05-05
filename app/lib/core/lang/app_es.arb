@@ -7,6 +7,8 @@
     "youNeedHelp": "¿Necesitas ayuda?",
     "clickHere": "Haz clic aquí",
     "login": "Iniciar sesión",
+    "email": "Correo electrónico",
+    "phoneNumber": "Número de teléfono",
     "username": "Nombre de usuario",
     "password": "Contraseña",
     "oopsSomethingWentWrongPleaseTryAgain": "Ups 😅, algo salió mal. Por favor, inténtalo de nuevo",
@@ -87,8 +89,9 @@
     "noMessageWrittenToApplicant": "No se ha escrito ningún mensaje al solicitante",
     "responseStatusFromApplicant": "Respuesta a la invitación",
     "proof": "Prueba",
-    "copyright": "© 2025 {fullName} – Todos los derechos reservados.",
+    "copyright": "© {year} Tolga Yıldırım – Todos los derechos reservados.",
     "imprint": "Aviso legal",
     "externalLinkDialogTitle": "Enlace externo",
-    "externalLinkDialogContent": "Vas a abrir un enlace externo. No soy responsable del contenido de este sitio externo. No tengo control sobre él y expresamente no me apropio de su contenido."
+    "externalLinkDialogContent": "Vas a abrir un enlace externo. No soy responsable del contenido de este sitio externo. No tengo control sobre él y expresamente no me apropio de su contenido.",
+    "privacyPolicy": "Política de privacidad"
 }

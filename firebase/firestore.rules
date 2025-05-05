@@ -22,6 +22,14 @@ service cloud.firestore {
       allow read: if request.auth != null;
       allow write: if false;
     }
+    match /imprint/{imprintId} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /privacy/{privacyId} {
+      allow read: if true;
+      allow write: if false;
+    }
     match /{document=**} {
       allow read, write: if false;
     }

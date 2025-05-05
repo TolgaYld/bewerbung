@@ -7,6 +7,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pleasehiretolga/core/features/auth/presentation/auth.notifier.dart';
 import 'package:pleasehiretolga/core/features/auth/presentation/auth.page.dart';
 import 'package:pleasehiretolga/core/features/auth/presentation/state/auth.state.dart';
+import 'package:pleasehiretolga/core/features/imprint/presentation/imprint.page.dart';
+import 'package:pleasehiretolga/core/features/privacy_policy/presentation/privacy_policy.page.dart';
 import 'package:pleasehiretolga/core/features/qr/presentation/qr_scanner.page.dart';
 import 'package:pleasehiretolga/features/cover_letter/presentation/conver_letter.page.dart';
 import 'package:pleasehiretolga/features/cv/presentation/cv.page.dart';
@@ -21,7 +23,9 @@ enum RoutePath {
   aboutMe(path: '/aboutMe'),
   cv(path: '/cv'),
   coverLetter(path: '/coverLetter'),
-  decission(path: '/decission');
+  decission(path: '/decission'),
+  imprint(path: '/imprint'),
+  privacyPolicy(path: '/privacy-policy');
 
   const RoutePath({required this.path});
   final String path;
@@ -49,11 +53,18 @@ class RouterNotifier extends ChangeNotifier {
 
   FutureOr<String?> _redirect(BuildContext context, GoRouterState state) {
     final authState = _ref.read(authStateProvider);
-
     final isAuthenticated = authState is AuthStateAuthenticated;
     final isInAuthFlow = state.matchedLocation.startsWith(RoutePath.auth.path);
 
-    if (isAuthenticated == false && isInAuthFlow == false) {
+    final publicPaths = [
+      RoutePath.imprint.path,
+      RoutePath.privacyPolicy.path,
+    ];
+    final isPublicPath =
+        publicPaths.any((path) => state.matchedLocation.startsWith(path));
+    if (isAuthenticated == false &&
+        isInAuthFlow == false &&
+        isPublicPath == false) {
       return RoutePath.auth.path;
     }
     if (isAuthenticated && isInAuthFlow) {
@@ -84,6 +95,16 @@ class RouterNotifier extends ChangeNotifier {
               ),
             ),
           ],
+        ),
+        GoRoute(
+          path: RoutePath.imprint.path,
+          name: RoutePath.imprint.name,
+          builder: (context, state) => ImprintPage(),
+        ),
+        GoRoute(
+          path: RoutePath.privacyPolicy.path,
+          name: RoutePath.privacyPolicy.name,
+          builder: (context, state) => PrivacyPolicyPage(),
         ),
         StatefulShellRoute.indexedStack(
           pageBuilder: (context, state, shell) => CustomTransitionPage(

@@ -7,6 +7,8 @@
     "youNeedHelp": "Du brauchst Hilfe?",
     "clickHere": "Klicke hier",
     "login": "Anmelden",
+    "email": "E-Mail",
+    "phoneNumber": "Telefonnummer",
     "username": "Benutzername",
     "password": "Passwort",
     "oopsSomethingWentWrongPleaseTryAgain": "Opps 😅, da ist etwas schiefgelaufen. Bitte versuche es noch einmal",
@@ -88,8 +90,9 @@
     "noMessageWrittenToApplicant": "Keine Nachricht an den Bewerber geschrieben",
     "responseStatusFromApplicant": "Antwort zur Einladung",
     "proof": "Nachweis",
-    "copyright": "© 2025 {fullName} – Alle Rechte vorbehalten.",
+    "copyright": "© {year} Tolga Yıldırım – Alle Rechte vorbehalten.",
     "imprint": "Impressum",
     "externalLinkDialogTitle": "Externer Link",
-    "externalLinkDialogContent": "Du öffnest nun einen externen Link. Für die Inhalte dieser externen Seite bin ich nicht verantwortlich. Ich habe keinen Einfluss auf deren Inhalte und mache mir diese ausdrücklich nicht zu eigen."
+    "externalLinkDialogContent": "Du öffnest nun einen externen Link. Für die Inhalte dieser externen Seite bin ich nicht verantwortlich. Ich habe keinen Einfluss auf deren Inhalte und mache mir diese ausdrücklich nicht zu eigen.",
+    "privacyPolicy": "Datenschutzerklärung"
 }

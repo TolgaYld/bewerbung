@@ -3,7 +3,8 @@ class FirestoreKeys {
 
   static const String companies = 'companies';
   static const String employee = 'employee';
-  static const String contentPipelineCollection = 'content_pipeline';
+  static const String imprint = 'imprint';
+  static const String privacyPolicy = 'privacy';
 
   static String company(String id) => '$companies/$id';
 }

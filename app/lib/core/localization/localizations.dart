@@ -149,6 +149,18 @@ abstract class L10n {
   /// **'Login'**
   String get login;
 
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get phoneNumber;
+
   /// No description provided for @username.
   ///
   /// In en, this message translates to:
@@ -572,8 +584,8 @@ abstract class L10n {
   /// No description provided for @copyright.
   ///
   /// In en, this message translates to:
-  /// **'© 2025 {fullName} – All rights reserved.'**
-  String copyright(Object fullName);
+  /// **'© {year} Tolga Yıldırım – All rights reserved.'**
+  String copyright(Object year);
 
   /// No description provided for @imprint.
   ///
@@ -592,6 +604,12 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'You are about to open an external link. I am not responsible for the content of this external site. I have no control over it and expressly do not adopt its content as my own.'**
   String get externalLinkDialogContent;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicy;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

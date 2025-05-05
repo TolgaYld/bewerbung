@@ -7,6 +7,8 @@
     "youNeedHelp": "Yardım mı lazım?",
     "clickHere": "Buraya tıkla",
     "login": "Giriş yap",
+    "email": "E-posta",
+    "phoneNumber": "Telefon numarası",
     "username": "Kullanıcı adın",
     "password": "Şifre",
     "oopsSomethingWentWrongPleaseTryAgain": "Nayır nolamaz 😅, bir şeyler ters gitti. Lütfen tekrar deneyin",
@@ -87,8 +89,9 @@
     "noMessageWrittenToApplicant": "Başvuran için yazılmış mesaj yok",
     "responseStatusFromApplicant": "Başvuranın yanıt durumu",
     "proof": "Belge",
-    "copyright": "© 2025 {fullName} – Tüm hakları saklıdır.",
+    "copyright": "© {year} Tolga Yıldırım – Tüm hakları saklıdır.",
     "imprint": "İmpressum",
     "externalLinkDialogTitle": "Harici Bağlantı",
-    "externalLinkDialogContent": "Harici bir bağlantı açmak üzeresiniz. Bu harici sitenin içeriğinden sorumlu değilim. İçeriği üzerinde hiçbir kontrolüm yoktur ve bu içeriği sahiplenmediğimi açıkça belirtirim."
+    "externalLinkDialogContent": "Harici bir bağlantı açmak üzeresiniz. Bu harici sitenin içeriğinden sorumlu değilim. İçeriği üzerinde hiçbir kontrolüm yoktur ve bu içeriği sahiplenmediğimi açıkça belirtirim.",
+    "privacyPolicy": "Gizlilik Politikası"
 }
