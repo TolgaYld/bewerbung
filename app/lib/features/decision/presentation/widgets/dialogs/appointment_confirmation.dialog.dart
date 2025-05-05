@@ -147,7 +147,7 @@ class AppointmentConfirmationDialog extends HookConsumerWidget
           child: Text(
             l10n.close,
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.primary,
+              color: theme.colorScheme.onSurface,
             ),
           ),
         ),

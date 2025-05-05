@@ -293,6 +293,7 @@ class DecisionDialog extends HookConsumerWidget
                 l10n.invite,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.primary,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -323,6 +324,7 @@ class DecisionDialog extends HookConsumerWidget
                 l10n.refuse,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.primary,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),

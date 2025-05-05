@@ -322,11 +322,12 @@ class StatusOverlayDialog extends HookConsumerWidget with ShowableDialogMixin {
                       label: Text(
                         l10n.revoke,
                         style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.error,
+                          color: Colors.deepOrange,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       style: TextButton.styleFrom(
-                        foregroundColor: theme.colorScheme.error,
+                        foregroundColor: Colors.deepOrange,
                       ),
                     ),
                   TextButton(
