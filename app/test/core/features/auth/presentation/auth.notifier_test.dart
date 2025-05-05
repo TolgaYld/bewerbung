@@ -77,7 +77,7 @@ void main() {
       when(() => urlLauncherService.launch(any()))
           .thenAnswer((_) async => true);
 
-      await notifier.sendMailTo();
+      await notifier.sendMailTo("test@test.de");
 
       final state = container.read(authStateProvider) as AuthStateEditing;
       expect(state.showEmail, isFalse);
@@ -87,7 +87,7 @@ void main() {
       when(() => urlLauncherService.canLaunch(any()))
           .thenAnswer((_) async => false);
 
-      await notifier.sendMailTo();
+      await notifier.sendMailTo("test@test.de");
 
       final state = container.read(authStateProvider) as AuthStateEditing;
       expect(state.showEmail, isTrue);
