@@ -25,61 +25,70 @@ class SettingsPage extends HookConsumerWidget {
           const HSpace.s(),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ListTile(
-              title: Text(
-                l10n.privacyPolicy,
-                style: theme.textTheme.bodyLarge,
+      body: ListView(
+        children: [
+          ListTile(
+            title: Text(
+              l10n.privacyPolicy,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: theme.colorScheme.onSurface,
               ),
-              trailing: Icon(
-                Icons.policy_rounded,
-                color: theme.colorScheme.primary,
-              ),
-              onTap: () => context.push(RoutePath.privacyPolicy.path),
             ),
-            ListTile(
-              title: Text(
-                l10n.imprint,
-                style: theme.textTheme.bodyLarge,
-              ),
-              trailing: Icon(
-                Icons.account_box_rounded,
-                color: theme.colorScheme.primary,
-              ),
-              onTap: () => context.push(RoutePath.imprint.path),
+            trailing: Icon(
+              Icons.policy_rounded,
+              color: theme.colorScheme.primary,
             ),
-            const VSpace.m(),
-            ListTile(
-              title: Text(
-                l10n.signOut,
-                style: theme.textTheme.bodyLarge?.copyWith(
-                  color: Colors.deepOrange,
-                ),
+            onTap: () => context.push(RoutePath.privacyPolicy.path),
+          ),
+          ListTile(
+            title: Text(
+              l10n.imprint,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: theme.colorScheme.onSurface,
               ),
-              subtitle: Text(
-                l10n.signOutSubtitle,
-                maxLines: 1,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: Colors.grey[600],
-                ),
-              ),
-              trailing: Icon(
-                Icons.logout_rounded,
+            ),
+            trailing: Icon(
+              Icons.account_box_rounded,
+              color: theme.colorScheme.primary,
+            ),
+            onTap: () => context.push(RoutePath.imprint.path),
+          ),
+          const VSpace.m(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: Spacers.s),
+            child: Divider(
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.2),
+              height: 1,
+            ),
+          ),
+          ListTile(
+            title: Text(
+              l10n.signOut,
+              style: theme.textTheme.bodyLarge?.copyWith(
                 color: Colors.deepOrange,
               ),
-              onTap: () async {
-                final result = await SignOutDialog().show(context);
-                if (result == true) {
-                  await notifier.signOut(true);
-                } else if (result == false) {
-                  await notifier.signOut(false);
-                }
-              },
             ),
-          ],
-        ),
+            subtitle: Text(
+              l10n.signOutSubtitle,
+              maxLines: 1,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: Colors.grey[600],
+              ),
+            ),
+            trailing: Icon(
+              Icons.logout_rounded,
+              color: Colors.deepOrange,
+            ),
+            onTap: () async {
+              final result = await SignOutDialog().show(context);
+              if (result == true) {
+                await notifier.signOut(true);
+              } else if (result == false) {
+                await notifier.signOut(false);
+              }
+            },
+          ),
+        ],
       ),
     );
   }
