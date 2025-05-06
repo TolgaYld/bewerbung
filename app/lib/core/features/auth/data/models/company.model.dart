@@ -34,7 +34,8 @@ class CompanyModel implements IdHolder {
         imageBackgroundColor: map['imageBackgroundColor'] as String?,
         coverLetter: map['coverLetter'] != null
             ? CoverLetterModel.fromMap(
-                map['coverLetter'] as Map<String, dynamic>)
+                map['coverLetter'] as Map<String, dynamic>,
+              )
             : null,
         contact: map['contact'] != null
             ? ContactModel.fromMap(map['contact'] as Map<String, dynamic>)

@@ -312,7 +312,9 @@ class StatusOverlayDialog extends HookConsumerWidget with ShowableDialogMixin {
                         );
                         if (confirmed == true) {
                           await notifier.revertDecision(company.id);
-                          Navigator.of(context).pop();
+                          if (context.mounted) {
+                            Navigator.of(context).pop();
+                          }
                         }
                       },
                       icon: const Icon(

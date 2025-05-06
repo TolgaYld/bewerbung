@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -105,41 +106,46 @@ class Swiper extends HookConsumerWidget {
       } else {
         await animateSwipe(-screenWidth * 1.5);
       }
-      final result = await DecisionDialog(
-        invite: isInvite,
-        title: isInvite ? l10n.inviteDialogTitle : l10n.refuseDialogTitle,
-        content: isInvite ? l10n.inviteDialogContent : l10n.refuseDialogContent,
-      ).show(context);
+      if (context.mounted) {
+        final result = await DecisionDialog(
+          invite: isInvite,
+          title: isInvite ? l10n.inviteDialogTitle : l10n.refuseDialogTitle,
+          content:
+              isInvite ? l10n.inviteDialogContent : l10n.refuseDialogContent,
+        ).show(context);
 
-      final status =
-          isInvite ? DecisionStatus.invited : DecisionStatus.rejected;
-      final explanation = result?.explanation;
+        final status =
+            isInvite ? DecisionStatus.invited : DecisionStatus.rejected;
+        final explanation = result?.explanation;
 
-      if (companyId case final id? when result != null) {
-        final formattedDateTime = switch (result.appointmentDateTime) {
-          final dateTime? when isInvite => formatDateTimeCombi(dateTime),
-          _ => null,
-        };
+        if (companyId case final id? when result != null) {
+          final formattedDateTime = switch (result.appointmentDateTime) {
+            final dateTime? when isInvite => formatDateTimeCombi(dateTime),
+            _ => null,
+          };
 
-        await notifier.setDecisionOptions(
-          employeeId: id,
-          status: status,
-          inviteDate: isInvite ? result.appointmentDateTime : null,
-          decisionMessage: explanation,
-          inviteDuration:
-              null, // maybe to much inputs for companies (??)... and maybe i implement that in the future
-        );
+          await notifier.setDecisionOptions(
+            employeeId: id,
+            status: status,
+            inviteDate: isInvite ? result.appointmentDateTime : null,
+            decisionMessage: explanation,
+            inviteDuration:
+                null, // maybe to much inputs for companies (??)... and maybe i implement that in the future
+          );
 
-        if (isInvite) {
-          onRightSwipe?.call();
-          await AppointmentConfirmationDialog(
-            formattedDate: formattedDateTime,
-            explanation: explanation,
-          ).show(context);
+          if (isInvite) {
+            onRightSwipe?.call();
+            if (context.mounted) {
+              await AppointmentConfirmationDialog(
+                formattedDate: formattedDateTime,
+                explanation: explanation,
+              ).show(context);
+            }
+          }
         }
-      }
 
-      await resetPosition();
+        await resetPosition();
+      }
     }
 
     useEffect(
@@ -157,9 +163,11 @@ class Swiper extends HookConsumerWidget {
     );
 
     final likeOpacity =
-        (position.value.dx / (screenWidth * 0.5)).clamp(0.0, 1.0);
+        (position.value.dx / (screenWidth * (kIsWeb ? 0.12 : 0.5)))
+            .clamp(0.0, 1.0);
     final dislikeOpacity =
-        (-position.value.dx / (screenWidth * 0.5)).clamp(0.0, 1.0);
+        (-position.value.dx / (screenWidth * (kIsWeb ? 0.12 : 0.5)))
+            .clamp(0.0, 1.0);
 
     return GestureDetector(
       onPanStart: (_) {
@@ -172,8 +180,7 @@ class Swiper extends HookConsumerWidget {
       },
       onPanEnd: (_) async {
         isDragging.value = false;
-
-        const acceptSwipe = 0.4;
+        const acceptSwipe = kIsWeb ? 0.2 : 0.5;
 
         switch (position.value.dx.abs() > screenWidth * acceptSwipe) {
           case true when position.value.dx > 0:
@@ -263,8 +270,10 @@ class Swiper extends HookConsumerWidget {
             child: Transform.rotate(
               angle: 0.2,
               child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Spacers.m,
+                  vertical: Spacers.s,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(12),

@@ -48,7 +48,8 @@ class CvPage extends HookConsumerWidget {
                   ),
                   const VSpace.m(),
                   for (final education in employee.cv.sortedEducations(
-                      descending: locale?.languageCode != "en")) ...[
+                    descending: locale?.languageCode != "en",
+                  )) ...[
                     CvEntry(
                       title: education.getTitle(locale),
                       subtitle: education.getDescription(locale) ?? "",
@@ -73,7 +74,8 @@ class CvPage extends HookConsumerWidget {
                   ),
                   const VSpace.m(),
                   for (final experience in employee.cv.sortedJobs(
-                      descending: locale?.languageCode != "en")) ...[
+                    descending: locale?.languageCode != "en",
+                  )) ...[
                     CvEntry(
                       title: experience.getTitle(locale),
                       subtitle: experience.getDescription(locale) ?? "",
@@ -99,7 +101,8 @@ class CvPage extends HookConsumerWidget {
                   ),
                   const VSpace.m(),
                   for (final sideJob in employee.cv.sortedSideJobs(
-                      descending: locale?.languageCode != "en")) ...[
+                    descending: locale?.languageCode != "en",
+                  )) ...[
                     CvEntry(
                       title: sideJob.getTitle(locale),
                       subtitle: sideJob.getDescription(locale) ?? "",

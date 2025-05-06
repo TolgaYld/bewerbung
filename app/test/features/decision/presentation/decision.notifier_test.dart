@@ -167,8 +167,9 @@ void main() {
       when(() => mockRepo.revertDecision(any())).thenAnswer(
         (_) async => Left(
           ServerFailure(
-              message:
-                  'entscheidung konnte nicht rückgängig gemacht werden, weils die richtige entscheidung war. spass fehler aufgetreten'),
+            message:
+                'entscheidung konnte nicht rückgängig gemacht werden, weils die richtige entscheidung war. spass fehler aufgetreten',
+          ),
         ),
       );
 
@@ -178,8 +179,10 @@ void main() {
 
       final state = container.read(decisionProvider);
       expect(state.isLoading, false);
-      expect(state.errorMessage,
-          'entscheidung konnte nicht rückgängig gemacht werden, weils die richtige entscheidung war. spass fehler aufgetreten');
+      expect(
+        state.errorMessage,
+        'entscheidung konnte nicht rückgängig gemacht werden, weils die richtige entscheidung war. spass fehler aufgetreten',
+      );
 
       verify(() => mockRepo.revertDecision(tEmployeeId)).called(1);
     });

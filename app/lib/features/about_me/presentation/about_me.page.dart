@@ -298,7 +298,8 @@ class AboutMePage extends HookConsumerWidget {
               ConnectTile(
                 onTap: () async => await launchUrl(
                   Uri.parse(
-                      "https://www.linkedin.com/in/tolga-yildirim-73201a261/"),
+                    "https://www.linkedin.com/in/tolga-yildirim-73201a261/",
+                  ),
                 ),
                 icon: Icons.business_rounded,
                 label: "LinkedIn",

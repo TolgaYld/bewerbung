@@ -85,7 +85,7 @@ class DecisionDialog extends HookConsumerWidget
         },
       );
 
-      if (pickedDate != null) {
+      if (pickedDate != null && context.mounted) {
         selectedDate.value = pickedDate;
 
         final pickedTime = await showTimePicker(
@@ -108,11 +108,13 @@ class DecisionDialog extends HookConsumerWidget
           shouldShowDatePicker.value = false;
         }
       }
-      final currentFocus = FocusScope.of(context);
+      if (context.mounted) {
+        final currentFocus = FocusScope.of(context);
 
-      if (currentFocus.hasPrimaryFocus == false &&
-          currentFocus.focusedChild != null) {
-        FocusManager.instance.primaryFocus?.unfocus();
+        if (currentFocus.hasPrimaryFocus == false &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
       }
     }
 

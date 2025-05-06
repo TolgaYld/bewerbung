@@ -118,7 +118,8 @@ class AuthNotifier extends StateNotifier<AuthState> {
           :final qrMode,
         )) {
       state = AuthStateLoading(
-          showLoadingPage: qrMode && kIsWeb == false ? true : false);
+        showLoadingPage: qrMode && kIsWeb == false ? true : false,
+      );
       try {
         final authRepo = ref.read(authRepoProvider);
         final result = await authRepo.signInWithEmailAndPassword(

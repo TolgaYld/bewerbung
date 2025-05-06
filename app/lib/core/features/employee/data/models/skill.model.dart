@@ -77,7 +77,8 @@ class SkillModel {
   }
 
   static Map<String, Map<String, String>>? _parseTranslations(
-      Map<String, dynamic>? translationsData) {
+    Map<String, dynamic>? translationsData,
+  ) {
     return switch (translationsData) {
       final Map translations => {
           for (final entry in translations.entries)

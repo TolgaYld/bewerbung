@@ -11,7 +11,7 @@ class QrScannerPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = useMemoized(() => MobileScannerController());
+    final controller = useMemoized(MobileScannerController.new);
     final isHandled = useState<bool>(false);
 
     useEffect(() => controller.dispose, []);
