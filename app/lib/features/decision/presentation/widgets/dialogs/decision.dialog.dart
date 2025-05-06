@@ -68,7 +68,6 @@ class DecisionDialog extends HookConsumerWidget
     );
 
     Future<void> pickDate() async {
-      explanationFocusNode.unfocus();
       final pickedDate = await showDatePicker(
         context: context,
         initialDate: DateTime.now().add(const Duration(days: 1)),
@@ -108,6 +107,12 @@ class DecisionDialog extends HookConsumerWidget
           selectedTime.value = pickedTime;
           shouldShowDatePicker.value = false;
         }
+      }
+      final currentFocus = FocusScope.of(context);
+
+      if (currentFocus.hasPrimaryFocus == false &&
+          currentFocus.focusedChild != null) {
+        FocusManager.instance.primaryFocus?.unfocus();
       }
     }
 
