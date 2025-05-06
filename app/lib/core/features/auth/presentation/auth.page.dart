@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pleasehiretolga/core/features/auth/presentation/auth.notifier.dart';
 import 'package:pleasehiretolga/core/features/auth/presentation/state/auth.state.dart';
@@ -52,15 +53,24 @@ class AuthPage extends HookConsumerWidget {
         true,
       _ => false
     };
+
+    const animDuration = Durations.medium4;
+    const baseDelay = Durations.short1;
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
-          title: AutoSizeText(l10n.welcomeToPleaseHireTolga),
+          title: AutoSizeText(l10n.welcomeToPleaseHireTolga)
+              .animate()
+              .fadeIn(duration: animDuration, delay: baseDelay),
           centerTitle: true,
           actions: [
-            LanguageSwitcher(),
+            LanguageSwitcher().animate().fadeIn(
+                  duration: animDuration,
+                  delay: baseDelay * 2,
+                ),
             const HSpace.xs(),
           ],
         ),
@@ -75,7 +85,17 @@ class AuthPage extends HookConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const VSpace.x3l(),
-                        if (kIsWeb) Text(l10n.enterYourLoginInformation),
+                        if (kIsWeb)
+                          Padding(
+                            padding: const EdgeInsets.only(top: Spacers.l),
+                            child: Text(
+                              l10n.enterYourLoginInformation,
+                              style: textTheme.bodyLarge,
+                            ),
+                          ).animate().fadeIn(
+                                duration: animDuration,
+                                delay: baseDelay * 3,
+                              ),
                         if (kIsWeb == false) ...[
                           Text(
                             l10n.howDoYouWantToLogin,
@@ -84,7 +104,10 @@ class AuthPage extends HookConsumerWidget {
                                   .withValues(alpha: 0.7),
                             ),
                             textAlign: TextAlign.center,
-                          ),
+                          ).animate().fadeIn(
+                                duration: animDuration,
+                                delay: baseDelay * 3,
+                              ),
                           const VSpace.s(),
                           ToggleButtons(
                             onPressed: (int index) {
@@ -109,7 +132,10 @@ class AuthPage extends HookConsumerWidget {
                               Icon(Icons.qr_code_scanner_rounded),
                               Icon(Icons.key_rounded),
                             ],
-                          ),
+                          ).animate().fadeIn(
+                                duration: animDuration,
+                                delay: baseDelay * 5,
+                              ),
                         ],
                         const VSpace.xl(),
                         Center(
@@ -122,7 +148,10 @@ class AuthPage extends HookConsumerWidget {
                               notifier: notifier,
                             ),
                           ),
-                        ),
+                        ).animate().fadeIn(
+                              duration: animDuration,
+                              delay: baseDelay * (kIsWeb ? 5 : 7),
+                            ),
                         const VSpace.x4l(),
                         Padding(
                           padding: EdgeInsets.only(bottom: Spacers.x6l),
@@ -176,7 +205,10 @@ class AuthPage extends HookConsumerWidget {
                               ),
                             ),
                           ),
-                        ),
+                        ).animate().fadeIn(
+                              duration: animDuration,
+                              delay: baseDelay * 9,
+                            ),
                       ],
                     ),
                   ),
@@ -189,7 +221,10 @@ class AuthPage extends HookConsumerWidget {
                 right: 0,
                 bottom: 0,
                 child: const Footer(),
-              ),
+              ).animate().fadeIn(
+                    duration: animDuration,
+                    delay: baseDelay * 6,
+                  ),
           ],
         ),
       ),
