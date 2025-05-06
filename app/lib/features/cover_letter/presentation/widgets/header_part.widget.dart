@@ -45,7 +45,7 @@ class HeaderPart extends HookConsumerWidget {
                   const VSpace.xxs(),
                   AutoSizeText(
                     position,
-                    style: theme.textTheme.titleMedium?.copyWith(
+                    style: theme.textTheme.titleSmall?.copyWith(
                       color: theme.colorScheme.primary,
                       fontWeight: FontWeight.w500,
                     ),
