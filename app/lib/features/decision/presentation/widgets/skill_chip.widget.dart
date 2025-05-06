@@ -8,8 +8,10 @@ class SkillChip extends HookConsumerWidget {
     super.key,
     required this.icon,
     required this.label,
+    this.iconColor = Colors.white,
   });
-  final IconData icon;
+  final IconData? icon;
+  final Color iconColor;
   final String label;
 
   @override
@@ -29,13 +31,15 @@ class SkillChip extends HookConsumerWidget {
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        spacing: Spacers.xs,
         children: [
-          Icon(
-            icon,
-            color: Colors.white,
-            size: 16,
-          ),
+          if (icon != null) ...[
+            Icon(
+              icon,
+              color: iconColor,
+              size: 16,
+            ),
+            const HSpace.xs(),
+          ],
           AutoSizeText(
             label,
             style: const TextStyle(

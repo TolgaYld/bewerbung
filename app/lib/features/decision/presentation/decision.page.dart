@@ -236,12 +236,13 @@ class DecisionPage extends HookConsumerWidget {
                                     Padding(
                                       padding: const EdgeInsets.all(Spacers.m),
                                       child: Column(
-                                        spacing: Spacers.xs,
                                         mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           AutoSizeText(
                                             employee?.person.fullName ?? "",
-                                            style: theme.textTheme.displaySmall
+                                            style: theme.textTheme.headlineSmall
                                                 ?.copyWith(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
@@ -254,6 +255,7 @@ class DecisionPage extends HookConsumerWidget {
                                                 ),
                                               ],
                                             ),
+                                            textAlign: TextAlign.start,
                                           ),
                                           AutoSizeText(
                                             employee?.getJobTitleText(locale) ??
@@ -285,44 +287,81 @@ class DecisionPage extends HookConsumerWidget {
                                           children: [
                                             const HSpace.xs(),
                                             SkillChip(
-                                              icon: Icons.code,
-                                              label: "Flutter",
+                                              icon: null,
+                                              iconColor:
+                                                  const Color(0xFF02569B),
+                                              label: "💙 Flutter",
                                             ),
                                             SkillChip(
                                               icon: Icons.cloud_outlined,
                                               label: "Node.js",
+                                              iconColor:
+                                                  const Color(0xFF339933),
                                             ),
                                             SkillChip(
-                                              icon: Icons.storage_outlined,
-                                              label: "Firebase",
+                                              icon: null,
+                                              label: "🔥 Firebase",
+                                              iconColor: Color(0xFFFFCA28),
                                             ),
                                             SkillChip(
-                                              icon: Icons.dns_outlined,
-                                              label: "Docker",
+                                              icon: Icons.eco,
+                                              label: "MongoDB",
+                                              iconColor: Color(0xFF47A248),
                                             ),
                                             SkillChip(
-                                              icon: Icons.cloud_sync_outlined,
-                                              label: "Kubernetes",
+                                              icon: null,
+                                              label: "🐘 PostgreSQL",
+                                              iconColor: Color(0xFF336791),
+                                            ),
+                                            SkillChip(
+                                              icon: Icons.table_chart_rounded,
+                                              label: "MySQL",
+                                              iconColor: Color(0xFF00758F),
+                                            ),
+                                            SkillChip(
+                                              icon: null,
+                                              label: "🐬 MariaDB",
+                                              iconColor: Color(0xFF003545),
+                                            ),
+                                            SkillChip(
+                                              icon: null,
+                                              label: "🐳 Docker",
+                                              iconColor: Color(0xFF0db7ed),
+                                            ),
+                                            SkillChip(
+                                              icon: null,
+                                              label: "🧭 Kubernetes",
+                                              iconColor: Color(0xFF326ce5),
                                             ),
                                             SkillChip(
                                               icon: Icons.layers_outlined,
-                                              label: "Solid",
+                                              label: "SOLID",
+                                              iconColor: Color(0xFF6D4C41),
                                             ),
                                             SkillChip(
                                               icon: Icons.api_outlined,
                                               label: "REST",
+                                              iconColor: Color(0xFF2196F3),
                                             ),
                                             SkillChip(
-                                              icon: Icons.lock_outline,
-                                              label: "OAuth",
-                                            ),
-                                            SkillChip(
-                                              icon: Icons.storage,
-                                              label: "SQL",
-                                            ),
-                                            SkillChip(
-                                              icon: Icons.graphic_eq_outlined,
+                                              icon: Icons.graphic_eq_rounded,
                                               label: "GraphQL",
+                                              iconColor: Color(0xFFE535AB),
+                                            ),
+                                            SkillChip(
+                                              icon: Icons.hub_rounded,
+                                              label: "gRPC",
+                                              iconColor: Color(0xFF4285F4),
+                                            ),
+                                            SkillChip(
+                                              icon: Icons.data_object_rounded,
+                                              label: "NoSQL",
+                                              iconColor: Color(0xFF47A248),
+                                            ),
+                                            SkillChip(
+                                              icon: Icons.view_column_rounded,
+                                              label: "SQL",
+                                              iconColor: Color(0xFF607D8B),
                                             ),
                                             const HSpace.xs(),
                                           ],

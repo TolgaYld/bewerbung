@@ -152,9 +152,9 @@ class AuthPage extends HookConsumerWidget {
                               duration: animDuration,
                               delay: baseDelay * (kIsWeb ? 5 : 7),
                             ),
-                        const VSpace.x4l(),
+                        const VSpace.xl(),
                         Padding(
-                          padding: EdgeInsets.only(bottom: Spacers.x6l),
+                          padding: EdgeInsets.only(bottom: 0),
                           child: Card(
                             color: Colors.transparent,
                             elevation: 0,
