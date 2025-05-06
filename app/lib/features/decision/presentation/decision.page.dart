@@ -12,7 +12,6 @@ import 'package:pleasehiretolga/core/features/auth/provider/company.provider.dar
 import 'package:pleasehiretolga/core/features/employee/provider/employee.provider.dart';
 import 'package:pleasehiretolga/core/hooks/use_confetti.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_l10n.hook.dart';
-import 'package:pleasehiretolga/core/hooks/use_responsive.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
 import 'package:pleasehiretolga/core/provider/locale.provider.dart';
 import 'package:pleasehiretolga/features/decision/presentation/widgets/action_button.widget.dart';
@@ -32,7 +31,6 @@ class DecisionPage extends HookConsumerWidget {
     final employee = ref.watch(employeeProvider).valueOrNull;
     final company = ref.watch(companyProvider).valueOrNull;
     final locale = ref.watch(localeProvider);
-    final responsive = useResponsive();
 
     final swiperController = useMemoized(() => SwiperController(), []);
     final confettiController =
@@ -53,7 +51,7 @@ class DecisionPage extends HookConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: Spacers.s),
                     child: AutoSizeText(
-                      responsive.isDesktop
+                      kIsWeb
                           ? l10n.webButtonHeadline
                           : l10n.mobileSwipeHeadline,
                       style: theme.textTheme.titleLarge?.copyWith(
@@ -65,7 +63,7 @@ class DecisionPage extends HookConsumerWidget {
                   ),
                   const VSpace.xs(),
                   AutoSizeText(
-                    responsive.isDesktop
+                    kIsWeb
                         ? l10n.webButtonInstruction
                         : l10n.mobileSwipeInstruction,
                     textAlign: TextAlign.center,

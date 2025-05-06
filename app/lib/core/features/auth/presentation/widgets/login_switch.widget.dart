@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -6,7 +7,6 @@ import 'package:pleasehiretolga/core/features/auth/presentation/auth.notifier.da
 import 'package:pleasehiretolga/core/features/auth/presentation/state/auth.state.dart';
 import 'package:pleasehiretolga/core/features/auth/presentation/widgets/qr_mode/qr_button.widget.dart';
 import 'package:pleasehiretolga/core/features/auth/presentation/widgets/text_login/text_login_fields.widget.dart';
-import 'package:pleasehiretolga/core/hooks/use_responsive.hook.dart';
 
 class LoginSwitchWidget extends HookConsumerWidget {
   const LoginSwitchWidget({
@@ -20,13 +20,8 @@ class LoginSwitchWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final responsive = useResponsive();
     final isQrMode = switch (state) {
-      final AuthStateEditing s
-          when s.qrMode &&
-              (responsive.type == DeviceType.mobile ||
-                  responsive.type == DeviceType.tablet) =>
-        true,
+      final AuthStateEditing s when s.qrMode && kIsWeb == false => true,
       _ => false
     };
     const cardWidth = 400.0;

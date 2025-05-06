@@ -10,7 +10,6 @@ import 'package:pleasehiretolga/core/features/auth/presentation/widgets/login_sw
 import 'package:pleasehiretolga/core/design/spacing.dart';
 import 'package:pleasehiretolga/core/features/imprint/provider/imprint.provider.dart';
 import 'package:pleasehiretolga/core/hooks/use_l10n.hook.dart';
-import 'package:pleasehiretolga/core/hooks/use_responsive.hook.dart';
 import 'package:pleasehiretolga/core/hooks/use_theme.hook.dart';
 import 'package:pleasehiretolga/core/presentation/widgets/footer.widget.dart';
 import 'package:pleasehiretolga/core/presentation/widgets/language_switcher.widget.dart';
@@ -26,7 +25,6 @@ class AuthPage extends HookConsumerWidget {
     final notifier = ref.read(authStateProvider.notifier);
     final width = MediaQuery.sizeOf(context).width;
     final imprint = ref.watch(imprintProvider).valueOrNull;
-    final responsive = useResponsive();
     final contact = imprint?.getContact(Locale("de"));
     final email = (RegExp(r'E-Mail: ([\w\.-]+@[\w\.-]+\.\w+)')
                 .firstMatch(contact ?? '')
@@ -46,11 +44,7 @@ class AuthPage extends HookConsumerWidget {
     });
 
     final isQrMode = switch (state) {
-      final AuthStateEditing s
-          when s.qrMode &&
-              (responsive.type == DeviceType.mobile ||
-                  responsive.type == DeviceType.tablet) =>
-        true,
+      final AuthStateEditing s when s.qrMode && kIsWeb == false => true,
       _ => false
     };
 
