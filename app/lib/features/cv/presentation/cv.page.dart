@@ -62,6 +62,7 @@ class CvPage extends HookConsumerWidget {
                           .map((e) => "• $e")
                           .join('\n\n'),
                       completed: education.passed,
+                      link: education.link,
                       references: education.getReferences(locale),
                     ),
                   ],
