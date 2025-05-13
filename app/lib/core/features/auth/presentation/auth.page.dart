@@ -56,7 +56,7 @@ class AuthPage extends HookConsumerWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
-          title: AutoSizeText(l10n.welcomeToPleaseHireTolga)
+          title: AutoSizeText(l10n.welcomeToTheApp)
               .animate()
               .fadeIn(duration: animDuration, delay: baseDelay),
           centerTitle: true,

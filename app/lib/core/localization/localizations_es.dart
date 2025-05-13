@@ -15,7 +15,7 @@ class L10nEs extends L10n {
   String get countryFlag => '🇪🇸';
 
   @override
-  String get welcomeToPleaseHireTolga => 'Please Hire Tolga 🙌';
+  String get welcomeToTheApp => 'Solicitud 🙌';
 
   @override
   String get tapOnScanQrCodeToLogin => 'Toca el código QR para escanearlo e iniciar sesión.';

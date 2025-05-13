@@ -29,7 +29,7 @@ class MyApp extends HookConsumerWidget {
     final customTheme = ref.watch(dynamicThemeProvider);
 
     final app = MaterialApp.router(
-      title: 'Please Hire Tolga',
+      title: 'Bewerbung',
       debugShowCheckedModeBanner: false,
       localizationsDelegates: L10n.localizationsDelegates,
       supportedLocales: L10n.supportedLocales,

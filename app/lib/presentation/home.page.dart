@@ -95,7 +95,7 @@ class HomePage extends HookConsumerWidget {
             indicatorSize: TabBarIndicatorSize.label,
             labelColor: theme.colorScheme.surface,
             unselectedLabelColor: theme.colorScheme.surface,
-            indicatorColor: theme.colorScheme.secondary,
+            indicatorColor: Colors.white,
             indicatorWeight: 7,
           ),
           actions: [
