@@ -113,11 +113,11 @@ abstract class L10n {
   /// **'🇬🇧/🇺🇸'**
   String get countryFlag;
 
-  /// No description provided for @welcomeToPleaseHireTolga.
+  /// No description provided for @welcomeToTheApp.
   ///
   /// In en, this message translates to:
-  /// **'Please Hire Tolga 🙌'**
-  String get welcomeToPleaseHireTolga;
+  /// **'Application 🙌'**
+  String get welcomeToTheApp;
 
   /// No description provided for @tapOnScanQrCodeToLogin.
   ///

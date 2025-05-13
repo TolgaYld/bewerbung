@@ -1,6 +1,6 @@
-# pleasehiretolga
+# bewerbung
 
-**pleasehiretolga** is a modern Flutter application for presenting my personal application documents such as a resume, cover letter profile aso. The app is optimized for web, tablet, and mobile devices, and access is secured via Firebase Authentication (e.g. QR-code based login).
+**bewerbung** is a modern Flutter application for presenting my personal application documents such as a resume, cover letter profile aso. The app is optimized for web, tablet, and mobile devices, and access is secured via Firebase Authentication (e.g. QR-code based login).
 
 ## ✨ Features
 
@@ -12,10 +12,10 @@
 
 ## Tech Stack
 
-| Area               | Technology                                         |
-|--------------------|----------------------------------------------------|
-| Backend     | Firebase Authentication, Firestore                        |
-| State Management   | Riverpod                                           |
-| Testing            | `flutter_test`, `mocktail`, etc.                   |
-| Architecture       | Clean Architecture                                 |
-| Development Method | Test-Driven Development (TDD)                      |
+| Area               | Technology                         |
+| ------------------ | ---------------------------------- |
+| Backend            | Firebase Authentication, Firestore |
+| State Management   | Riverpod                           |
+| Testing            | `flutter_test`, `mocktail`, etc.   |
+| Architecture       | Clean Architecture                 |
+| Development Method | Test-Driven Development (TDD)      |
