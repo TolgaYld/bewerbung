@@ -185,10 +185,10 @@ class L10nFr extends L10n {
   String get mobileSwipeInstruction => 'Glissez vers la gauche pour refuser ou vers la droite pour inviter.';
 
   @override
-  String get webButtonHeadline => 'Prenez votre décision avec un clic';
+  String get webButtonHeadline => 'Faites votre choix en un clic ou en glissant';
 
   @override
-  String get webButtonInstruction => 'Cliquez sur le bon bouton pour l\'invitation ou le refus';
+  String get webButtonInstruction => 'Cliquez sur les boutons ou glissez pour inviter ou refuser (vous pouvez changer ou annuler votre décision à tout moment).';
 
   @override
   String get noDataAvailable => 'Aucune donnée disponible';

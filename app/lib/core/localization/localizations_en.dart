@@ -185,10 +185,10 @@ class L10nEn extends L10n {
   String get mobileSwipeInstruction => 'Swipe left to refuse or right to invite.';
 
   @override
-  String get webButtonHeadline => 'Make your choice with a click';
+  String get webButtonHeadline => 'Make your choice with a click or swipe';
 
   @override
-  String get webButtonInstruction => 'Click the right button for invitation or refusal';
+  String get webButtonInstruction => 'Click the buttons or swipe to invite or refuse (You can change or revoke your decision at any time).';
 
   @override
   String get noDataAvailable => 'No data available';

@@ -185,10 +185,10 @@ class L10nTr extends L10n {
   String get mobileSwipeInstruction => 'Reddetmek için sola, davet etmek için sağa kaydırın.';
 
   @override
-  String get webButtonHeadline => 'Tıyklayarak kararınızı verin';
+  String get webButtonHeadline => 'Bir tık veya kaydırma ile seçimini yap';
 
   @override
-  String get webButtonInstruction => 'Davet veya reddetme için doğru düğmeye tıklayın';
+  String get webButtonInstruction => 'Düğmelere tıkla veya davet/ret için kaydır (Her zaman değiştirebilir veya geri çekebilirsin).';
 
   @override
   String get noDataAvailable => 'Veri yok';

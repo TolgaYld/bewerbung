@@ -185,10 +185,10 @@ class L10nEs extends L10n {
   String get mobileSwipeInstruction => 'Desliza hacia la izquierda para rechazar o hacia la derecha para invitar.';
 
   @override
-  String get webButtonHeadline => 'Toma tu decisión con un clic';
+  String get webButtonHeadline => 'Toma tu decisión con un clic o deslizamiento';
 
   @override
-  String get webButtonInstruction => 'Haz clic en el botón correcto para la invitación o el rechazo';
+  String get webButtonInstruction => 'Haz clic en los botones o desliza para invitar o rechazar (puedes cambiarlo o revocarlo en cualquier momento).';
 
   @override
   String get noDataAvailable => 'No hay datos disponibles';

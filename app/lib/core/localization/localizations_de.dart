@@ -185,10 +185,10 @@ class L10nDe extends L10n {
   String get mobileSwipeInstruction => 'Swipe nach links, um abzulehnen oder nach rechts, um einzuladen.';
 
   @override
-  String get webButtonHeadline => 'Treffe deine Wahl mit einem Klick';
+  String get webButtonHeadline => 'Treffe deine Wahl mit einem Klick oder Swipe';
 
   @override
-  String get webButtonInstruction => 'Klicke den richtigen Button für Einladung oder Ablehnung';
+  String get webButtonInstruction => 'Klicke die Buttons oder Swipe für eine Einladung oder Ablehnung (Du kannst es zu jederzeit ändern oder zurückziehen).';
 
   @override
   String get noDataAvailable => 'Keine Daten verfügbar';

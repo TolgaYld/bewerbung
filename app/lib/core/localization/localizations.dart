@@ -452,13 +452,13 @@ abstract class L10n {
   /// No description provided for @webButtonHeadline.
   ///
   /// In en, this message translates to:
-  /// **'Make your choice with a click'**
+  /// **'Make your choice with a click or swipe'**
   String get webButtonHeadline;
 
   /// No description provided for @webButtonInstruction.
   ///
   /// In en, this message translates to:
-  /// **'Click the right button for invitation or refusal'**
+  /// **'Click the buttons or swipe to invite or refuse (You can change or revoke your decision at any time).'**
   String get webButtonInstruction;
 
   /// No description provided for @noDataAvailable.
