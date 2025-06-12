@@ -18,10 +18,12 @@ class L10nFr extends L10n {
   String get welcomeToTheApp => 'Candidature 🙌';
 
   @override
-  String get tapOnScanQrCodeToLogin => 'Appuyez sur le code QR pour le scanner et vous connecter.';
+  String get tapOnScanQrCodeToLogin =>
+      'Appuyez sur le code QR pour le scanner et vous connecter.';
 
   @override
-  String get youWillBeAutomaticallyLoggedIn => 'Vous serez automatiquement connecté.';
+  String get youWillBeAutomaticallyLoggedIn =>
+      'Vous serez automatiquement connecté.';
 
   @override
   String get youNeedHelp => 'Vous avez besoin d\'aide ?';
@@ -45,19 +47,24 @@ class L10nFr extends L10n {
   String get password => 'Mot de passe';
 
   @override
-  String get oopsSomethingWentWrongPleaseTryAgain => 'Oups 😅, quelque chose s\'est mal passé. Veuillez réessayer';
+  String get oopsSomethingWentWrongPleaseTryAgain =>
+      'Oups 😅, quelque chose s\'est mal passé. Veuillez réessayer';
 
   @override
-  String get dontWantLoginViaQrCode => 'Vous ne voulez pas vous connecter via le code QR ?';
+  String get dontWantLoginViaQrCode =>
+      'Vous ne voulez pas vous connecter via le code QR ?';
 
   @override
-  String get wantToLoginViaQrCode => 'Vous voulez vous connecter via le code QR ?';
+  String get wantToLoginViaQrCode =>
+      'Vous voulez vous connecter via le code QR ?';
 
   @override
-  String get howDoYouWantToLogin => 'Comment voulez-vous vous connecter avec un code QR ou des identifiants ?';
+  String get howDoYouWantToLogin =>
+      'Comment voulez-vous vous connecter avec un code QR ou des identifiants ?';
 
   @override
-  String get enterYourLoginInformation => 'Veuillez entrer vos informations de connexion que je vous ai envoyées.';
+  String get enterYourLoginInformation =>
+      'Veuillez entrer vos informations de connexion que je vous ai envoyées.';
 
   @override
   String get aboutMe => 'À propos de moi';
@@ -75,7 +82,8 @@ class L10nFr extends L10n {
   String get signOut => 'Déconnexion';
 
   @override
-  String get signOutSubtitle => 'Optionnel : supprimer définitivement le compte.';
+  String get signOutSubtitle =>
+      'Optionnel : supprimer définitivement le compte.';
 
   @override
   String get cancel => 'Annuler';
@@ -87,7 +95,8 @@ class L10nFr extends L10n {
   String get signOutDialogTitle => 'Déconnexion';
 
   @override
-  String get signOutDialogContent => 'Tu peux soit te déconnecter, soit supprimer définitivement ton compte.\n\nLa suppression de ton compte effacera toutes tes données et tu ne pourras plus te reconnecter.\n\nSi tu choisis simplement de te déconnecter, tes données seront conservées et tu pourras te reconnecter plus tard.';
+  String get signOutDialogContent =>
+      'Tu peux soit te déconnecter, soit supprimer définitivement ton compte.\n\nLa suppression de ton compte effacera toutes tes données et tu ne pourras plus te reconnecter.\n\nSi tu choisis simplement de te déconnecter, tes données seront conservées et tu pourras te reconnecter plus tard.';
 
   @override
   String applicationToCompany(Object company) {
@@ -143,7 +152,8 @@ class L10nFr extends L10n {
   String get disability => 'Handicap';
 
   @override
-  String get showCopyOfDisabilityCard => 'Afficher la copie de la carte de handicap';
+  String get showCopyOfDisabilityCard =>
+      'Afficher la copie de la carte de handicap';
 
   @override
   String get invite => 'Inviter';
@@ -155,13 +165,16 @@ class L10nFr extends L10n {
   String get inviteDialogTitle => 'Merci pour l\'invitation et le temps !';
 
   @override
-  String get inviteDialogContent => 'Vous avez décidé d\'avoir une conversation avec moi. Je suis très heureux de cela ! Voulez-vous choisir une date et une heure directement ou voulez-vous me l\'envoyer séparément par e-mail ? Je serai informé de votre décision. Vous pouvez changer d\'avis à tout moment.';
+  String get inviteDialogContent =>
+      'Vous avez décidé d\'avoir une conversation avec moi. Je suis très heureux de cela ! Voulez-vous choisir une date et une heure directement ou voulez-vous me l\'envoyer séparément par e-mail ? Je serai informé de votre décision. Vous pouvez changer d\'avis à tout moment.';
 
   @override
-  String get refuseDialogTitle => 'Vraiment dommage, mais merci quand même pour votre temps !';
+  String get refuseDialogTitle =>
+      'Vraiment dommage, mais merci quand même pour votre temps !';
 
   @override
-  String get refuseDialogContent => 'Vous avez décidé de ne pas avoir de conversation avec moi. Je serai informé de votre décision. Vous pouvez changer d\'avis à tout moment.';
+  String get refuseDialogContent =>
+      'Vous avez décidé de ne pas avoir de conversation avec moi. Je serai informé de votre décision. Vous pouvez changer d\'avis à tout moment.';
 
   @override
   String get inviteWithoutPickingDate => 'Invitation sans choisir de date';
@@ -182,13 +195,16 @@ class L10nFr extends L10n {
   String get mobileSwipeHeadline => 'Prenez votre décision avec un glissement';
 
   @override
-  String get mobileSwipeInstruction => 'Glissez vers la gauche pour refuser ou vers la droite pour inviter.';
+  String get mobileSwipeInstruction =>
+      'Glissez vers la gauche pour refuser ou vers la droite pour inviter.';
 
   @override
-  String get webButtonHeadline => 'Faites votre choix en un clic ou en glissant';
+  String get webButtonHeadline =>
+      'Faites votre choix en un clic ou en glissant';
 
   @override
-  String get webButtonInstruction => 'Cliquez sur les boutons ou glissez pour inviter ou refuser (vous pouvez changer ou annuler votre décision à tout moment).';
+  String get webButtonInstruction =>
+      'Cliquez sur les boutons ou glissez pour inviter ou refuser (vous pouvez changer ou annuler votre décision à tout moment).';
 
   @override
   String get noDataAvailable => 'Aucune donnée disponible';
@@ -239,7 +255,8 @@ class L10nFr extends L10n {
   String get revokeDialogTitle => 'Révoquer l\'invitation ?';
 
   @override
-  String get revokeDialogContent => 'Voulez-vous vraiment révoquer votre décision ? Le candidat en sera informé.';
+  String get revokeDialogContent =>
+      'Voulez-vous vraiment révoquer votre décision ? Le candidat en sera informé.';
 
   @override
   String durationFormatted(int hours, int minutes) {
@@ -272,7 +289,8 @@ class L10nFr extends L10n {
   String get externalLinkDialogTitle => 'Lien externe';
 
   @override
-  String get externalLinkDialogContent => 'Vous êtes sur le point d’ouvrir un lien externe. Je ne suis pas responsable du contenu de ce site externe. Je n’ai aucun contrôle sur celui-ci et je ne m’approprie pas son contenu.';
+  String get externalLinkDialogContent =>
+      'Vous êtes sur le point d’ouvrir un lien externe. Je ne suis pas responsable du contenu de ce site externe. Je n’ai aucun contrôle sur celui-ci et je ne m’approprie pas son contenu.';
 
   @override
   String get externalLinkDialogButton => 'Ouvrir le lien externe';

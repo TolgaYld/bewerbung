@@ -18,10 +18,12 @@ class L10nEs extends L10n {
   String get welcomeToTheApp => 'Solicitud 🙌';
 
   @override
-  String get tapOnScanQrCodeToLogin => 'Toca el código QR para escanearlo e iniciar sesión.';
+  String get tapOnScanQrCodeToLogin =>
+      'Toca el código QR para escanearlo e iniciar sesión.';
 
   @override
-  String get youWillBeAutomaticallyLoggedIn => 'Después, iniciarás sesión automáticamente.';
+  String get youWillBeAutomaticallyLoggedIn =>
+      'Después, iniciarás sesión automáticamente.';
 
   @override
   String get youNeedHelp => '¿Necesitas ayuda?';
@@ -45,19 +47,24 @@ class L10nEs extends L10n {
   String get password => 'Contraseña';
 
   @override
-  String get oopsSomethingWentWrongPleaseTryAgain => 'Ups 😅, algo salió mal. Por favor, inténtalo de nuevo';
+  String get oopsSomethingWentWrongPleaseTryAgain =>
+      'Ups 😅, algo salió mal. Por favor, inténtalo de nuevo';
 
   @override
-  String get dontWantLoginViaQrCode => '¿No quieres iniciar sesión a través del código QR?';
+  String get dontWantLoginViaQrCode =>
+      '¿No quieres iniciar sesión a través del código QR?';
 
   @override
-  String get wantToLoginViaQrCode => '¿Quieres iniciar sesión a través del código QR?';
+  String get wantToLoginViaQrCode =>
+      '¿Quieres iniciar sesión a través del código QR?';
 
   @override
-  String get howDoYouWantToLogin => '¿Quieres iniciar sesión con tu código QR o con tus credenciales?';
+  String get howDoYouWantToLogin =>
+      '¿Quieres iniciar sesión con tu código QR o con tus credenciales?';
 
   @override
-  String get enterYourLoginInformation => 'Por favor, ingresa tu información de inicio de sesión que te envié.';
+  String get enterYourLoginInformation =>
+      'Por favor, ingresa tu información de inicio de sesión que te envié.';
 
   @override
   String get aboutMe => 'Sobre mí';
@@ -87,7 +94,8 @@ class L10nEs extends L10n {
   String get signOutDialogTitle => 'Cerrar sesión';
 
   @override
-  String get signOutDialogContent => 'Puedes cerrar sesión o eliminar tu cuenta de forma permanente.\n\nSi eliminas tu cuenta, se borrarán todos tus datos y no podrás volver a iniciar sesión.\n\nSi solo cierras sesión, tus datos se conservarán y podrás volver a iniciar sesión más adelante.';
+  String get signOutDialogContent =>
+      'Puedes cerrar sesión o eliminar tu cuenta de forma permanente.\n\nSi eliminas tu cuenta, se borrarán todos tus datos y no podrás volver a iniciar sesión.\n\nSi solo cierras sesión, tus datos se conservarán y podrás volver a iniciar sesión más adelante.';
 
   @override
   String applicationToCompany(Object company) {
@@ -143,7 +151,8 @@ class L10nEs extends L10n {
   String get disability => 'Discapacidad';
 
   @override
-  String get showCopyOfDisabilityCard => 'Mostrar copia de la tarjeta de discapacidad';
+  String get showCopyOfDisabilityCard =>
+      'Mostrar copia de la tarjeta de discapacidad';
 
   @override
   String get invite => 'Invitar';
@@ -155,13 +164,16 @@ class L10nEs extends L10n {
   String get inviteDialogTitle => '¡Gracias por la invitación y el tiempo!';
 
   @override
-  String get inviteDialogContent => 'Has decidido tener una conversación conmigo. ¡Estoy muy feliz por eso! ¿Quieres elegir una fecha y hora directamente o quieres enviármelo por separado por correo electrónico? Seré informado sobre tu decisión. Puedes cambiar de opinión en cualquier momento.';
+  String get inviteDialogContent =>
+      'Has decidido tener una conversación conmigo. ¡Estoy muy feliz por eso! ¿Quieres elegir una fecha y hora directamente o quieres enviármelo por separado por correo electrónico? Seré informado sobre tu decisión. Puedes cambiar de opinión en cualquier momento.';
 
   @override
-  String get refuseDialogTitle => 'Realmente una pena, pero aún así gracias por tu tiempo!';
+  String get refuseDialogTitle =>
+      'Realmente una pena, pero aún así gracias por tu tiempo!';
 
   @override
-  String get refuseDialogContent => 'Has decidido no tener una conversación conmigo. Seré informado sobre tu decisión. Puedes cambiar de opinión en cualquier momento.';
+  String get refuseDialogContent =>
+      'Has decidido no tener una conversación conmigo. Seré informado sobre tu decisión. Puedes cambiar de opinión en cualquier momento.';
 
   @override
   String get inviteWithoutPickingDate => 'Invitación sin elegir fecha';
@@ -182,13 +194,16 @@ class L10nEs extends L10n {
   String get mobileSwipeHeadline => 'Toma tu decisión con un deslizamiento';
 
   @override
-  String get mobileSwipeInstruction => 'Desliza hacia la izquierda para rechazar o hacia la derecha para invitar.';
+  String get mobileSwipeInstruction =>
+      'Desliza hacia la izquierda para rechazar o hacia la derecha para invitar.';
 
   @override
-  String get webButtonHeadline => 'Toma tu decisión con un clic o deslizamiento';
+  String get webButtonHeadline =>
+      'Toma tu decisión con un clic o deslizamiento';
 
   @override
-  String get webButtonInstruction => 'Haz clic en los botones o desliza para invitar o rechazar (puedes cambiarlo o revocarlo en cualquier momento).';
+  String get webButtonInstruction =>
+      'Haz clic en los botones o desliza para invitar o rechazar (puedes cambiarlo o revocarlo en cualquier momento).';
 
   @override
   String get noDataAvailable => 'No hay datos disponibles';
@@ -239,7 +254,8 @@ class L10nEs extends L10n {
   String get revokeDialogTitle => '¿Revocar invitación?';
 
   @override
-  String get revokeDialogContent => '¿Realmente deseas revocar tu decisión? El solicitante será informado al respecto.';
+  String get revokeDialogContent =>
+      '¿Realmente deseas revocar tu decisión? El solicitante será informado al respecto.';
 
   @override
   String durationFormatted(int hours, int minutes) {
@@ -252,7 +268,8 @@ class L10nEs extends L10n {
   }
 
   @override
-  String get noMessageWrittenToApplicant => 'No se ha escrito ningún mensaje al solicitante';
+  String get noMessageWrittenToApplicant =>
+      'No se ha escrito ningún mensaje al solicitante';
 
   @override
   String get responseStatusFromApplicant => 'Respuesta a la invitación';
@@ -272,7 +289,8 @@ class L10nEs extends L10n {
   String get externalLinkDialogTitle => 'Enlace externo';
 
   @override
-  String get externalLinkDialogContent => 'Vas a abrir un enlace externo. No soy responsable del contenido de este sitio externo. No tengo control sobre él y expresamente no me apropio de su contenido.';
+  String get externalLinkDialogContent =>
+      'Vas a abrir un enlace externo. No soy responsable del contenido de este sitio externo. No tengo control sobre él y expresamente no me apropio de su contenido.';
 
   @override
   String get externalLinkDialogButton => 'Abrir enlace externo';

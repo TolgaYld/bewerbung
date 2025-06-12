@@ -41,12 +41,8 @@ class MyApp extends HookConsumerWidget {
     );
 
     return kIsWeb
-        ? InteractiveViewer(
-            minScale: 0.5,
-            maxScale: 3.0,
-            child: SizedBox.expand(
-              child: app,
-            ),
+        ? SizedBox.expand(
+            child: app,
           )
         : app;
   }

@@ -18,10 +18,12 @@ class L10nTr extends L10n {
   String get welcomeToTheApp => 'İş başvurusu 🙌';
 
   @override
-  String get tapOnScanQrCodeToLogin => 'QR koduna basarak kodu tarat ve giriş yap.';
+  String get tapOnScanQrCodeToLogin =>
+      'QR koduna basarak kodu tarat ve giriş yap.';
 
   @override
-  String get youWillBeAutomaticallyLoggedIn => 'Ardından otomatik olarak giriş yapacaksınız.';
+  String get youWillBeAutomaticallyLoggedIn =>
+      'Ardından otomatik olarak giriş yapacaksınız.';
 
   @override
   String get youNeedHelp => 'Yardım mı lazım?';
@@ -45,19 +47,23 @@ class L10nTr extends L10n {
   String get password => 'Şifre';
 
   @override
-  String get oopsSomethingWentWrongPleaseTryAgain => 'Nayır nolamaz 😅, bir şeyler ters gitti. Lütfen tekrar deneyin';
+  String get oopsSomethingWentWrongPleaseTryAgain =>
+      'Nayır nolamaz 😅, bir şeyler ters gitti. Lütfen tekrar deneyin';
 
   @override
-  String get dontWantLoginViaQrCode => 'QR kodu ile giriş yapmak istemiyor musun?';
+  String get dontWantLoginViaQrCode =>
+      'QR kodu ile giriş yapmak istemiyor musun?';
 
   @override
   String get wantToLoginViaQrCode => 'QR kodu ile giriş yapmak ister misin?';
 
   @override
-  String get howDoYouWantToLogin => 'QR kodu ile mi yoksa giriş bilgileri ile mi giriş yapmak istiyorsunuz?';
+  String get howDoYouWantToLogin =>
+      'QR kodu ile mi yoksa giriş bilgileri ile mi giriş yapmak istiyorsunuz?';
 
   @override
-  String get enterYourLoginInformation => 'Lütfen sana gönderdiğim giriş bilgilerini gir.';
+  String get enterYourLoginInformation =>
+      'Lütfen sana gönderdiğim giriş bilgilerini gir.';
 
   @override
   String get aboutMe => 'Hakkımda';
@@ -87,7 +93,8 @@ class L10nTr extends L10n {
   String get signOutDialogTitle => 'Çıkış yap';
 
   @override
-  String get signOutDialogContent => 'Oturumu kapatabilir veya hesabını kalıcı olarak silebilirsin.\n\nHesabını silersen, tüm verilerin silinir ve tekrar giriş yapamazsın.\n\nSadece oturumu kapatırsan, verilerin korunur ve daha sonra tekrar giriş yapabilirsin.';
+  String get signOutDialogContent =>
+      'Oturumu kapatabilir veya hesabını kalıcı olarak silebilirsin.\n\nHesabını silersen, tüm verilerin silinir ve tekrar giriş yapamazsın.\n\nSadece oturumu kapatırsan, verilerin korunur ve daha sonra tekrar giriş yapabilirsin.';
 
   @override
   String applicationToCompany(Object company) {
@@ -152,16 +159,20 @@ class L10nTr extends L10n {
   String get refuse => 'Reddet';
 
   @override
-  String get inviteDialogTitle => 'Davetiniz ve bana vakit ayırdığınız için teşekkürler!';
+  String get inviteDialogTitle =>
+      'Davetiniz ve bana vakit ayırdığınız için teşekkürler!';
 
   @override
-  String get inviteDialogContent => 'Benimle bir görüşme yapmaya karar verdiniz. Hemen bir tarih ve saat seçmek ister misiniz yoksa bunu bana ayrı bir e-posta ile göndermek mi istersiniz? Kararınızdan haberdar olacağım. Her zaman fikrinizi değiştirebilirsiniz.';
+  String get inviteDialogContent =>
+      'Benimle bir görüşme yapmaya karar verdiniz. Hemen bir tarih ve saat seçmek ister misiniz yoksa bunu bana ayrı bir e-posta ile göndermek mi istersiniz? Kararınızdan haberdar olacağım. Her zaman fikrinizi değiştirebilirsiniz.';
 
   @override
-  String get refuseDialogTitle => 'Gerçekten üzücü ama yine de bana vakit ayırdığınız için teşekkürler!';
+  String get refuseDialogTitle =>
+      'Gerçekten üzücü ama yine de bana vakit ayırdığınız için teşekkürler!';
 
   @override
-  String get refuseDialogContent => 'Benimle bir görüşme yapmamaya karar verdiniz. Kararınızdan haberdar olacağım. Her zaman fikrinizi değiştirebilirsiniz.';
+  String get refuseDialogContent =>
+      'Benimle bir görüşme yapmamaya karar verdiniz. Kararınızdan haberdar olacağım. Her zaman fikrinizi değiştirebilirsiniz.';
 
   @override
   String get inviteWithoutPickingDate => 'Tarih seçmeden davet et';
@@ -182,13 +193,15 @@ class L10nTr extends L10n {
   String get mobileSwipeHeadline => 'Kaydırarak kararınızı verin';
 
   @override
-  String get mobileSwipeInstruction => 'Reddetmek için sola, davet etmek için sağa kaydırın.';
+  String get mobileSwipeInstruction =>
+      'Reddetmek için sola, davet etmek için sağa kaydırın.';
 
   @override
   String get webButtonHeadline => 'Bir tık veya kaydırma ile seçimini yap';
 
   @override
-  String get webButtonInstruction => 'Düğmelere tıkla veya davet/ret için kaydır (Her zaman değiştirebilir veya geri çekebilirsin).';
+  String get webButtonInstruction =>
+      'Düğmelere tıkla veya davet/ret için kaydır (Her zaman değiştirebilir veya geri çekebilirsin).';
 
   @override
   String get noDataAvailable => 'Veri yok';
@@ -203,7 +216,8 @@ class L10nTr extends L10n {
   String get invited => 'Davet edildi';
 
   @override
-  String get inviteExplanationHint => 'Davetinize isteğe bağlı bir mesaj ekleyin...';
+  String get inviteExplanationHint =>
+      'Davetinize isteğe bağlı bir mesaj ekleyin...';
 
   @override
   String get refuseExplanationHint => 'Reddetme nedeni (isteğe bağlı)...';
@@ -239,7 +253,8 @@ class L10nTr extends L10n {
   String get revokeDialogTitle => 'Daveti geri çek?';
 
   @override
-  String get revokeDialogContent => 'Kararınızı gerçekten geri çekmek istiyor musunuz? Başvuran bilgilendirilecektir.';
+  String get revokeDialogContent =>
+      'Kararınızı gerçekten geri çekmek istiyor musunuz? Başvuran bilgilendirilecektir.';
 
   @override
   String durationFormatted(int hours, int minutes) {
@@ -272,7 +287,8 @@ class L10nTr extends L10n {
   String get externalLinkDialogTitle => 'Harici Bağlantı';
 
   @override
-  String get externalLinkDialogContent => 'Harici bir bağlantı açmak üzeresiniz. Bu harici sitenin içeriğinden sorumlu değilim. İçeriği üzerinde hiçbir kontrolüm yoktur ve bu içeriği sahiplenmediğimi açıkça belirtirim.';
+  String get externalLinkDialogContent =>
+      'Harici bir bağlantı açmak üzeresiniz. Bu harici sitenin içeriğinden sorumlu değilim. İçeriği üzerinde hiçbir kontrolüm yoktur ve bu içeriği sahiplenmediğimi açıkça belirtirim.';
 
   @override
   String get externalLinkDialogButton => 'Harici bağlantıyı aç';

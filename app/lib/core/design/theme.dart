@@ -76,7 +76,7 @@ class AppTheme {
     bodyLarge: _lightBodyText.copyWith(color: _darkTextColorPrimary),
   );
 
-  static final _lightCardTheme = CardTheme(
+  static final _lightCardTheme = CardThemeData(
     color: Colors.grey[200],
     elevation: 3,
     shape: RoundedRectangleBorder(

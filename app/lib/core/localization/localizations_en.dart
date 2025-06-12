@@ -21,7 +21,8 @@ class L10nEn extends L10n {
   String get tapOnScanQrCodeToLogin => 'Tap on the QR code to scan and login.';
 
   @override
-  String get youWillBeAutomaticallyLoggedIn => 'You will be automatically logged in.';
+  String get youWillBeAutomaticallyLoggedIn =>
+      'You will be automatically logged in.';
 
   @override
   String get youNeedHelp => 'You need help?';
@@ -45,7 +46,8 @@ class L10nEn extends L10n {
   String get password => 'Password';
 
   @override
-  String get oopsSomethingWentWrongPleaseTryAgain => 'Oops 😅, something went wrong. Please try again';
+  String get oopsSomethingWentWrongPleaseTryAgain =>
+      'Oops 😅, something went wrong. Please try again';
 
   @override
   String get dontWantLoginViaQrCode => 'Don\'t want to login via QR code?';
@@ -57,7 +59,8 @@ class L10nEn extends L10n {
   String get howDoYouWantToLogin => 'Login with QR code or credentials?';
 
   @override
-  String get enterYourLoginInformation => 'Please enter your login information that I sent you.';
+  String get enterYourLoginInformation =>
+      'Please enter your login information that I sent you.';
 
   @override
   String get aboutMe => 'About me';
@@ -87,7 +90,8 @@ class L10nEn extends L10n {
   String get signOutDialogTitle => 'Sign out';
 
   @override
-  String get signOutDialogContent => 'You can either sign out or permanently delete your account.\n\nDeleting your account will erase all your data and you won’t be able to sign in again.\n\nIf you only sign out, your data will be kept and you can sign in again later.';
+  String get signOutDialogContent =>
+      'You can either sign out or permanently delete your account.\n\nDeleting your account will erase all your data and you won’t be able to sign in again.\n\nIf you only sign out, your data will be kept and you can sign in again later.';
 
   @override
   String applicationToCompany(Object company) {
@@ -155,13 +159,16 @@ class L10nEn extends L10n {
   String get inviteDialogTitle => 'Thanks for the invite and the time!';
 
   @override
-  String get inviteDialogContent => 'You have decided to have a conversation with me. I\'m very happy about that! Do you want to choose a date and time directly or do you want to send it to me separately by email? I will be informed about your decision. You can change your mind at any time.';
+  String get inviteDialogContent =>
+      'You have decided to have a conversation with me. I\'m very happy about that! Do you want to choose a date and time directly or do you want to send it to me separately by email? I will be informed about your decision. You can change your mind at any time.';
 
   @override
-  String get refuseDialogTitle => 'Really a pity, but still thanks for your time!';
+  String get refuseDialogTitle =>
+      'Really a pity, but still thanks for your time!';
 
   @override
-  String get refuseDialogContent => 'You have decided against a conversation with me. I will be informed about your decision. You can change your mind at any time.';
+  String get refuseDialogContent =>
+      'You have decided against a conversation with me. I will be informed about your decision. You can change your mind at any time.';
 
   @override
   String get inviteWithoutPickingDate => 'Invite without picking a date';
@@ -182,13 +189,15 @@ class L10nEn extends L10n {
   String get mobileSwipeHeadline => 'Make your choice with a swipe';
 
   @override
-  String get mobileSwipeInstruction => 'Swipe left to refuse or right to invite.';
+  String get mobileSwipeInstruction =>
+      'Swipe left to refuse or right to invite.';
 
   @override
   String get webButtonHeadline => 'Make your choice with a click or swipe';
 
   @override
-  String get webButtonInstruction => 'Click the buttons or swipe to invite or refuse (You can change or revoke your decision at any time).';
+  String get webButtonInstruction =>
+      'Click the buttons or swipe to invite or refuse (You can change or revoke your decision at any time).';
 
   @override
   String get noDataAvailable => 'No data available';
@@ -239,7 +248,8 @@ class L10nEn extends L10n {
   String get revokeDialogTitle => 'Revoke invitation?';
 
   @override
-  String get revokeDialogContent => 'Do you really want to revoke your decision? The applicant will be informed about it.';
+  String get revokeDialogContent =>
+      'Do you really want to revoke your decision? The applicant will be informed about it.';
 
   @override
   String durationFormatted(int hours, int minutes) {
@@ -272,7 +282,8 @@ class L10nEn extends L10n {
   String get externalLinkDialogTitle => 'External Link';
 
   @override
-  String get externalLinkDialogContent => 'You are about to open an external link. I am not responsible for the content of this external site. I have no control over it and expressly do not adopt its content as my own.';
+  String get externalLinkDialogContent =>
+      'You are about to open an external link. I am not responsible for the content of this external site. I have no control over it and expressly do not adopt its content as my own.';
 
   @override
   String get externalLinkDialogButton => 'Open external link';

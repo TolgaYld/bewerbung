@@ -163,7 +163,7 @@ ThemeData _createCustomTheme({
       ),
       iconTheme: IconThemeData(color: onPrimaryColor),
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: Colors.grey[200],
       elevation: 3,
       shape: RoundedRectangleBorder(
